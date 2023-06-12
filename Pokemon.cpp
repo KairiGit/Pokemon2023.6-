@@ -44,10 +44,10 @@ class Pokemon{
             cout <<getHP()<<' '<<getAtk()<<' '<<getDef()<<' '<<getSp_Atk()<<' '<<getSp_Def()<<' '<<getSpeed();
         }
         void showMove(){
-            cout <<1<< 1move.showMoveName() <<endl;
-            cout <<2<< 2move.showMoveName() <<endl;
-            cout <<3<< 3move.showMoveName() <<endl;
-            cout <<4<< 4move.showMoveName() <<endl;
+            cout <<1<< 1move.getMoveName() <<endl;
+            cout <<2<< 2move.getMoveName() <<endl;
+            cout <<3<< 3move.getMoveName() <<endl;
+            cout <<4<< 4move.getMoveName() <<endl;
         }
 
 };
