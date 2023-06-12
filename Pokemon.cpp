@@ -1,11 +1,56 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 #include <typeinfo>
 #include <cmath>
 using namespace std;
-enum Type{NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HAG,FEA};//18タイプ
-enum Ailment{NOT,PAR,FRZ,PSN,BPSN,BRN};//状態異常
+enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HAG,FEA};//18タイプ
+enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
 enum classification{Physical,Spesial,Status};//技の分類
+
+string exType(Type t){
+    switch(t){
+        case 0:return "nasi";break;
+        case 1:return "no-maru";break;
+        case 2:return "hono";break;
+        case 3:return "mizu";break;
+        case 4:return "denki";break;
+        case 5:return "kusa";break;
+        case 6:return "kori";break;
+        case 7:return "kakuto";break;
+        case 8:return "doku";break;
+        case 9:return "jimen";break;
+        case 10:return "hikou";break;
+        case 11:return "esupa";break;
+        case 12:return "musi";break;
+        case 13:return "iwa";break;
+        case 14:return "gosuto";break;
+        case 15:return "doragon";break;
+        case 16:return "aku";break;
+        case 17:return "hagane";break;
+        case 18:return "feari";break;
+    }
+}
+
+class Move{
+    private:
+        string MoveName;
+        Type MoveType;
+        classification cat;
+        int Acc;
+    protected:
+    public:
+        string getMoveName();
+        Type getMoveType();
+        classification getCat();
+        int getAcc();
+};
+    /*class MoveATK : public Move{
+        private:
+            int Pow;
+            int Contact;
+    };
+    class MoveStats : public Move{};*/
+
 
 class Pokemon{
     private:
@@ -13,11 +58,11 @@ class Pokemon{
         Type fPokeType;
         Type sPokeType;
         //int H,A,B,C,D,S;
-        string Ability;
+        //string Ability;
         int Nowhp;
         //int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
-        Ailment Ail;
+        //Ailment Ail;
         bool isAlive;
 
         Move move1;
@@ -26,12 +71,14 @@ class Pokemon{
         Move move4;
     protected:
         void die(){
-            isAlive = folse;
+            isAlive = false;
         }
     public:
+        void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
         string getPokeName();
-        Type getPokeType();
-        string getAbility();
+        Type getfPokeType();
+        Type getsPokeType();
+        //string getAbility();
         int getNowhp();
         int getHP();
         int getAtk();
@@ -39,13 +86,18 @@ class Pokemon{
         int getSp_Atk();
         int getSp_Def();
         int getSpeed();
-        int getAil();
+        //int getAil();
 
+        void showPokeType(Pokemon x){
+            string f =exType(x.getfPokeType());
+            string s =exType(x.getsPokeType());
+            cout <<f<<'/'<<s<<endl;
+        }
         void showNowhp(){
-            cout << getNowhp();
+            cout << getNowhp()<<endl;
         }
         void showStats(){
-            cout <<getHP()<<' '<<getAtk()<<' '<<getDef()<<' '<<getSp_Atk()<<' '<<getSp_Def()<<' '<<getSpeed();
+            cout <<getHP()<<' '<<getAtk()<<' '<<getDef()<<' '<<getSp_Atk()<<' '<<getSp_Def()<<' '<<getSpeed()<<endl;
         }
         void showMove(){
             cout <<1<< move1.getMoveName() <<endl;
@@ -55,6 +107,36 @@ class Pokemon{
         }
 
 };
+void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
+    PokeName = name;
+    fPokeType = f;
+    sPokeType = s;
+    Nowhp = hp;
+    HP = hp;
+    Atk = atk;
+    Def = def;
+    Sp_Atk = sp_atk;
+    Sp_Def = sp_def;
+    Speed = speed;
+    isAlive = true;
+}
+
+string Pokemon :: getPokeName(){
+    return PokeName;
+}
+Type Pokemon :: getfPokeType(){
+    return fPokeType;
+}
+Type Pokemon :: getsPokeType(){
+    return sPokeType;
+}
+int Pokemon :: getNowhp(){
+    return Nowhp;
+}
+
+
+
+
 //ポケモン
 /*
     class Eevee : public Pokemon{};
@@ -76,25 +158,6 @@ class Pokemon{
     class Metagross : public Pokemon{};
     class Sylveon : public Pokemon{};
 */
-class Move{
-    private:
-        string MoveName;
-        Type MoveType;
-        classification cat;
-        int Acc;
-    protected:
-    public:
-        string getMoveName();
-        Type getMoveType();
-        classification getCat();
-        int getAcc();
-};
-    class MoveATK : public Move{
-        private:
-            int Pow;
-            int Contact;
-    };
-    class MoveStats : public Move{};
 
 int dmg(int atk,int def,int pow){
     int dmg;
@@ -103,13 +166,12 @@ int dmg(int atk,int def,int pow){
     tmp = tmp/50 +2;
     return dmg;
 }
-string serect{
-    
-}
-void battle(){
-    
-}
+
 int main(void){
-    battle();
+    Pokemon a;
+    a.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
+    cout <<a.getPokeName()<<endl;
+    a.showPokeType(a);
+    a.showNowhp();
     return 0;
 }
