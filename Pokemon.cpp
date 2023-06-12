@@ -92,9 +92,19 @@ class Move{
     };
     class MoveStats : public Move{};
 
-
-
-void battle(){}
+int dmg(int atk,int def,int pow){
+    int dmg;
+    int tmp = 50*2/5 +2;
+    tmp = tmp*pow*atk/def;
+    tmp = tmp/50 +2;
+    return dmg;
+}
+string serect{
+    
+}
+void battle(){
+    
+}
 int main(void){
     battle();
     return 0;
