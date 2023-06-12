@@ -14,16 +14,21 @@ class Pokemon{
         Type sPokeType;
         int H,A,B,C,D,S;
         string Ability;
-        int hp;
+        int Nowhp;
         int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
         Ailment Ail;
+
+        Move 1move;
+        Move 2move;
+        Move 3move;
+        Move 4move;
     protected:
     public:
         string getPokeName();
         Type getPokeType();
         string getAbility();
-        int gethp();
+        int getNowhp();
         int getHP();
         int getAtk();
         int getDef();
@@ -32,11 +37,17 @@ class Pokemon{
         int getSpeed();
         int getAil();
 
-        void showhp(){
-            cout << gethp();
+        void showNowhp(){
+            cout << getNowhp();
         }
         void showStats(){
             cout <<getHP()<<' '<<getAtk()<<' '<<getDef()<<' '<<getSp_Atk()<<' '<<getSp_Def()<<' '<<getSpeed();
+        }
+        void showMove(){
+            cout <<1<< 1move.showMoveName() <<endl;
+            cout <<2<< 2move.showMoveName() <<endl;
+            cout <<3<< 3move.showMoveName() <<endl;
+            cout <<4<< 4move.showMoveName() <<endl;
         }
 
 };
@@ -72,6 +83,7 @@ class Move{
         string getMoveName();
         Type getMoveType();
         classification getCat();
+        int getAcc();
 };
     class MoveATK : public Move{
         private:
@@ -81,8 +93,9 @@ class Move{
     class MoveStats : public Move{};
 
 
+
 void battle(){}
-    int main(void){
-        battle();
-        return 0;
-    }
+int main(void){
+    battle();
+    return 0;
+}
