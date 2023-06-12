@@ -12,18 +12,22 @@ class Pokemon{
         string PokeName;
         Type fPokeType;
         Type sPokeType;
-        int H,A,B,C,D,S;
+        //int H,A,B,C,D,S;
         string Ability;
         int Nowhp;
         int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
         Ailment Ail;
+        bool isAlive;
 
-        Move 1move;
-        Move 2move;
-        Move 3move;
-        Move 4move;
+        Move move1;
+        Move move2;
+        Move move3;
+        Move move4;
     protected:
+        void die(){
+            isAlive = folse;
+        }
     public:
         string getPokeName();
         Type getPokeType();
@@ -44,10 +48,10 @@ class Pokemon{
             cout <<getHP()<<' '<<getAtk()<<' '<<getDef()<<' '<<getSp_Atk()<<' '<<getSp_Def()<<' '<<getSpeed();
         }
         void showMove(){
-            cout <<1<< 1move.getMoveName() <<endl;
-            cout <<2<< 2move.getMoveName() <<endl;
-            cout <<3<< 3move.getMoveName() <<endl;
-            cout <<4<< 4move.getMoveName() <<endl;
+            cout <<1<< move1.getMoveName() <<endl;
+            cout <<2<< move2.getMoveName() <<endl;
+            cout <<3<< move3.getMoveName() <<endl;
+            cout <<4<< move4.getMoveName() <<endl;
         }
 
 };
