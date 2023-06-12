@@ -10,7 +10,7 @@ enum classification{Physical,Spesial,Status};//技の分類
 string exType(Type t){
     switch(t){
         case 0:return "nasi";break;
-        case 1:return "no-maru";break;
+        case 1:return "nomaru";break;
         case 2:return "hono";break;
         case 3:return "mizu";break;
         case 4:return "denki";break;
