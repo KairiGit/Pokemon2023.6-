@@ -15,7 +15,7 @@ class Pokemon{
         //int H,A,B,C,D,S;
         string Ability;
         int Nowhp;
-        int h,a,b,c,d,s;
+        //int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
         Ailment Ail;
         bool isAlive;
