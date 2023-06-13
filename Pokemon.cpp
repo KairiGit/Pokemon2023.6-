@@ -7,6 +7,7 @@ enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HA
 enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
 enum classification{Physical,Spesial,Status};//技の分類
 
+
 string exType(Type t){
     switch(t){
         case 0:return "nasi";break;
