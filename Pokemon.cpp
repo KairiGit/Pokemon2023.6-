@@ -30,18 +30,35 @@ string exType(Type t){
         case 18:return "feari";break;
     }
 }
-
+int dmg(int atk,int def,int pow){
+    int dmg;
+    int tmp = 50*2/5 +2;
+    tmp = tmp*pow*atk/def;
+    tmp = tmp/50 +2;
+    return dmg;
+}
 class Move{
     private:
         string MoveName;
         Type MoveType;
         classification cat;
+        int Pow;
         int Acc;
     protected:
     public:
+        void setMove(Type t,classification c,int p){
+            MoveType = t;
+            cat = c;
+            Pow = p;
+        }
         string getMoveName();
         Type getMoveType();
-        classification getCat();
+        classification getCat(){
+            return cat;
+        }
+        int getPow(){
+            return Pow;
+        }
         int getAcc();
 };
     /*class MoveATK : public Move{
@@ -54,6 +71,7 @@ class Move{
 
 class Pokemon{
     private:
+    protected:
         string PokeName;
         Type fPokeType;
         Type sPokeType;
@@ -69,7 +87,6 @@ class Pokemon{
         Move move2;
         Move move3;
         Move move4;
-    protected:
         void die(){
             isAlive = false;
         }
@@ -81,23 +98,30 @@ class Pokemon{
         //string getAbility();
         int getNowhp();
         int getHP();
-        int getAtk();
-        int getDef();
-        int getSp_Atk();
+        int getAtk(){return Atk;}
+        int getDef(){return Def;}
+        int getSp_Atk(){return Sp_Atk;}
         int getSp_Def();
         int getSpeed();
         //int getAil();
         
-        void Moved(Pokemon x,Pokemon y,Move w){
-            switch(w.getCat){
-                case 0: Attacked(x,y,w);break;
-                case 1: spAttacked(x,y,w);break;
+        void Attacked(Pokemon atk,Move w){
+            Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
+        }
+        void spAttacked(Pokemon atk,Move w){
+            Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
+        }
+        void Moved(Pokemon atk,Move w){
+            switch(w.getCat()){
+                case 0: Attacked(atk,w);break;
+                case 1: spAttacked(atk,w);break;
                 case 2: break;
             }
         }
-        void showPokeType(Pokemon x){
-            string f =exType(x.getfPokeType());
-            string s =exType(x.getsPokeType());
+
+        void showPokeType(){
+            string f =exType(fPokeType);
+            string s =exType(sPokeType);
             cout <<f<<'/'<<s<<endl;
         }
         void showNowhp(){
@@ -141,8 +165,23 @@ class Pokemon{
             return Nowhp;
         }
 
-    class Poke : public Poke{};
-    class enePoke : public Pole{};
+    class MyPoke : public Pokemon{
+        public:
+            void Attacked(Pokemon atk,Move w){
+                Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
+            }
+            void spAttacked(Pokemon atk,Move w){
+                Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
+            }
+            void Moved(Pokemon atk,Move w){
+                switch(w.getCat()){
+                    case 0: Attacked(atk,w);break;
+                    case 1: spAttacked(atk,w);break;
+                    case 2: break;
+                }
+            }
+    };
+    class EnePoke : public Pokemon{};
 
 
 //ポケモン
@@ -167,30 +206,28 @@ class Pokemon{
     class Sylveon : public Pokemon{};
 */
 
-int dmg(int atk,int def,int pow){
-    int dmg;
-    int tmp = 50*2/5 +2;
-    tmp = tmp*pow*atk/def;
-    tmp = tmp/50 +2;
-    return dmg;
-}
-void setAllPokemon(){
-    Pokemon Eevee;
-    Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
-    Pokemon Charizard;
-    Charizard.setPokemon("Charizard",HON,HIK,153,104,98,129,105,120);
-    Pokemon Greninja;
-    Greninja.setPokemon("Greninja",MIZ,AKU,147,115,87,123,91,142);
-    Pokemon Amoonguss;
-    Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
-}
 
 int main(void){
-    void setAllPokemon();
-    Pokemon a;
-    a.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
-    cout <<a.getPokeName()<<endl;
-    a.showPokeType(a);
-    a.showNowhp();
+    Move Tackle;
+        Tackle.setMove(NOM,Physical,40);
+    Pokemon Eevee;
+        Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
+    Pokemon Charizard;
+        Charizard.setPokemon("Charizard",HON,HIK,153,104,98,129,105,120);
+    Pokemon Greninja;
+        Greninja.setPokemon("Greninja",MIZ,AKU,147,115,87,123,91,142);
+    Pokemon Pikachu;
+        Pikachu.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
+    Pokemon Amoonguss;
+        Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
+    
+    MyPoke one;
+        one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
+    EnePoke uno;
+        uno.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
+    one.showNowhp();
+    one.Moved(uno,Tackle);
+    one.showNowhp();
+    
     return 0;
 }
