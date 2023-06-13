@@ -87,7 +87,14 @@ class Pokemon{
         int getSp_Def();
         int getSpeed();
         //int getAil();
-
+        
+        void Moved(Pokemon x,Pokemon y,Move w){
+            switch(w.getCat){
+                case 0: Attacked(x,y,w);break;
+                case 1: spAttacked(x,y,w);break;
+                case 2: break;
+            }
+        }
         void showPokeType(Pokemon x){
             string f =exType(x.getfPokeType());
             string s =exType(x.getsPokeType());
@@ -176,6 +183,7 @@ void setAllPokemon(){
     Pokemon Amoonguss;
     Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
 }
+
 int main(void){
     void setAllPokemon();
     Pokemon a;
