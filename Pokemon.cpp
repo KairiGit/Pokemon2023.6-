@@ -114,34 +114,35 @@ class Pokemon{
         }
 
 };
-void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
-    PokeName = name;
-    fPokeType = f;
-    sPokeType = s;
-    Nowhp = hp;
-    HP = hp;
-    Atk = atk;
-    Def = def;
-    Sp_Atk = sp_atk;
-    Sp_Def = sp_def;
-    Speed = speed;
-    isAlive = true;
-}
+        void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
+            PokeName = name;
+            fPokeType = f;
+            sPokeType = s;
+            Nowhp = hp;
+            HP = hp;
+            Atk = atk;
+            Def = def;
+            Sp_Atk = sp_atk;
+            Sp_Def = sp_def;
+            Speed = speed;
+            isAlive = true;
+        }
+        
+        string Pokemon :: getPokeName(){
+            return PokeName;
+        }
+        Type Pokemon :: getfPokeType(){
+            return fPokeType;
+        }
+        Type Pokemon :: getsPokeType(){
+            return sPokeType;
+        }
+        int Pokemon :: getNowhp(){
+            return Nowhp;
+        }
 
-string Pokemon :: getPokeName(){
-    return PokeName;
-}
-Type Pokemon :: getfPokeType(){
-    return fPokeType;
-}
-Type Pokemon :: getsPokeType(){
-    return sPokeType;
-}
-int Pokemon :: getNowhp(){
-    return Nowhp;
-}
-
-
+    class Poke : public Poke{};
+    class enePoke : public Pole{};
 
 
 //ポケモン
