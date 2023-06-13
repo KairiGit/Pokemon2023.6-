@@ -166,8 +166,18 @@ int dmg(int atk,int def,int pow){
     tmp = tmp/50 +2;
     return dmg;
 }
-
+void setAllPokemon(){
+    Pokemon Eevee;
+    Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
+    Pokemon Charizard;
+    Charizard.setPokemon("Charizard",HON,HIK,153,104,98,129,105,120);
+    Pokemon Greninja;
+    Greninja.setPokemon("Greninja",MIZ,AKU,147,115,87,123,91,142);
+    Pokemon Amoonguss;
+    Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
+}
 int main(void){
+    void setAllPokemon();
     Pokemon a;
     a.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
     cout <<a.getPokeName()<<endl;
