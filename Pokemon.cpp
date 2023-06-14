@@ -202,8 +202,8 @@ class Pokemon{
     class Metagross : public Pokemon{};
     class Sylveon : public Pokemon{};
 */
-void setAllPoke(Pokemon Eevee){
-
+void setAllPoke(Pokemon a,Pokemon b,Pokemon c,Pokemon d,Pokemon e){
+    
 }
 
 int main(void){
