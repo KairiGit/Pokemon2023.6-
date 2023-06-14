@@ -52,15 +52,11 @@ class Move{
             cat = c;
             Pow = p;
         }
-        string getMoveName();
-        Type getMoveType();
-        classification getCat(){
-            return cat;
-        }
-        int getPow(){
-            return Pow;
-        }
-        int getAcc();
+        string getMoveName(){return MoveName;}
+        Type getMoveType(){return MoveType;}
+        classification getCat(){return cat;}
+        int getPow(){return Pow;}
+        int getAcc(){return Acc;}
 };
     /*class MoveATK : public Move{
         private:
@@ -93,17 +89,17 @@ class Pokemon{
         }
     public:
         void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
-        string getPokeName();
-        Type getfPokeType();
-        Type getsPokeType();
+        string getPokeName(){return PokeName;}
+        Type getfPokeType(){return fPokeType;}
+        Type getsPokeType(){return sPokeType;}
         //string getAbility();
-        int getNowhp();
-        int getHP();
+        int getNowhp(){return Nowhp;}
+        int getHP(){return HP;}
         int getAtk(){return Atk;}
         int getDef(){return Def;}
         int getSp_Atk(){return Sp_Atk;}
-        int getSp_Def();
-        int getSpeed();
+        int getSp_Def(){return Sp_Def;}
+        int getSpeed(){return Speed;}
         //int getAil();
         
         void Attacked(Pokemon atk,Move w){
@@ -153,19 +149,6 @@ class Pokemon{
             isAlive = true;
         }
         
-        string Pokemon :: getPokeName(){
-            return PokeName;
-        }
-        Type Pokemon :: getfPokeType(){
-            return fPokeType;
-        }
-        Type Pokemon :: getsPokeType(){
-            return sPokeType;
-        }
-        int Pokemon :: getNowhp(){
-            return Nowhp;
-        }
-
     class MyPoke : public Pokemon{
         public:
             void Attacked(Pokemon atk,Move w){
