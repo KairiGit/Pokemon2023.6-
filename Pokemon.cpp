@@ -90,6 +90,7 @@ class Pokemon{
         }
     public:
         void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        void setPokeMove(Move one,Move two,Move three,Move four){};
         string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
@@ -148,6 +149,12 @@ class Pokemon{
             Sp_Def = sp_def;
             Speed = speed;
             isAlive = true;
+        }
+        void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
+            move1.setMove(one.getMoveType(),one.getCat(),int one.getPow);
+            move2.setMove(two.getMoveType(),two.getCat(),int two.getPow);
+            move3.setMove(three.getMoveType(),three.getCat(),int three.getPow);
+            move4.setMove(four.getMoveType(),four.getCat(),int four.getPow);
         }
         
     class MyPoke : public Pokemon{
