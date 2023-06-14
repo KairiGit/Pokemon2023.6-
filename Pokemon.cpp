@@ -36,6 +36,7 @@ int dmg(int atk,int def,int pow){
     int tmp = 50*2/5 +2;
     tmp = tmp*pow*atk/def;
     tmp = tmp/50 +2;
+    dmg =tmp;
     return dmg;
 }
 class Move{
