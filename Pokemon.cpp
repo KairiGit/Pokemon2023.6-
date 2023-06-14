@@ -48,7 +48,8 @@ class Move{
         int Acc;
     protected:
     public:
-        void setMove(Type t,classification c,int p){
+        void setMove(string n,Type t,classification c,int p){
+            MoveName = n;
             MoveType = t;
             cat = c;
             Pow = p;
@@ -205,7 +206,7 @@ class Pokemon{
 
 int main(void){
     Move Tackle;
-        Tackle.setMove(NOM,Physical,40);
+        Tackle.setMove("Tackle",NOM,Physical,40);
     Pokemon Eevee;
         Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
     Pokemon Charizard;
