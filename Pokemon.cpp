@@ -5,8 +5,7 @@
 using namespace std;
 enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HAG,FEA};//18タイプ
 enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
-enum classification{Physical,Spesial,Status};//技の分類
-
+enum Cat{Physical,Spesial,Status};//技の分類
 
 string exType(Type t){
     switch(t){
@@ -43,12 +42,19 @@ class Move{
     private:
         string MoveName;
         Type MoveType;
-        classification cat;
+        Cat cat;
         int Pow;
         int Acc;
     protected:
     public:
-        void setMove(string n,Type t,classification c,int p){
+        Move(string n,Type t,Cat c,int p){
+            MoveName = n;
+            MoveType = t;
+            cat = c;
+            Pow = p;
+        }
+        Move(){}
+        void setMove(string n,Type t,Cat c,int p){
             MoveName = n;
             MoveType = t;
             cat = c;
@@ -56,7 +62,7 @@ class Move{
         }
         string getMoveName(){return MoveName;}
         Type getMoveType(){return MoveType;}
-        classification getCat(){return cat;}
+        Cat getCat(){return cat;}
         int getPow(){return Pow;}
         int getAcc(){return Acc;}
 };
@@ -237,20 +243,15 @@ class Pokemon{
 
 
 int main(void){
-    Move Tackle;
-        Tackle.setMove("Tackle",NOM,Physical,40);
+    Move Tackle("Tackle",NOM,Physical,40);
+
     Pokemon Eevee("Eevee",NOM,NOT,130,75,70,65,85,75);
-        //Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
     Pokemon Charizard("Charizard",HON,HIK,153,104,98,129,105,120);
-        //Charizard.setPokemon("Charizard",HON,HIK,153,104,98,129,105,120);
     Pokemon Greninja("Greninja",MIZ,AKU,147,115,87,123,91,142);
-        //Greninja.setPokemon("Greninja",MIZ,AKU,147,115,87,123,91,142);
     Pokemon Pikachu("Pikachu",DEN,NOT,110,75,60,70,70,110);
-        //Pikachu.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
     Pokemon Amoonguss("Amoonguss",KUS,DOK,189,105,90,105,100,50);
-        //Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
     
-    MyPoke one("Eevee",NOM,NOT,130,75,70,65,85,75);
+    MyPoke one(Eevee.getPokeName(),Eevee.getfPokeType(),Eevee.getsPokeType(),Eevee.getHP(),Eevee.getAtk(),Eevee.getDef(),Eevee.getSp_Atk(),Eevee.getSp_Def(),Eevee.getSpeed());
         //one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
     EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110);
         //uno.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
