@@ -90,7 +90,20 @@ class Pokemon{
             isAlive = false;
         }
     public:
-        void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
+            PokeName = name;
+            fPokeType = f;
+            sPokeType = s;
+            Nowhp = hp;
+            HP = hp;
+            Atk = atk;
+            Def = def;
+            Sp_Atk = sp_atk;
+            Sp_Def = sp_def;
+            Speed = speed;
+            isAlive = true;
+        }
+        //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
         void setPokeMove(Move one,Move two,Move three,Move four);
         string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
@@ -142,7 +155,7 @@ class Pokemon{
         }
 
 };
-        void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
+        /*void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
             PokeName = name;
             fPokeType = f;
             sPokeType = s;
@@ -154,7 +167,7 @@ class Pokemon{
             Sp_Def = sp_def;
             Speed = speed;
             isAlive = true;
-        }
+        }*/
         void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
             move1.setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
             move2.setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
@@ -164,6 +177,8 @@ class Pokemon{
         
     class MyPoke : public Pokemon{
         public:
+            MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed){}
+
             void Attacked(Pokemon atk,Move w){
                 Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
             }
@@ -178,7 +193,24 @@ class Pokemon{
                 }
             }
     };
-    class EnePoke : public Pokemon{};
+    class EnePoke : public Pokemon{
+        public:
+            EnePoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed){}
+
+            void Attacked(Pokemon atk,Move w){
+                Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
+            }
+            void spAttacked(Pokemon atk,Move w){
+                Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
+            }
+            void Moved(Pokemon atk,Move w){
+                switch(w.getCat()){
+                    case 0: Attacked(atk,w);break;
+                    case 1: spAttacked(atk,w);break;
+                    case 2: break;
+                }
+            }
+    };
 
 
 //ポケモン
@@ -202,28 +234,26 @@ class Pokemon{
     class Metagross : public Pokemon{};
     class Sylveon : public Pokemon{};
 */
-void setAllPoke(Pokemon a,Pokemon b,Pokemon c,Pokemon d,Pokemon e){
-    
-}
+
 
 int main(void){
     Move Tackle;
         Tackle.setMove("Tackle",NOM,Physical,40);
-    Pokemon Eevee;
-        Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
-    Pokemon Charizard;
-        Charizard.setPokemon("Charizard",HON,HIK,153,104,98,129,105,120);
-    Pokemon Greninja;
-        Greninja.setPokemon("Greninja",MIZ,AKU,147,115,87,123,91,142);
-    Pokemon Pikachu;
-        Pikachu.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
-    Pokemon Amoonguss;
-        Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
+    Pokemon Eevee("Eevee",NOM,NOT,130,75,70,65,85,75);
+        //Eevee.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
+    Pokemon Charizard("Charizard",HON,HIK,153,104,98,129,105,120);
+        //Charizard.setPokemon("Charizard",HON,HIK,153,104,98,129,105,120);
+    Pokemon Greninja("Greninja",MIZ,AKU,147,115,87,123,91,142);
+        //Greninja.setPokemon("Greninja",MIZ,AKU,147,115,87,123,91,142);
+    Pokemon Pikachu("Pikachu",DEN,NOT,110,75,60,70,70,110);
+        //Pikachu.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
+    Pokemon Amoonguss("Amoonguss",KUS,DOK,189,105,90,105,100,50);
+        //Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
     
-    MyPoke one;
-        one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
-    EnePoke uno;
-        uno.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
+    MyPoke one("Eevee",NOM,NOT,130,75,70,65,85,75);
+        //one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
+    EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110);
+        //uno.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
         uno.setPokeMove(Tackle,Tackle,Tackle,Tackle);
     uno.showMove();
     one.showNowhp();
