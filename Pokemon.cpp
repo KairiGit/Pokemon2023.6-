@@ -155,10 +155,10 @@ class Pokemon{
             isAlive = true;
         }
         void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
-            move1.setMove(one.getMoveType(),one.getCat(),int one.getPow);
-            move2.setMove(two.getMoveType(),two.getCat(),int two.getPow);
-            move3.setMove(three.getMoveType(),three.getCat(),int three.getPow);
-            move4.setMove(four.getMoveType(),four.getCat(),int four.getPow);
+            move1.setMove(one.getMoveType(),one.getCat(),one.getPow());
+            move2.setMove(two.getMoveType(),two.getCat(),two.getPow());
+            move3.setMove(three.getMoveType(),three.getCat(),three.getPow());
+            move4.setMove(four.getMoveType(),four.getCat(),four.getPow());
         }
         
     class MyPoke : public Pokemon{
