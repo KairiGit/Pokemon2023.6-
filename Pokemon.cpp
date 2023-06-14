@@ -90,7 +90,7 @@ class Pokemon{
         }
     public:
         void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
-        void setPokeMove(Move one,Move two,Move three,Move four){};
+        void setPokeMove(Move one,Move two,Move three,Move four);
         string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
