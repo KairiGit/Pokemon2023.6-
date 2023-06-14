@@ -218,7 +218,7 @@ int main(void){
         Amoonguss.setPokemon("Amoonguss",KUS,DOK,189,105,90,105,100,50);
     
     MyPoke one;
-        one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75)
+        one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
     EnePoke uno;
         uno.setPokemon("pika",DEN,NOT,110,75,60,70,70,110);
         uno.setPokeMove(Tackle,Tackle,Tackle,Tackle);
