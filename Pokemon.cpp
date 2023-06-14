@@ -156,10 +156,10 @@ class Pokemon{
             isAlive = true;
         }
         void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
-            move1.setMove(one.getMoveType(),one.getCat(),one.getPow());
-            move2.setMove(two.getMoveType(),two.getCat(),two.getPow());
-            move3.setMove(three.getMoveType(),three.getCat(),three.getPow());
-            move4.setMove(four.getMoveType(),four.getCat(),four.getPow());
+            move1.setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
+            move2.setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
+            move3.setMove(three.getMoveName(),three.getMoveType(),three.getCat(),three.getPow());
+            move4.setMove(four.getMoveName(),four.getMoveType(),four.getCat(),four.getPow());
         }
         
     class MyPoke : public Pokemon{
@@ -202,7 +202,9 @@ class Pokemon{
     class Metagross : public Pokemon{};
     class Sylveon : public Pokemon{};
 */
+void setAllPoke(Pokemon Eevee){
 
+}
 
 int main(void){
     Move Tackle;
