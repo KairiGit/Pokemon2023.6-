@@ -103,6 +103,10 @@ class Pokemon{
         int getSp_Def(){return Sp_Def;}
         int getSpeed(){return Speed;}
         //int getAil();
+        Move getMove1(){return move1;}
+        Move getMove2(){return move2;}
+        Move getMove3(){return move3;}
+        Move getMove4(){return move4;}
         
         void Attacked(Pokemon atk,Move w){
             Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
