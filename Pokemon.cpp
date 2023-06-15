@@ -129,6 +129,8 @@ class Pokemon{
         Move getMove2(){return move2;}
         Move getMove3(){return move3;}
         Move getMove4(){return move4;}
+
+        bool getisAlive(){return isAlive;}
         
         void Attacked(Pokemon atk,Move w){
             Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
@@ -141,6 +143,10 @@ class Pokemon{
                 case 0: Attacked(atk,w);break;
                 case 1: spAttacked(atk,w);break;
                 case 2: break;
+            }
+            if(Nowhp<=0){
+                Nowhp = 0;
+                die();
             }
         }
         //"\x1b[38;2;" "\x1b[m"
@@ -280,8 +286,13 @@ void Master(){
         cout <<"Enemy's "<<uno.getPokeName()<<" used "<<uno.getMove1().getMoveName()<<endl;
         one.showNowhp();
         one.Moved(uno,uno.getMove1());
+        cout << "->";
         one.showNowhp();
-        n = YN();
+        if(one.getisAlive()){n = YN();}
+        else{
+            cout << one.getPokeName() <<" fainted!"<<endl;
+            n = false;
+        }
     }
     
 }
