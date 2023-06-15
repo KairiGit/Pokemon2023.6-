@@ -143,13 +143,15 @@ class Pokemon{
                 case 2: break;
             }
         }
+        //"\x1b[38;2;" "\x1b[m"
         void showNowhp(){
-                    cout << getNowhp()<<endl;
-                }
+            if(Nowhp>HP/2){cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
+            else if(Nowhp>HP/4){cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
+            else{cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<endl;}
+        }
         void showPokeType(){
             cout <<exType(fPokeType)<<'/'<<exType(sPokeType)<<endl;
         }
-        
         void showStats(){
             cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
         }
@@ -171,31 +173,20 @@ class Pokemon{
             cout <<endl;
         }
 };
-        /*void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
-            PokeName = name;
-            fPokeType = f;
-            sPokeType = s;
-            Nowhp = hp;
-            HP = hp;
-            Atk = atk;
-            Def = def;
-            Sp_Atk = sp_atk;
-            Sp_Def = sp_def;
-            Speed = speed;
-            isAlive = true;
-        }*/
+    
         void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
             move1.setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
             move2.setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
             move3.setMove(three.getMoveName(),three.getMoveType(),three.getCat(),three.getPow());
             move4.setMove(four.getMoveName(),four.getMoveType(),four.getCat(),four.getPow());
         }
-        
+    //自分のポケモン
     class MyPoke : public Pokemon{
         public:
             MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
             MyPoke(){}
     };
+    //相手のポケモン
     class EnePoke : public Pokemon{
         public:
             EnePoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
@@ -224,7 +215,7 @@ class Pokemon{
     class Metagross : public Pokemon{};
     class Sylveon : public Pokemon{};
 */
-//「はい」か「いいえ」
+//「はい」か「いいえ」を選ぶ関数
 bool YN(){
     int YN;
     cout <<1<<'.'<<"Yes"<<endl;
@@ -233,6 +224,8 @@ bool YN(){
     if(YN==1){return true;}
     else{return false;}
 }
+
+//主な動作をする関数
 void Master(){
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);
@@ -246,7 +239,9 @@ void Master(){
     Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Leafage);
     Pokemon tmp;
+
     bool still=true;
+    //自分のポケモンを選ぶ
     while(still){
         int select;
         cout <<"Which Pokemon would you choose?"<<endl;
@@ -280,10 +275,15 @@ void Master(){
     MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
     
     EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
+    bool n =true;
+    while(n){
+        cout <<"Enemy's "<<uno.getPokeName()<<" used "<<uno.getMove1().getMoveName()<<endl;
+        one.showNowhp();
+        one.Moved(uno,uno.getMove1());
+        one.showNowhp();
+        n = YN();
+    }
     
-    one.showNowhp();
-    one.Moved(uno,uno.getMove1());
-    one.showNowhp();
 }
 
 int main(void){
