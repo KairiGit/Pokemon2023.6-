@@ -96,7 +96,7 @@ class Pokemon{
             isAlive = false;
         }
     public:
-        Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
+        Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
             PokeName = name;
             fPokeType = f;
             sPokeType = s;
@@ -107,6 +107,7 @@ class Pokemon{
             Sp_Atk = sp_atk;
             Sp_Def = sp_def;
             Speed = speed;
+            move1 = move;
             isAlive = true;
         }
         //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
@@ -183,7 +184,7 @@ class Pokemon{
         
     class MyPoke : public Pokemon{
         public:
-            MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed){}
+            MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
 
             void Attacked(Pokemon atk,Move w){
                 Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
@@ -248,11 +249,11 @@ int main(void){
     Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
     Move Leafage("Leafage",KUS,Physical,40);
 
-    Pokemon a("Eevee",NOM,NOT,130,75,70,65,85,75);
-    Pokemon b("Charizard",HON,HIK,153,104,98,129,105,120);
-    Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142);
-    Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110);
-    Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50);
+    Pokemon a("Eevee",NOM,NOT,130,75,70,65,85,75,Tackle);
+    Pokemon b("Charizard",HON,HIK,153,104,98,129,105,120,Ember);
+    Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142,Water Gun);
+    Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
+    Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Laefage);
     
 
     int select;
@@ -263,11 +264,11 @@ int main(void){
     switch(serect){
         case 1:
             cout <<"You choose "<<a.getname()<<endl;
-            MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed());
+            MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed(),a.getMove1());
             break;
         case 2:
             cout <<"You choose "<<b.getname()<<endl;
-            MyPoke one(b.getPokeName(),b.getfPokeType(),b.getsPokeType(),b.getHP(),b.getAtk(),b.getDef(),b.getSp_Atk(),b.getSp_Def(),b.getSpeed());
+            MyPoke one(b.getPokeName(),b.getfPokeType(),b.getsPokeType(),b.getHP(),b.getAtk(),b.getDef(),b.getSp_Atk(),b.getSp_Def(),b.getSpeed(),a.getMove1());
             break;
     }
     
