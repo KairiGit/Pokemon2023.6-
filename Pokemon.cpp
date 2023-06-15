@@ -110,6 +110,7 @@ class Pokemon{
             move1 = move;
             isAlive = true;
         }
+        Pokemon(){}
         //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
         void setPokeMove(Move one,Move two,Move three,Move four);
         string getPokeName(){return PokeName;}
@@ -185,7 +186,7 @@ class Pokemon{
     class MyPoke : public Pokemon{
         public:
             MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
-
+            MyPoke(){}
             void Attacked(Pokemon atk,Move w){
                 Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
             }
@@ -202,7 +203,7 @@ class Pokemon{
     };
     class EnePoke : public Pokemon{
         public:
-            EnePoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed){}
+            EnePoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
 
             void Attacked(Pokemon atk,Move w){
                 Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
@@ -245,40 +246,45 @@ class Pokemon{
 int main(void){
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);
-    Move Water Gun("Water Gun",MIZ,Spesial,40);
+    Move Water_Gun("Water Gun",MIZ,Spesial,40);
     Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
     Move Leafage("Leafage",KUS,Physical,40);
 
     Pokemon a("Eevee",NOM,NOT,130,75,70,65,85,75,Tackle);
     Pokemon b("Charizard",HON,HIK,153,104,98,129,105,120,Ember);
-    Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142,Water Gun);
+    Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142,Water_Gun);
     Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
-    Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Laefage);
+    Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Leafage);
     
 
     int select;
-    cout <<"Which Pokémon would you choose?"<<endl;
-    cout <<1<<a.getname()<<endl;
-    cout <<2<<b.getname()<<endl;
-    cin << select;
-    switch(serect){
+    cout <<"Which Pokemon would you choose?"<<endl;
+    cout <<1<<a.getPokeName()<<endl;
+    cout <<2<<b.getPokeName()<<endl;
+    cin >> select;
+
+    Pokemon tmp;
+    switch(select){
         case 1:
-            cout <<"You choose "<<a.getname()<<endl;
-            MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed(),a.getMove1());
+            cout <<"You choose "<<a.getPokeName()<<endl;
+            tmp = a;
+            //MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed(),a.getMove1());
             break;
         case 2:
-            cout <<"You choose "<<b.getname()<<endl;
-            MyPoke one(b.getPokeName(),b.getfPokeType(),b.getsPokeType(),b.getHP(),b.getAtk(),b.getDef(),b.getSp_Atk(),b.getSp_Def(),b.getSpeed(),a.getMove1());
+            cout <<"You choose "<<b.getPokeName()<<endl;
+            tmp = b;
+            //MyPoke one(b.getPokeName(),b.getfPokeType(),b.getsPokeType(),b.getHP(),b.getAtk(),b.getDef(),b.getSp_Atk(),b.getSp_Def(),b.getSpeed(),a.getMove1());
             break;
     }
+    MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
     
 
 
-    MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed());
+    //MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed());
         //one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
-    EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110);
+    EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
         //uno.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
-        uno.setPokeMove(Tackle,Tackle,Tackle,Tackle);
+    one.showMove();
     uno.showMove();
     one.showNowhp();
     one.Moved(uno,uno.getMove1());
