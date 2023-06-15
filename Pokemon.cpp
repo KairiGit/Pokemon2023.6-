@@ -9,7 +9,7 @@ enum Cat{Physical,Spesial,Status};//技の分類
 
 string exType(Type t){
     switch(t){
-        case 0:return "nasi";break;
+        case 0:return "ONRY";break;
         case 1:return "nomaru";break;
         case 2:return "hono";break;
         case 3:return "mizu";break;
@@ -143,25 +143,33 @@ class Pokemon{
                 case 2: break;
             }
         }
-
-        void showPokeType(){
-            string f =exType(fPokeType);
-            string s =exType(sPokeType);
-            cout <<f<<'/'<<s<<endl;
-        }
         void showNowhp(){
-            cout << getNowhp()<<endl;
+                    cout << getNowhp()<<endl;
+                }
+        void showPokeType(){
+            cout <<exType(fPokeType)<<'/'<<exType(sPokeType)<<endl;
         }
+        
         void showStats(){
-            cout <<getHP()<<' '<<getAtk()<<' '<<getDef()<<' '<<getSp_Atk()<<' '<<getSp_Def()<<' '<<getSpeed()<<endl;
+            cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
         }
         void showMove(){
-            cout <<1<< move1.getMoveName() <<endl;
-            cout <<2<< move2.getMoveName() <<endl;
-            cout <<3<< move3.getMoveName() <<endl;
-            cout <<4<< move4.getMoveName() <<endl;
+            cout <<1<<':'<< move1.getMoveName() <<endl;
+            cout <<2<<':'<< move2.getMoveName() <<endl;
+            cout <<3<<':'<< move3.getMoveName() <<endl;
+            cout <<4<<':'<< move4.getMoveName() <<endl;
         }
-
+        void showAllST(){
+            cout <<endl;
+            cout <<"Type is "<<exType(fPokeType)<<'/'<<exType(sPokeType)<<endl;
+            cout <<"States is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
+            cout <<"Move is"<<endl;
+            cout <<1<<':'<< move1.getMoveName() <<endl;
+            cout <<2<<':'<< move2.getMoveName() <<endl;
+            cout <<3<<':'<< move3.getMoveName() <<endl;
+            cout <<4<<':'<< move4.getMoveName() <<endl;
+            cout <<endl;
+        }
 };
         /*void Pokemon :: setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed){
             PokeName = name;
@@ -187,37 +195,11 @@ class Pokemon{
         public:
             MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
             MyPoke(){}
-            void Attacked(Pokemon atk,Move w){
-                Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
-            }
-            void spAttacked(Pokemon atk,Move w){
-                Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
-            }
-            void Moved(Pokemon atk,Move w){
-                switch(w.getCat()){
-                    case 0: Attacked(atk,w);break;
-                    case 1: spAttacked(atk,w);break;
-                    case 2: break;
-                }
-            }
     };
     class EnePoke : public Pokemon{
         public:
             EnePoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
-
-            void Attacked(Pokemon atk,Move w){
-                Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
-            }
-            void spAttacked(Pokemon atk,Move w){
-                Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
-            }
-            void Moved(Pokemon atk,Move w){
-                switch(w.getCat()){
-                    case 0: Attacked(atk,w);break;
-                    case 1: spAttacked(atk,w);break;
-                    case 2: break;
-                }
-            }
+            EnePoke(){}
     };
 
 
@@ -242,8 +224,16 @@ class Pokemon{
     class Metagross : public Pokemon{};
     class Sylveon : public Pokemon{};
 */
-
-int main(void){
+//「はい」か「いいえ」
+bool YN(){
+    int YN;
+    cout <<1<<'.'<<"Yes"<<endl;
+    cout <<2<<'.'<<"No"<<endl;
+    cin >> YN;
+    if(YN==1){return true;}
+    else{return false;}
+}
+void Master(){
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);
     Move Water_Gun("Water Gun",MIZ,Spesial,40);
@@ -255,40 +245,48 @@ int main(void){
     Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142,Water_Gun);
     Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Leafage);
-    
-
-    int select;
-    cout <<"Which Pokemon would you choose?"<<endl;
-    cout <<1<<a.getPokeName()<<endl;
-    cout <<2<<b.getPokeName()<<endl;
-    cin >> select;
-
     Pokemon tmp;
-    switch(select){
-        case 1:
-            cout <<"You choose "<<a.getPokeName()<<endl;
-            tmp = a;
-            //MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed(),a.getMove1());
-            break;
-        case 2:
-            cout <<"You choose "<<b.getPokeName()<<endl;
-            tmp = b;
-            //MyPoke one(b.getPokeName(),b.getfPokeType(),b.getsPokeType(),b.getHP(),b.getAtk(),b.getDef(),b.getSp_Atk(),b.getSp_Def(),b.getSpeed(),a.getMove1());
-            break;
+    bool still=true;
+    while(still){
+        int select;
+        cout <<"Which Pokemon would you choose?"<<endl;
+        cout <<1<<a.getPokeName()<<endl;
+        cout <<2<<b.getPokeName()<<endl;
+        cin >> select;
+        
+        switch(select){
+            case 1:
+                cout <<"Show the status of "<<a.getPokeName()<<endl;
+                a.showAllST();
+                cout <<"Is this OK?"<<endl;
+                if(YN()){
+                    cout <<"You choose "<<a.getPokeName()<<endl;
+                    tmp = a;
+                    still = false;
+                }
+                break;
+            case 2:
+                cout <<endl<<"Show the status of "<<b.getPokeName()<<endl;
+                b.showAllST();
+                cout <<"Is this OK?"<<endl;
+                if(YN()){
+                    cout <<"You choose "<<b.getPokeName()<<endl;
+                    tmp = b;
+                    still = false;
+                }
+                break;
+        }
     }
     MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
     
-
-
-    //MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed());
-        //one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
     EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
-        //uno.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
-    one.showMove();
-    uno.showMove();
+    
     one.showNowhp();
     one.Moved(uno,uno.getMove1());
     one.showNowhp();
-    
+}
+
+int main(void){
+    Master();
     return 0;
 }
