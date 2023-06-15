@@ -241,17 +241,39 @@ class Pokemon{
     class Sylveon : public Pokemon{};
 */
 
-
 int main(void){
     Move Tackle("Tackle",NOM,Physical,40);
+    Move Ember("Ember",HON,Spesial,40);
+    Move Water Gun("Water Gun",MIZ,Spesial,40);
+    Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
+    Move Leafage("Leafage",KUS,Physical,40);
 
-    Pokemon Eevee("Eevee",NOM,NOT,130,75,70,65,85,75);
-    Pokemon Charizard("Charizard",HON,HIK,153,104,98,129,105,120);
-    Pokemon Greninja("Greninja",MIZ,AKU,147,115,87,123,91,142);
-    Pokemon Pikachu("Pikachu",DEN,NOT,110,75,60,70,70,110);
-    Pokemon Amoonguss("Amoonguss",KUS,DOK,189,105,90,105,100,50);
+    Pokemon a("Eevee",NOM,NOT,130,75,70,65,85,75);
+    Pokemon b("Charizard",HON,HIK,153,104,98,129,105,120);
+    Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142);
+    Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110);
+    Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50);
     
-    MyPoke one(Eevee.getPokeName(),Eevee.getfPokeType(),Eevee.getsPokeType(),Eevee.getHP(),Eevee.getAtk(),Eevee.getDef(),Eevee.getSp_Atk(),Eevee.getSp_Def(),Eevee.getSpeed());
+
+    int select;
+    cout <<"Which Pokémon would you choose?"<<endl;
+    cout <<1<<a.getname()<<endl;
+    cout <<2<<b.getname()<<endl;
+    cin << select;
+    switch(serect){
+        case 1:
+            cout <<"You choose "<<a.getname()<<endl;
+            MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed());
+            break;
+        case 2:
+            cout <<"You choose "<<b.getname()<<endl;
+            MyPoke one(b.getPokeName(),b.getfPokeType(),b.getsPokeType(),b.getHP(),b.getAtk(),b.getDef(),b.getSp_Atk(),b.getSp_Def(),b.getSpeed());
+            break;
+    }
+    
+
+
+    MyPoke one(a.getPokeName(),a.getfPokeType(),a.getsPokeType(),a.getHP(),a.getAtk(),a.getDef(),a.getSp_Atk(),a.getSp_Def(),a.getSpeed());
         //one.setPokemon("Eevee",NOM,NOT,130,75,70,65,85,75);
     EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110);
         //uno.setPokemon("Pikachu",DEN,NOT,110,75,60,70,70,110);
