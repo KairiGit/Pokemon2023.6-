@@ -88,10 +88,11 @@ class Pokemon{
         //Ailment Ail;
         bool isAlive;
 
-        Move move1;
+        Move m[4];
+        /*Move move1;
         Move move2;
         Move move3;
-        Move move4;
+        Move move4;*/
         void die(){
             isAlive = false;
         }
@@ -107,7 +108,7 @@ class Pokemon{
             Sp_Atk = sp_atk;
             Sp_Def = sp_def;
             Speed = speed;
-            move1 = move;
+            m[0] = move;
             isAlive = true;
         }
         Pokemon(){}
@@ -125,10 +126,10 @@ class Pokemon{
         int getSp_Def(){return Sp_Def;}
         int getSpeed(){return Speed;}
         //int getAil();
-        Move getMove1(){return move1;}
-        Move getMove2(){return move2;}
-        Move getMove3(){return move3;}
-        Move getMove4(){return move4;}
+        Move getMove1(){return m[0];}
+        Move getMove2(){return m[1];}
+        Move getMove3(){return m[2];}
+        Move getMove4(){return m[3];}
 
         bool getisAlive(){return isAlive;}
         
@@ -156,16 +157,19 @@ class Pokemon{
             else{cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<endl;}
         }
         void showPokeType(){
-            cout <<exType(fPokeType)<<'/'<<exType(sPokeType)<<endl;
+            exType(fPokeType);
+            cout <<'/';
+            exType(sPokeType);
+            cout <<endl;
         }
         void showStats(){
             cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
         }
         void showMove(){
-            cout <<1<<':'<< move1.getMoveName() <<endl;
-            cout <<2<<':'<< move2.getMoveName() <<endl;
-            cout <<3<<':'<< move3.getMoveName() <<endl;
-            cout <<4<<':'<< move4.getMoveName() <<endl;
+            cout <<1<<':'<< m[0].getMoveName() <<endl;
+            cout <<2<<':'<< m[1].getMoveName() <<endl;
+            cout <<3<<':'<< m[2].getMoveName() <<endl;
+            cout <<4<<':'<< m[3].getMoveName() <<endl;
         }
         void showAllST(){
             cout <<endl;
@@ -174,21 +178,26 @@ class Pokemon{
             cout <<'/';
             exType(sPokeType);
             cout <<endl;
-            cout <<"States is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
+            cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
             cout <<"Move is"<<endl;
-            cout <<1<<':'<< move1.getMoveName() <<endl;
-            cout <<2<<':'<< move2.getMoveName() <<endl;
-            cout <<3<<':'<< move3.getMoveName() <<endl;
-            cout <<4<<':'<< move4.getMoveName() <<endl;
+            for(int i=0;i<4;i++){
+                cout <<i+1<<':'<< m[i].getMoveName() <<endl;
+            }
+            /*cout <<1<<':'<< m[0].getMoveName() <<endl;
+            cout <<2<<':'<< m[1].getMoveName() <<endl;
+            cout <<3<<':'<< m[2].getMoveName() <<endl;
+            cout <<4<<':'<< m[3].getMoveName() <<endl;
+            */
+            
             cout <<endl;
         }
 };
     
         void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
-            move1.setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
-            move2.setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
-            move3.setMove(three.getMoveName(),three.getMoveType(),three.getCat(),three.getPow());
-            move4.setMove(four.getMoveName(),four.getMoveType(),four.getCat(),four.getPow());
+            m[0].setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
+            m[1].setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
+            m[2].setMove(three.getMoveName(),three.getMoveType(),three.getCat(),three.getPow());
+            m[3].setMove(four.getMoveName(),four.getMoveType(),four.getCat(),four.getPow());
         }
     //自分のポケモン
     class MyPoke : public Pokemon{
@@ -234,6 +243,27 @@ bool YN(){
     if(YN==1){return true;}
     else{return false;}
 }
+int select(Pokemon* x){
+    int select;
+    cout <<"Which Pokemon would you choose?"<<endl;
+    for(int i=0;i<5;i++){
+        cout <<i+1<< x[i].getPokeName() <<endl;
+    }
+    cin >> select;
+    return select;
+}
+Pokemon kakunin(Pokemon x,bool* still){
+    Pokemon tmp;
+    cout <<"Show the status of "<<x.getPokeName()<<endl;
+    x.showAllST();
+    cout <<"Is this OK?"<<endl;
+    if(YN()){
+        cout <<"You choose "<<x.getPokeName()<<endl;
+        tmp = x;
+        *still = false;
+    }
+    return tmp;
+}
 
 //主な動作をする関数
 void Master(){
@@ -243,44 +273,23 @@ void Master(){
     Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
     Move Leafage("Leafage",KUS,Physical,40);
 
+    
     Pokemon a("Eevee",NOM,NOT,130,75,70,65,85,75,Tackle);
     Pokemon b("Charizard",HON,HIK,153,104,98,129,105,120,Ember);
     Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142,Water_Gun);
     Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Leafage);
-    Pokemon tmp;
-
+    Pokemon all[5];
+    all[0] = a;
+    all[1] = b;
+    all[2] = c;
+    all[3] = d;
+    all[4] = e;
+    Pokemon tmp; 
     bool still=true;
     //自分のポケモンを選ぶ
     while(still){
-        int select;
-        cout <<"Which Pokemon would you choose?"<<endl;
-        cout <<1<<a.getPokeName()<<endl;
-        cout <<2<<b.getPokeName()<<endl;
-        cin >> select;
-        
-        switch(select){
-            case 1:
-                cout <<"Show the status of "<<a.getPokeName()<<endl;
-                a.showAllST();
-                cout <<"Is this OK?"<<endl;
-                if(YN()){
-                    cout <<"You choose "<<a.getPokeName()<<endl;
-                    tmp = a;
-                    still = false;
-                }
-                break;
-            case 2:
-                cout <<endl<<"Show the status of "<<b.getPokeName()<<endl;
-                b.showAllST();
-                cout <<"Is this OK?"<<endl;
-                if(YN()){
-                    cout <<"You choose "<<b.getPokeName()<<endl;
-                    tmp = b;
-                    still = false;
-                }
-                break;
-        }
+        tmp = kakunin(all[select(all)-1],&still);
     }
     MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
     
