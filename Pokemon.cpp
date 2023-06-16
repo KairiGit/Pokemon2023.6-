@@ -6,28 +6,28 @@ using namespace std;
 enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HAG,FEA};//18タイプ
 enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
 enum Cat{Physical,Spesial,Status};//技の分類
-
-string exType(Type t){
+//"\x1b[38;2;" "\x1b[m"
+void exType(Type t){
     switch(t){
-        case 0:return "ONRY";break;
-        case 1:return "nomaru";break;
-        case 2:return "hono";break;
-        case 3:return "mizu";break;
-        case 4:return "denki";break;
-        case 5:return "kusa";break;
-        case 6:return "kori";break;
-        case 7:return "kakuto";break;
-        case 8:return "doku";break;
-        case 9:return "jimen";break;
-        case 10:return "hikou";break;
-        case 11:return "esupa";break;
-        case 12:return "musi";break;
-        case 13:return "iwa";break;
-        case 14:return "gosuto";break;
-        case 15:return "doragon";break;
-        case 16:return "aku";break;
-        case 17:return "hagane";break;
-        case 18:return "feari";break;
+        case 0: cout <<"ONRY";break;
+        case 1: cout <<"\x1b[38;2;255;215;0m"<<"nomaru"<< "\x1b[m";break;
+        case 2: cout <<"\x1b[38;2;255;69;0m"<<"hono"<< "\x1b[m";break;
+        case 3: cout <<"\x1b[38;2;0;191;255m"<<"mizu"<< "\x1b[m";break;
+        case 4: cout <<"\x1b[38;2;255;165;0m"<<"denki"<< "\x1b[m";break;
+        case 5: cout <<"\x1b[38;2;127;255;0m"<<"kusa"<< "\x1b[m";break;
+        case 6: cout <<"\x1b[38;2;224;255;255m"<<"kori"<< "\x1b[m";break;
+        case 7: cout <<"\x1b[38;2;165;42;42m"<<"kakuto"<< "\x1b[m";break;
+        case 8: cout <<"\x1b[38;2;106;76;156m"<<"doku"<< "\x1b[m";break;
+        case 9: cout <<"\x1b[38;2;184;134;11m"<<"jimen"<< "\x1b[m";break;
+        case 10:cout <<"\x1b[38;2;230;230;250m"<<"hikou"<< "\x1b[m";break;
+        case 11:cout <<"\x1b[38;2;255;20;147m"<<"esupa"<< "\x1b[m";break;
+        case 12:cout <<"\x1b[38;2;145;141;64m"<<"musi"<< "\x1b[m";break;
+        case 13:cout <<"\x1b[38;2;240;230;140m"<<"iwa"<< "\x1b[m";break;
+        case 14:cout <<"\x1b[38;2;72;61;139m"<<"gosuto"<< "\x1b[m";break;
+        case 15:cout <<"\x1b[38;2;0;0;128m"<<"doragon"<< "\x1b[m";break;
+        case 16:cout <<"\x1b[38;2;70;70;70m"<<"aku"<< "\x1b[m";break;
+        case 17:cout <<"\x1b[38;2;192;192;192m"<<"hagane"<< "\x1b[m";break;
+        case 18:cout <<"\x1b[38;2;255;192;203m"<<"feari"<< "\x1b[m";break;
     }
 }
 int dmg(int atk,int def,int pow){
@@ -169,7 +169,11 @@ class Pokemon{
         }
         void showAllST(){
             cout <<endl;
-            cout <<"Type is "<<exType(fPokeType)<<'/'<<exType(sPokeType)<<endl;
+            cout <<"Type is ";
+            exType(fPokeType);
+            cout <<'/';
+            exType(sPokeType);
+            cout <<endl;
             cout <<"States is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
             cout <<"Move is"<<endl;
             cout <<1<<':'<< move1.getMoveName() <<endl;
