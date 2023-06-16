@@ -285,25 +285,28 @@ void Master(){
     all[2] = c;
     all[3] = d;
     all[4] = e;
+    Pokemon my[3];
+    Pokemon enemy[3];
     Pokemon tmp; 
     bool still=true;
     //自分のポケモンを選ぶ
     while(still){
         tmp = kakunin(all[select(all)-1],&still);
     }
-    MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
-    
-    EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
+    //MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
+    my[0] = tmp;
+    enemy[0] = b;
+    //EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     bool n =true;
     while(n){
-        cout <<"Enemy's "<<uno.getPokeName()<<" used "<<uno.getMove1().getMoveName()<<endl;
-        one.showNowhp();
-        one.Moved(uno,uno.getMove1());
+        cout <<"Enemy's "<<enemy[0].getPokeName()<<" used "<<enemy[0].getMove1().getMoveName()<<endl;
+        my[0].showNowhp();
+        my[0].Moved(enemy[0],enemy[0].getMove1());
         cout << "->";
-        one.showNowhp();
-        if(one.getisAlive()){n = YN();}
+        my[0].showNowhp();
+        if(my[0].getisAlive()){n = YN();}
         else{
-            cout << one.getPokeName() <<" fainted!"<<endl;
+            cout << my[0].getPokeName() <<" fainted!"<<endl;
             n = false;
         }
     }
