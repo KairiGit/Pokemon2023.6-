@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
-#include <typeinfo>
 #include <cmath>
-
+using namespace std;
 #include <enum.h>
 #include <Move.h>
 #include <something.h>
 #include <Poke.h>
 #include <Master.h>
+
+
 void Master(){
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);

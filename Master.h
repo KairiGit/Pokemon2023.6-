@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
-#include <typeinfo>
 #include <cmath>
-
+using namespace std;
 #include <enum.h>
 #include <something.h>
 #include <Move.h>
