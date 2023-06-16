@@ -293,8 +293,7 @@ void Master(){
     while(still){
         tmp = check(all[select(all)-1],&still);
     }
-    //MyPoke one(tmp.getPokeName(),tmp.getfPokeType(),tmp.getsPokeType(),tmp.getHP(),tmp.getAtk(),tmp.getDef(),tmp.getSp_Atk(),tmp.getSp_Def(),tmp.getSpeed(),tmp.getMove1());
-    my[0] = tmp;
+    
     enemy[0] = b;
     //EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     bool n =true;
