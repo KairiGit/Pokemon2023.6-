@@ -1,10 +1,6 @@
-#include <iostream>
-#include <string>
-#include <cmath>
-using namespace std;
-#include <enum.h>
-#include <Move.h>
-#include <something.h>
+#include ".\Move.h"
+#include ".\something.h"
+
 class Pokemon{
     private:
     protected:
@@ -57,7 +53,7 @@ class Pokemon{
 
 
         //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
-        void setPokeMove(Move one,Move two,Move three,Move four);
+        void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);
         void spAttacked(Pokemon atk,Move w);

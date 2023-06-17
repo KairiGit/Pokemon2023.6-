@@ -1,8 +1,5 @@
-#include <iostream>
-#include <string>
-#include <cmath>
-using namespace std;
-#include <enum.h>
+#include ".\enum.h"
+
 class Move{
     private:
         string MoveName;

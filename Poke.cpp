@@ -1,18 +1,9 @@
-#include <iostream>
-#include <string>
-#include <typeinfo>
-#include <cmath>
-using namespace std;
-#include <enum.h>
-#include <Move.h>
-#include <something.h>
-#include <Poke.h>
+#include ".\Poke.h"
 
-void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
-    m[0].setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
-    m[1].setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
-    m[2].setMove(three.getMoveName(),three.getMoveType(),three.getCat(),three.getPow());
-    m[3].setMove(four.getMoveName(),four.getMoveType(),four.getCat(),four.getPow());
+void Pokemon :: setPokeMove(Move* x){
+    for(int i=0;i<4;i++){
+        m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+    }
 }
 
 void Pokemon :: Attacked(Pokemon atk,Move w){
