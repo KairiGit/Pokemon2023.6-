@@ -9,12 +9,7 @@ class Move{
         int Acc;
     protected:
     public:
-        Move(string n,Type t,Cat c,int p){
-            MoveName = n;
-            MoveType = t;
-            cat = c;
-            Pow = p;
-        }
+        Move(string n,Type t,Cat c,int p);
         Move(){}
         void setMove(string n,Type t,Cat c,int p){
             MoveName = n;
