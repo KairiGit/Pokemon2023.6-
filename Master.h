@@ -39,9 +39,9 @@ void Master(){
     bool n =true;
     while(n){
         //敵の攻撃
-        cout <<"Enemy's "<<enemy[0].getPokeName()<<" used "<<enemy[0].getMove1().getMoveName()<<'!'<<endl;
+        cout <<"Enemy's "<<enemy[0].getPokeName()<<" used "<<enemy[0].getMove(1).getMoveName()<<'!'<<endl;
         my[0].showNowhp();
-        my[0].Moved(enemy[0],enemy[0].getMove1());
+        my[0].Moved(enemy[0],enemy[0].getMove(1));
         cout << "->";
         my[0].showNowhp();
         if(my[0].getisAlive()){
