@@ -45,10 +45,8 @@ class Pokemon{
         int getSp_Def(){return Sp_Def;}
         int getSpeed(){return Speed;}
         //int getAil();
-        Move getMove1(){return m[0];}
-        Move getMove2(){return m[1];}
-        Move getMove3(){return m[2];}
-        Move getMove4(){return m[3];}
+        Move getMove(int num){return m[num-1];}
+        
         bool getisAlive(){return isAlive;}
 
 

@@ -249,13 +249,13 @@ int select(Pokemon* x){
         cout <<i+1<< x[i].getPokeName() <<endl;
     }
     cin >> select;
-    return select;
+    return select-1;
 }
 Pokemon check(Pokemon x,bool* still){
     Pokemon tmp;
     cout <<"Show the status of "<<x.getPokeName()<<endl;
     x.showAllST();
-    cout <<"Is this OK?"<<endl;
+    cout <<"OK?"<<endl;
     if(YN()){
         cout <<"You choose "<<x.getPokeName()<<endl;
         tmp = x;
@@ -287,11 +287,14 @@ void Master(){
     Pokemon my[3];
     Pokemon enemy[3];
     Pokemon tmp; 
-    bool still=true;
-    //自分のポケモンを選ぶ
-    while(still){
-        tmp = check(all[select(all)-1],&still);
-    }
+    for(int i=0;i<3;i++){
+        bool still=true;
+        while(still){
+            tmp = check( all[select(all)] , &still);
+        }
+        my[i] = tmp;
+        enemy[i] = b;
+    } 
     
     enemy[0] = b;
     //EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
