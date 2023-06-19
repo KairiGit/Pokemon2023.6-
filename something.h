@@ -23,14 +23,7 @@ void exType(Type t){
         case 18:cout <<"\x1b[38;2;255;180;195"<<"feari"<< "\x1b[m";break;
     }
 }
-int dmg(int atk,int def,int pow){
-    int dmg;
-    int tmp = 50*2/5 +2;
-    tmp = tmp*pow*atk/def;
-    tmp = tmp/50 +2;
-    dmg =tmp;
-    return dmg;
-}
+
 bool YN(){
     int YN;
     cout <<1<<'.'<<"Yes"<<endl;

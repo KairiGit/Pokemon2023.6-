@@ -1,5 +1,4 @@
 #include ".\enum.h"
-#include <string>
 class Move{
     private:
         string MoveName;
