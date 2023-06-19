@@ -1,5 +1,7 @@
+#include <iostream>
+#include <string>
 #include ".\Poke.h"
-
+using namespace std;
 void Pokemon :: setPokeMove(Move* x){
     for(int i=0;i<4;i++){
         m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());

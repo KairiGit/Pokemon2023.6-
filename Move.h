@@ -1,5 +1,8 @@
-#include ".\enum.h"
+#include <iostream>
 #include <string>
+#include ".\enum.h"
+using namespace std;
+
 class Move{
     private:
         string MoveName;
@@ -9,9 +12,9 @@ class Move{
         int Acc;
     protected:
     public:
-        Move(string n,Type t,Cat c,int p);
+        Move(const string n,Type t,Cat c,int p);
         Move(){}
-        void setMove(string n,Type t,Cat c,int p){
+        void setMove(const string n,Type t,Cat c,int p){
             MoveName = n;
             MoveType = t;
             cat = c;
@@ -23,7 +26,7 @@ class Move{
         int getPow(){return Pow;}
         int getAcc(){return Acc;}
 };
-Move::Move(string n,Type t,Cat c,int p){
+Move::Move(const string n,Type t,Cat c,int p){
     MoveName = n;
     MoveType = t;
     cat = c;

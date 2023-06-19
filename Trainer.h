@@ -1,5 +1,7 @@
+#include <iostream>
+#include <string>
 #include ".\Poke.h"
-
+using namespace std;
 class Trainer{
     private:
         string TraiName;

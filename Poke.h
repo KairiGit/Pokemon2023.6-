@@ -1,6 +1,8 @@
+#include <iostream>
+#include <string>
 #include ".\Move.h"
 #include ".\something.h"
-
+using namespace std;
 class Pokemon{
     private:
     protected:

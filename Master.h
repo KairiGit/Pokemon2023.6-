@@ -1,8 +1,21 @@
+#include <iostream>
+#include <string>
 #include ".\select.h"
 #include ".\Trainer.h"
+using namespace std;
+
 void Master(){
-    Move Tackle("Tackle",NOM,Physical,40);
-    Move Ember("Ember",HON,Spesial,40);
+
+    const string tackle = "Tackle";
+    const string ember = "Ember";
+    const string water_gun = "Water Gun";
+    const string thunderbolt = "Thunderbolt";
+    const string leafage = "Leafage";
+    const string aura_sphere = "Aura_Sphere";
+
+    
+    Move Tackle(tackle,NOM,Physical,40);
+    Move Ember(ember,HON,Spesial,40);
     Move Water_Gun("Water Gun",MIZ,Spesial,40);
     Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
     Move Leafage("Leafage",KUS,Physical,40);

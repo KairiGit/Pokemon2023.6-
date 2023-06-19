@@ -1,5 +1,7 @@
+#include <iostream>
+#include <string>
 #include ".\Poke.h"
-
+using namespace std;
 int select(Pokemon* x,int AllPokenumber){
     int select;
     cout <<"Choose your Pokemon"<<endl;
