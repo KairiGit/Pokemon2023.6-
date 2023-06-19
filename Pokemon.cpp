@@ -112,7 +112,7 @@ class Pokemon{
         }
         Pokemon(){}
         //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
-        void setPokeMove(Move one,Move two,Move three,Move four);
+        void setPokeMove(Move* x);
         string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
@@ -125,10 +125,7 @@ class Pokemon{
         int getSp_Def(){return Sp_Def;}
         int getSpeed(){return Speed;}
         //int getAil();
-        Move getMove1(){return m[0];}
-        Move getMove2(){return m[1];}
-        Move getMove3(){return m[2];}
-        Move getMove4(){return m[3];}
+        Move getMove(int num){return m[num-1];}
 
         bool getisAlive(){return isAlive;}
         
@@ -192,26 +189,85 @@ class Pokemon{
         }
 };
     
-        void Pokemon :: setPokeMove(Move one,Move two,Move three,Move four){
-            m[0].setMove(one.getMoveName(),one.getMoveType(),one.getCat(),one.getPow());
-            m[1].setMove(two.getMoveName(),two.getMoveType(),two.getCat(),two.getPow());
-            m[2].setMove(three.getMoveName(),three.getMoveType(),three.getCat(),three.getPow());
-            m[3].setMove(four.getMoveName(),four.getMoveType(),four.getCat(),four.getPow());
+        void Pokemon :: setPokeMove(Move* x){
+    for(int i=0;i<4;i++){
+        m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+    }
+}
+
+bool YN(){
+    int YN;
+    cout <<1<<'.'<<"Yes"<<endl;
+    cout <<2<<'.'<<"No"<<endl;
+    cin >> YN;
+    if(YN==1){return true;}
+    else{return false;}
+}
+int select(Pokemon* x,int AllPokenumber){
+    int select;
+    cout <<"Choose your Pokemon"<<endl;
+    for(int i=0;i<AllPokenumber;i++){
+        cout <<i+1<< x[i].getPokeName() <<endl;
+    }
+    cin >> select;
+    return select-1;
+}
+Pokemon check(Pokemon x,bool* still){
+    Pokemon tmp;
+    cout <<"Show the status of "<<x.getPokeName()<<endl;
+    x.showAllST();
+    cout <<"OK?"<<endl;
+    if(YN()){
+        cout <<"You choose "<<x.getPokeName()<<endl;
+        tmp = x;
+        *still = false;
+    }
+    return tmp;
+}
+ class Trainer{
+    private:
+        string TraiName;
+        Pokemon myPoke[3];
+    public:
+        Trainer(string name,Pokemon a,Pokemon b,Pokemon c);
+        Trainer(){}
+        string getTraiName();
+        Pokemon getmyPoke(int num);
+        void showmyPoke();
+
+        void setTrainer(Pokemon* all,int AllPokenumber);
+};
+
+Trainer::Trainer(string name,Pokemon a,Pokemon b,Pokemon c){
+    TraiName = name;
+    myPoke[0] = a;
+    myPoke[1] = b;
+    myPoke[2] = c;
+}
+string Trainer::getTraiName(){
+    return TraiName;
+}
+Pokemon Trainer::getmyPoke(int num){
+    return myPoke[num-1];
+}
+void Trainer::showmyPoke(){
+    for(int i=0;i<3;i++){
+        cout <<i<<myPoke[i].getPokeName()<<endl;
+    }
+}
+
+void Trainer::setTrainer(Pokemon* all,int AllPokenumber){
+    cout << "What your name?"<<endl;
+    string name;
+    cin >> name;
+    cout << "Your name is "<<name<<'!'<<endl;
+    for(int i=0;i<3;i++){
+        bool still=true;
+        while(still){
+            myPoke[i] = check( all[select(all,AllPokenumber)] , &still);
         }
-    //自分のポケモン
-    class MyPoke : public Pokemon{
-        public:
-            MyPoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
-            MyPoke(){}
-    };
-    //相手のポケモン
-    class EnePoke : public Pokemon{
-        public:
-            EnePoke(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move) : Pokemon(name,f,s,hp,atk,def,sp_atk,sp_def,speed,move){}
-            EnePoke(){}
-    };
-
-
+    }
+}
 //ポケモン
 /*
     class Eevee : public Pokemon{};
@@ -234,35 +290,7 @@ class Pokemon{
     class Sylveon : public Pokemon{};
 */
 //「はい」か「いいえ」を選ぶ関数
-bool YN(){
-    int YN;
-    cout <<1<<'.'<<"Yes"<<endl;
-    cout <<2<<'.'<<"No"<<endl;
-    cin >> YN;
-    if(YN==1){return true;}
-    else{return false;}
-}
-int select(Pokemon* x){
-    int select;
-    cout <<"Which Pokemon would you choose?"<<endl;
-    for(int i=0;i<5;i++){
-        cout <<i+1<< x[i].getPokeName() <<endl;
-    }
-    cin >> select;
-    return select-1;
-}
-Pokemon check(Pokemon x,bool* still){
-    Pokemon tmp;
-    cout <<"Show the status of "<<x.getPokeName()<<endl;
-    x.showAllST();
-    cout <<"OK?"<<endl;
-    if(YN()){
-        cout <<"You choose "<<x.getPokeName()<<endl;
-        tmp = x;
-        *still = false;
-    }
-    return tmp;
-}
+
 
 //主な動作をする関数
 void Master(){
@@ -271,43 +299,46 @@ void Master(){
     Move Water_Gun("Water Gun",MIZ,Spesial,40);
     Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
     Move Leafage("Leafage",KUS,Physical,40);
-
+    Move Aura_Sphere("Aura_Sphere",KAK,Spesial,80);
+    Move ThunderShock("ThunderShock",DEN,Spesial,40);
     
-    Pokemon a("Eevee",NOM,NOT,130,75,70,65,85,75,Tackle);
-    Pokemon b("Charizard",HON,HIK,153,104,98,129,105,120,Ember);
-    Pokemon c("Greninja",MIZ,AKU,147,115,87,123,91,142,Water_Gun);
+    Pokemon a("Eievui",NOM,NOT,130,75,70,65,85,75,Tackle);
+    Pokemon b("Lizardon",HON,HIK,153,104,98,129,105,120,Ember);
+    Pokemon c("Gekkouga",MIZ,AKU,147,115,87,123,91,142,Water_Gun);
     Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
-    Pokemon e("Amoonguss",KUS,DOK,189,105,90,105,100,50,Leafage);
-    Pokemon all[5];
+    Pokemon e("Morobareru",KUS,DOK,189,105,90,105,100,50,Leafage);
+    Pokemon f("Lucario",KAK,HAG,70,110,70,115,70,90,Aura_Sphere);
+    Pokemon g("Malurumine",DEN,NOT,135,70,90,100,100,170,ThunderShock);
+
+    int AllPokenumber=7;
+    Pokemon all[7];
     all[0] = a;
     all[1] = b;
     all[2] = c;
     all[3] = d;
     all[4] = e;
-    Pokemon my[3];
-    Pokemon enemy[3];
-    Pokemon tmp; 
-    for(int i=0;i<3;i++){
-        bool still=true;
-        while(still){
-            tmp = check( all[select(all)] , &still);
-        }
-        my[i] = tmp;
-        enemy[i] = b;
-    } 
+    all[5] = f;
+    all[6] = g;
+
+    Trainer Me;
+    Me.setTrainer(all,AllPokenumber);
+
+    Trainer Hamada("Tan-Pan Kozo HaMaDa",f,c,g);
+   
     
-    enemy[0] = b;
     //EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     bool n =true;
     while(n){
-        cout <<"Enemy's "<<enemy[0].getPokeName()<<" used "<<enemy[0].getMove1().getMoveName()<<endl;
-        my[0].showNowhp();
-        my[0].Moved(enemy[0],enemy[0].getMove1());
+        cout <<Hamada.getTraiName()<<"`s"<<Hamada.getmyPoke(1).getPokeName()<<" used "<<Hamada.getmyPoke(1).getMove(1).getMoveName()<<endl;
+        Me.getmyPoke(1).showNowhp();
+        //実行時エラー　ダメージを受けてない
+        Me.getmyPoke(1).Moved( Hamada.getmyPoke(1) , Hamada.getmyPoke(1).getMove(1) );
+
         cout << "->";
-        my[0].showNowhp();
-        if(my[0].getisAlive()){n = YN();}
+        Me.getmyPoke(1).showNowhp();
+        if(Me.getmyPoke(1).getisAlive()){n = YN();}
         else{
-            cout << my[0].getPokeName() <<" fainted!"<<endl;
+            cout << Me.getmyPoke(1).getPokeName() <<" fainted!"<<endl;
             n = false;
         }
     }

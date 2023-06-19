@@ -1,32 +1,47 @@
 #include <iostream>
 #include <string>
-#include ".\Poke.h"
+#include ".\select.h"
 using namespace std;
 class Trainer{
     private:
         string TraiName;
-        Pokemon enePoke[3];
+        Pokemon myPoke[3];
     public:
         Trainer(string name,Pokemon a,Pokemon b,Pokemon c);
         string getTraiName();
-        Pokemon getenePoke(int num);
-        void showenePoke();
+        Pokemon getmyPoke(int num);
+        void showmyPoke();
+
+        void setTrainer(Pokemon* all,int AllPokenumber);
 };
 
 Trainer::Trainer(string name,Pokemon a,Pokemon b,Pokemon c){
     TraiName = name;
-    enePoke[0] = a;
-    enePoke[1] = b;
-    enePoke[2] = c;
+    myPoke[0] = a;
+    myPoke[1] = b;
+    myPoke[2] = c;
 }
 string Trainer::getTraiName(){
     return TraiName;
 }
-Pokemon Trainer::getenePoke(int num){
-    return enePoke[num-1];
+Pokemon Trainer::getmyPoke(int num){
+    return myPoke[num-1];
 }
-void Trainer::showenePoke(){
+void Trainer::showmyPoke(){
     for(int i=0;i<3;i++){
-        cout <<i<<enePoke[i].getPokeName()<<endl;
+        cout <<i<<myPoke[i].getPokeName()<<endl;
+    }
+}
+
+void Trainer::setTrainer(Pokemon* all,int AllPokenumber){
+    cout << "What your name?"<<endl;
+    string name;
+    cin >> name;
+    cout << "Your name is "<<name<<'!'<<endl;
+    for(int i=0;i<3;i++){
+        bool still=true;
+        while(still){
+            myPoke[i] = check( all[select(all,AllPokenumber)] , &still);
+        }
     }
 }
