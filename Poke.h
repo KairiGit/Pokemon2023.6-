@@ -19,6 +19,15 @@ class Pokemon{
         Move m[4];
         
         void die(){isAlive = false;}
+        
+        int dmg(int atk,int def,int pow){
+            int dmg;
+            int tmp = 50*2/5 +2;
+            tmp = tmp*pow*atk/def;
+            tmp = tmp/50 +2;
+            dmg =tmp;
+            return dmg;
+        }
     public:
         Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
             PokeName = name;

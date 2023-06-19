@@ -29,7 +29,7 @@ void Master(){
     Pokemon f("Lucario",KAK,HAG,70,110,70,115,70,90,Aura_Sphere);
 
     int AllPokenumber=6;
-    Pokemon all[AllPokenumber];
+    Pokemon all[6];
     all[0] = a;
     all[1] = b;
     all[2] = c;
