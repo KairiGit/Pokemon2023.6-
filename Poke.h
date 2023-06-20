@@ -67,7 +67,7 @@ class Pokemon{
         void Attacked(Pokemon atk,Move w);
         void spAttacked(Pokemon atk,Move w);
         void Moved(Pokemon atk,Move w);
-        //"\x1b[38;2;" "\x1b[m"
+
         void showNowhp();
         void showPokeType();
         void showStats();

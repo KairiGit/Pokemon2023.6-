@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include ".\enum.h"
-
+#include ".\exType.h"
+#include ".\getYesNoAnswer.h"
 class Move{
     private:
         string MoveName;

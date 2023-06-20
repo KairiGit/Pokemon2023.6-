@@ -140,6 +140,11 @@ class Pokemon{
         void showMove();
         void showAllST();
 };
+    void Pokemon :: setPokeMove(Move* x){
+        for(int i=0;i<4;i++){
+            m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+        }
+    }
     
     void Pokemon :: Attacked(Pokemon atk,Move w){
         Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
