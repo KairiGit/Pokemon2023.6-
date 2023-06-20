@@ -6,6 +6,8 @@ enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HA
 enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
 enum Cat{Physical,Spesial,Status};//技の分類
 //"\x1b[38;2;" "\x1b[m"
+
+//タイプ型の入力に対し、色を付けてタイプの名前を出力する関数
 void exType(Type t){
     switch(t){
         case 0: cout <<"ONRY";break;
@@ -30,6 +32,7 @@ void exType(Type t){
     }
 }
 
+//ポケモンの技を管理するクラス
 class Move{
     private:
         string MoveName;
@@ -65,9 +68,10 @@ class Move{
     };
     class MoveStats : public Move{};*/
 
-
+//ポケモンを管理するクラス
 class Pokemon{
     private:
+    protected:
         string PokeName;
         Type fPokeType;
         Type sPokeType;
@@ -78,12 +82,10 @@ class Pokemon{
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
         //Ailment Ail;
         bool isAlive;
-
         Move m[4];
         
-        void die(){
-            isAlive = false;
-        }
+        void die(){isAlive = false;}
+        
         int dmg(int atk,int def,int pow){
             int dmg;
             int tmp = 50*2/5 +2;
@@ -94,7 +96,6 @@ class Pokemon{
         }
     public:
         Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
-            isAlive = true;
             PokeName = name;
             fPokeType = f;
             sPokeType = s;
@@ -106,10 +107,9 @@ class Pokemon{
             Sp_Def = sp_def;
             Speed = speed;
             m[0] = move;
+            isAlive = true;
         }
         Pokemon(){}
-        //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
-        void setPokeMove(Move* x);
         string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
@@ -123,71 +123,76 @@ class Pokemon{
         int getSpeed(){return Speed;}
         //int getAil();
         Move getMove(int num){return m[num-1];}
-
-        bool getisAlive(){return isAlive;}
         
-        void Attacked(Pokemon atk,Move w){
-            cout <<dmg(atk.getAtk(),Def,w.getPow());
-            Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
-        }
-        void spAttacked(Pokemon atk,Move w){
-            cout <<dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
-            Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
-        }
-        void Moved(Pokemon atk,Move w){
-            switch(w.getCat()){
-                case 0: Attacked(atk,w);break;
-                case 1: spAttacked(atk,w);break;
-                case 2: break;
-            }
-            if(Nowhp<=0){
-                Nowhp = 0;
-                die();
-            }
-        }
-        //"\x1b[38;2;" "\x1b[m"
-        void showNowhp(){
-            if(Nowhp>HP/2){cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
-            else if(Nowhp>HP/4){cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
-            else{cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<endl;}
-        }
-        void showPokeType(){
-            exType(fPokeType);
-            cout <<'/';
-            exType(sPokeType);
-            cout <<endl;
-        }
-        void showStats(){
-            cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
-        }
-        void showMove(){
-            cout <<1<<':'<< m[0].getMoveName() <<endl;
-            cout <<2<<':'<< m[1].getMoveName() <<endl;
-            cout <<3<<':'<< m[2].getMoveName() <<endl;
-            cout <<4<<':'<< m[3].getMoveName() <<endl;
-        }
-        void showAllST(){
-            cout <<endl;
-            cout <<"Type is ";
-            exType(fPokeType);
-            cout <<'/';
-            exType(sPokeType);
-            cout <<endl;
-            cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
-            cout <<"Move is"<<endl;
-            for(int i=0;i<4;i++){
-                cout <<i+1<<':'<< m[i].getMoveName() <<endl;
-            }
-            
-            cout <<endl;
-        }
+        bool getisAlive(){return isAlive;}
+
+
+        //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        void setPokeMove(Move* x);
+
+        void Attacked(Pokemon atk,Move w);
+        void spAttacked(Pokemon atk,Move w);
+        void Moved(Pokemon atk,Move w);
+
+        void showNowhp();
+        void showPokeType();
+        void showStats();
+        void showMove();
+        void showAllST();
 };
     
-        void Pokemon :: setPokeMove(Move* x){
-    for(int i=0;i<4;i++){
-        m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+    void Pokemon :: Attacked(Pokemon atk,Move w){
+        Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
     }
-}
+    void Pokemon :: spAttacked(Pokemon atk,Move w){
+        Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
+    }
+    void Pokemon :: Moved(Pokemon atk,Move w){
+        switch(w.getCat()){
+            case 0: Attacked(atk,w);break;
+            case 1: spAttacked(atk,w);break;
+            case 2: break;
+        }
+        if(Nowhp<=0){
+            Nowhp = 0;
+            die();
+        }
+    }
+    //残りHPの割合に応じて色を付けてHPを出力する関数
+    void Pokemon :: showNowhp(){
+        if(Nowhp>HP/2){cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
+        else if(Nowhp>HP/4){cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
+        else{cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<endl;}
+    }
+    void Pokemon :: showPokeType(){
+        exType(fPokeType);
+        cout <<'/';
+        exType(sPokeType);
+        cout <<endl;
+    }
+    void Pokemon :: showStats(){
+        cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
+    }
+
+    void Pokemon :: showMove(){
+        for(int i=0;i<4;i++){
+            cout <<i+1<< m[i].getMoveName() <<endl;
+        }
+    }
+    void Pokemon :: showAllST(){
+        cout <<endl;
+        cout <<"Type is ";
+        exType(fPokeType);
+        cout <<'/';
+        exType(sPokeType);
+        cout <<endl;
+        cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
+        cout <<"Move is"<<endl;
+        for(int i=0;i<4;i++){
+            cout <<i+1<<':'<< m[i].getMoveName() <<endl;
+        }
+        cout <<endl;
+    }
 
 
 // Yes/Noの質問に対する回答を取得する関数
@@ -206,9 +211,8 @@ private:
     string trainerName;
     Pokemon myPoke[3];
     
-    //ヘルパー
-    int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得する関数
-    Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行う関数
+    int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得するヘルパー関数
+    Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行うヘルパー関数
 public:
     Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3);
     Trainer() {}
@@ -217,53 +221,50 @@ public:
     void showMyPokemon();
     void setTrainer(Pokemon* allPokemons, int numPokemons);
 };
-//ヘルパー
-int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
-    int selection;
-    cout << "Choose your Pokemon" << endl;
-    for (int i = 0; i < numPokemons; i++) {
-        cout << i + 1 << ". " << pokemons[i].getPokeName() << endl;
+    int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
+        int selection;
+        cout << "Choose your Pokemon" << endl;
+        for (int i = 0; i < numPokemons; i++) {
+            cout << i + 1 << ". " << pokemons[i].getPokeName() << endl;
+        }
+        cin >> selection;
+        return selection - 1;
     }
-    cin >> selection;
-    return selection - 1;
-}
-Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
-    Pokemon tmp;
-    cout << "Show the status of " << pokemon.getPokeName() << endl;
-    pokemon.showAllST();
-    cout << "OK?" << endl;
-    if (getYesNoAnswer()) {
-        cout << "You choose " << pokemon.getPokeName() << endl;
-        tmp = pokemon;
-        *isConfirmed = false;
+    Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
+        Pokemon tmp;
+        cout << "Show the status of " << pokemon.getPokeName() << endl;
+        pokemon.showAllST();
+        cout << "OK?" << endl;
+        if (getYesNoAnswer()) {
+            cout << "You choose " << pokemon.getPokeName() << endl;
+            tmp = pokemon;
+            *isConfirmed = false;
+        }
+        return tmp;
     }
-    return tmp;
-}
 
-Trainer::Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
-    trainerName = name;
-    myPoke[0] = pokemon1;
-    myPoke[1] = pokemon2;
-    myPoke[2] = pokemon3;
-}
-
-string Trainer::getTrainerName() {
-    return trainerName;
-}
-
-Pokemon* Trainer::getMyPokemon(int index) {
-    return &myPoke[index - 1];
-}
-
-void Trainer::showMyPokemon() {
-    for (int i = 0; i < 3; i++) {
-        cout << i << myPoke[i].getPokeName() << endl;
+    Trainer::Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
+        trainerName = name;
+        myPoke[0] = pokemon1;
+        myPoke[1] = pokemon2;
+        myPoke[2] = pokemon3;
     }
-}
 
+    string Trainer::getTrainerName() {
+        return trainerName;
+    }
+    //ポインタにしないとNowhpの管理ができない
+    Pokemon* Trainer::getMyPokemon(int index) {
+        return &myPoke[index - 1];
+    }
 
+    void Trainer::showMyPokemon() {
+        for (int i = 0; i < 3; i++) {
+            cout << i << myPoke[i].getPokeName() << endl;
+        }
+    }
 
-void Trainer::setTrainer(Pokemon* allPokemons, int numPokemons) {
+    void Trainer::setTrainer(Pokemon* allPokemons, int numPokemons) {
     cout << "What is your name?" << endl;
     string name;
     cin >> name;
