@@ -58,7 +58,7 @@ void Master(){
         cout << "->";
         my[0].showNowhp();
         if(my[0].getisAlive()){
-            n = YN();
+            n = getYesNoAnswer();
         }else{
             cout << my[0].getPokeName() <<" fainted!"<<endl;
             n = false;
