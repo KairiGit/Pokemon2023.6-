@@ -24,11 +24,11 @@ void exType(Type t){
     }
 }
 
-bool YN(){
-    int YN;
+bool getYesNoAnswer(){
+    int answer;
     cout <<1<<'.'<<"Yes"<<endl;
     cout <<2<<'.'<<"No"<<endl;
-    cin >> YN;
-    if(YN==1){return true;}
+    cin >> answer;
+    if(answer==1){return true;}
     else{return false;}
 }
