@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include ".\Poke.h"
 using namespace std;
 void Pokemon :: setPokeMove(Move* x){

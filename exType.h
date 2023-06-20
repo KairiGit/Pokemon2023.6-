@@ -1,3 +1,4 @@
+#pragma once
 #include ".\enum.h"
 //タイプに色を付けて出力する関数
 void exType(Type t){

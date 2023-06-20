@@ -1,4 +1,6 @@
+#pragma once
 #include <iostream>
+
 bool getYesNoAnswer(){
     int answer;
     std::cout <<1<<'.'<<"Yes"<<std::endl;

@@ -1,5 +1,4 @@
-#include <iostream>
-#include <string>
+#pragma once
 #include ".\Poke.h"
 using namespace std;
 class Trainer{

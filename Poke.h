@@ -1,7 +1,5 @@
-#include <iostream>
-#include <string>
+#pragma once
 #include ".\Move.h"
-#include ".\something.h"
 using namespace std;
 class Pokemon{
     private:

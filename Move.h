@@ -1,5 +1,4 @@
-#include <iostream>
-#include <string>
+#pragma once
 #include ".\exType.h"
 #include ".\getYesNoAnswer.h"
 class Move{
