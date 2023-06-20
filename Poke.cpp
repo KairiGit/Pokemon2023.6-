@@ -24,36 +24,36 @@ void Pokemon :: Moved(Pokemon atk,Move w){
     }
 }
 void Pokemon :: showNowhp(){
-    if(Nowhp>HP/2){cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
-    else if(Nowhp>HP/4){cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
-    else{cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<endl;}
+    if(Nowhp>HP/2){std::cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+    else if(Nowhp>HP/4){std::cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+    else{std::cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
 }
 void Pokemon :: showPokeType(){
     exType(fPokeType);
-    cout <<'/';
+    std::cout <<'/';
     exType(sPokeType);
-    cout <<endl;
+    std::cout <<std::endl;
 }
 void Pokemon :: showStats(){
-    cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
+    std::cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
 }
 
 void Pokemon :: showMove(){
     for(int i=0;i<4;i++){
-        cout <<i+1<< m[i].getMoveName() <<endl;
+        std::cout <<i+1<< m[i].getMoveName() <<std::endl;
     }
 }
 void Pokemon :: showAllST(){
-    cout <<endl;
-    cout <<"Type is ";
+    std::cout <<std::endl;
+    std::cout <<"Type is ";
     exType(fPokeType);
-    cout <<'/';
+    std::cout <<'/';
     exType(sPokeType);
-    cout <<endl;
-    cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
-    cout <<"Move is"<<endl;
+    std::cout <<std::endl;
+    std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
+    std::cout <<"Move is"<<std::endl;
     for(int i=0;i<4;i++){
-        cout <<i+1<<':'<< m[i].getMoveName() <<endl;
+        std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;
     }
-    cout <<endl;
+    std::cout <<std::endl;
 }

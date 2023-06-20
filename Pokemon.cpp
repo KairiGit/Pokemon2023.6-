@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-using namespace std;
 enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HAG,FEA};//18タイプ
 enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
 enum Cat{Physical,Spesial,Status};//技の分類
@@ -10,52 +9,52 @@ enum Cat{Physical,Spesial,Status};//技の分類
 //タイプ型の入力に対し、色を付けてタイプの名前を出力する関数
 void exType(Type t){
     switch(t){
-        case 0: cout <<"ONRY";break;
-        case 1: cout <<"\x1b[38;2;255;255;205m"<<"nomaru"<< "\x1b[m";break;
-        case 2: cout <<"\x1b[38;2;255;69;0m"<<"hono"<< "\x1b[m";break;
-        case 3: cout <<"\x1b[38;2;0;191;255m"<<"mizu"<< "\x1b[m";break;
-        case 4: cout <<"\x1b[38;2;255;255;55m"<<"denki"<< "\x1b[m";break;
-        case 5: cout <<"\x1b[38;2;127;255;0m"<<"kusa"<< "\x1b[m";break;
-        case 6: cout <<"\x1b[38;2;180;206;255m"<<"kori"<< "\x1b[m";break;
-        case 7: cout <<"\x1b[38;2;165;42;42m"<<"kakuto"<< "\x1b[m";break;
-        case 8: cout <<"\x1b[38;2;116;83;171m"<<"doku"<< "\x1b[m";break;
-        case 9: cout <<"\x1b[38;2;184;134;11m"<<"jimen"<< "\x1b[m";break;
-        case 10:cout <<"\x1b[38;2;220;220;255m"<<"hikou"<< "\x1b[m";break;
-        case 11:cout <<"\x1b[38;2;255;20;147m"<<"esupa"<< "\x1b[m";break;
-        case 12:cout <<"\x1b[38;2;145;141;64m"<<"musi"<< "\x1b[m";break;
-        case 13:cout <<"\x1b[38;2;240;230;140m"<<"iwa"<< "\x1b[m";break;
-        case 14:cout <<"\x1b[38;2;72;61;139m"<<"gosuto"<< "\x1b[m";break;
-        case 15:cout <<"\x1b[38;2;0;30;155m"<<"doragon"<< "\x1b[m";break;
-        case 16:cout <<"\x1b[38;2;70;70;70m"<<"aku"<< "\x1b[m";break;
-        case 17:cout <<"\x1b[38;2;205;205;205m"<<"hagane"<< "\x1b[m";break;
-        case 18:cout <<"\x1b[38;2;255;180;195"<<"feari"<< "\x1b[m";break;
+        case 0: std::cout <<"ONRY";break;
+        case 1: std::cout <<"\x1b[38;2;255;255;205m"<<"nomaru"<< "\x1b[m";break;
+        case 2: std::cout <<"\x1b[38;2;255;69;0m"<<"hono"<< "\x1b[m";break;
+        case 3: std::cout <<"\x1b[38;2;0;191;255m"<<"mizu"<< "\x1b[m";break;
+        case 4: std::cout <<"\x1b[38;2;255;255;55m"<<"denki"<< "\x1b[m";break;
+        case 5: std::cout <<"\x1b[38;2;127;255;0m"<<"kusa"<< "\x1b[m";break;
+        case 6: std::cout <<"\x1b[38;2;180;206;255m"<<"kori"<< "\x1b[m";break;
+        case 7: std::cout <<"\x1b[38;2;165;42;42m"<<"kakuto"<< "\x1b[m";break;
+        case 8: std::cout <<"\x1b[38;2;116;83;171m"<<"doku"<< "\x1b[m";break;
+        case 9: std::cout <<"\x1b[38;2;184;134;11m"<<"jimen"<< "\x1b[m";break;
+        case 10:std::cout <<"\x1b[38;2;220;220;255m"<<"hikou"<< "\x1b[m";break;
+        case 11:std::cout <<"\x1b[38;2;255;20;147m"<<"esupa"<< "\x1b[m";break;
+        case 12:std::cout <<"\x1b[38;2;145;141;64m"<<"musi"<< "\x1b[m";break;
+        case 13:std::cout <<"\x1b[38;2;240;230;140m"<<"iwa"<< "\x1b[m";break;
+        case 14:std::cout <<"\x1b[38;2;72;61;139m"<<"gosuto"<< "\x1b[m";break;
+        case 15:std::cout <<"\x1b[38;2;0;30;155m"<<"doragon"<< "\x1b[m";break;
+        case 16:std::cout <<"\x1b[38;2;70;70;70m"<<"aku"<< "\x1b[m";break;
+        case 17:std::cout <<"\x1b[38;2;205;205;205m"<<"hagane"<< "\x1b[m";break;
+        case 18:std::cout <<"\x1b[38;2;255;180;195"<<"feari"<< "\x1b[m";break;
     }
 }
 
 //ポケモンの技を管理するクラス
 class Move{
     private:
-        string MoveName;
+        std::string MoveName;
         Type MoveType;
         Cat cat;
         int Pow;
         int Acc;
     protected:
     public:
-        Move(string n,Type t,Cat c,int p){
+        Move(std::string n,Type t,Cat c,int p){
             MoveName = n;
             MoveType = t;
             cat = c;
             Pow = p;
         }
         Move(){}
-        void setMove(string n,Type t,Cat c,int p){
+        void setMove(std::string n,Type t,Cat c,int p){
             MoveName = n;
             MoveType = t;
             cat = c;
             Pow = p;
         }
-        string getMoveName(){return MoveName;}
+        std::string getMoveName(){return MoveName;}
         Type getMoveType(){return MoveType;}
         Cat getCat(){return cat;}
         int getPow(){return Pow;}
@@ -72,11 +71,11 @@ class Move{
 class Pokemon{
     private:
     protected:
-        string PokeName;
+        std::string PokeName;
         Type fPokeType;
         Type sPokeType;
         //int H,A,B,C,D,S;
-        //string Ability;
+        //std::string Ability;
         int Nowhp;
         //int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
@@ -95,7 +94,7 @@ class Pokemon{
             return dmg;
         }
     public:
-        Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
+        Pokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
             PokeName = name;
             fPokeType = f;
             sPokeType = s;
@@ -110,10 +109,10 @@ class Pokemon{
             isAlive = true;
         }
         Pokemon(){}
-        string getPokeName(){return PokeName;}
+        std::string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
-        //string getAbility();
+        //std::string getAbility();
         int getNowhp(){return Nowhp;}
         int getHP(){return HP;}
         int getAtk(){return Atk;}
@@ -127,7 +126,7 @@ class Pokemon{
         bool getisAlive(){return isAlive;}
 
 
-        //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        //void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
         void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);
@@ -145,7 +144,7 @@ class Pokemon{
             m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
         }
     }
-    
+
     void Pokemon :: Attacked(Pokemon atk,Move w){
         Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
     }
@@ -165,47 +164,47 @@ class Pokemon{
     }
     //残りHPの割合に応じて色を付けてHPを出力する関数
     void Pokemon :: showNowhp(){
-        if(Nowhp>HP/2){cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
-        else if(Nowhp>HP/4){cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<endl;}
-        else{cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<endl;}
+        if(Nowhp>HP/2){std::cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+        else if(Nowhp>HP/4){std::cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+        else{std::cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
     }
     void Pokemon :: showPokeType(){
         exType(fPokeType);
-        cout <<'/';
+        std::cout <<'/';
         exType(sPokeType);
-        cout <<endl;
+        std::cout <<std::endl;
     }
     void Pokemon :: showStats(){
-        cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
+        std::cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
     }
 
     void Pokemon :: showMove(){
         for(int i=0;i<4;i++){
-            cout <<i+1<< m[i].getMoveName() <<endl;
+            std::cout <<i+1<< m[i].getMoveName() <<std::endl;
         }
     }
     void Pokemon :: showAllST(){
-        cout <<endl;
-        cout <<"Type is ";
+        std::cout <<std::endl;
+        std::cout <<"Type is ";
         exType(fPokeType);
-        cout <<'/';
+        std::cout <<'/';
         exType(sPokeType);
-        cout <<endl;
-        cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<endl;
-        cout <<"Move is"<<endl;
+        std::cout <<std::endl;
+        std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
+        std::cout <<"Move is"<<std::endl;
         for(int i=0;i<4;i++){
-            cout <<i+1<<':'<< m[i].getMoveName() <<endl;
+            std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;
         }
-        cout <<endl;
+        std::cout <<std::endl;
     }
 
 
 // Yes/Noの質問に対する回答を取得する関数
 bool getYesNoAnswer() {
     int answer;
-    cout << "1. Yes" << endl;
-    cout << "2. No" << endl;
-    cin >> answer;
+    std::cout << "1. Yes" << std::endl;
+    std::cout << "2. No" << std::endl;
+    std::cin >> answer;
     if (answer == 1) {return true;}
     else {return false;}
 }
@@ -213,49 +212,49 @@ bool getYesNoAnswer() {
 
 class Trainer {
 private:
-    string trainerName;
+    std::string trainerName;
     Pokemon myPoke[3];
     
     int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得するヘルパー関数
     Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行うヘルパー関数
 public:
-    Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3);
+    Trainer(std::string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3);
     Trainer() {}
-    string getTrainerName();
+    std::string getTrainerName();
     Pokemon* getMyPokemon(int index);
     void showMyPokemon();
     void setTrainer(Pokemon* allPokemons, int numPokemons);
 };
     int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
         int selection;
-        cout << "Choose your Pokemon" << endl;
+        std::cout << "Choose your Pokemon" << std::endl;
         for (int i = 0; i < numPokemons; i++) {
-            cout << i + 1 << ". " << pokemons[i].getPokeName() << endl;
+            std::cout << i + 1 << ". " << pokemons[i].getPokeName() << std::endl;
         }
-        cin >> selection;
+        std::cin >> selection;
         return selection - 1;
     }
     Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
         Pokemon tmp;
-        cout << "Show the status of " << pokemon.getPokeName() << endl;
+        std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
         pokemon.showAllST();
-        cout << "OK?" << endl;
+        std::cout << "OK?" << std::endl;
         if (getYesNoAnswer()) {
-            cout << "You choose " << pokemon.getPokeName() << endl;
+            std::cout << "You choose " << pokemon.getPokeName() << std::endl;
             tmp = pokemon;
             *isConfirmed = false;
         }
         return tmp;
     }
 
-    Trainer::Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
+    Trainer::Trainer(std::string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
         trainerName = name;
         myPoke[0] = pokemon1;
         myPoke[1] = pokemon2;
         myPoke[2] = pokemon3;
     }
 
-    string Trainer::getTrainerName() {
+    std::string Trainer::getTrainerName() {
         return trainerName;
     }
     //ポインタにしないとNowhpの管理ができない
@@ -265,15 +264,15 @@ public:
 
     void Trainer::showMyPokemon() {
         for (int i = 0; i < 3; i++) {
-            cout << i << myPoke[i].getPokeName() << endl;
+            std::cout << i << myPoke[i].getPokeName() << std::endl;
         }
     }
 
     void Trainer::setTrainer(Pokemon* allPokemons, int numPokemons) {
-    cout << "What is your name?" << endl;
-    string name;
-    cin >> name;
-    cout << "Your name is " << name <<'!'<<endl;
+    std::cout << "What is your name?" << std::endl;
+    std::string name;
+    std::cin >> name;
+    std::cout << "Your name is " << name <<'!'<<std::endl;
     for(int i=0;i<3;i++){
         bool still=true;
         while(still){
@@ -320,15 +319,15 @@ void Master(){
     //EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     bool n =true;
     while(n){
-        cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getMyPokemon(1)->getPokeName()<<" used "<<Hamada.getMyPokemon(1)->getMove(1).getMoveName()<<endl;
+        std::cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getMyPokemon(1)->getPokeName()<<" used "<<Hamada.getMyPokemon(1)->getMove(1).getMoveName()<<std::endl;
         Me.getMyPokemon(1)->showNowhp();
         
         Me.getMyPokemon(1)->Moved( *Hamada.getMyPokemon(1) , Hamada.getMyPokemon(1)->getMove(1) );
-        cout << "->";
+        std::cout << "->";
         Me.getMyPokemon(1)->showNowhp();
         if(Me.getMyPokemon(1)->getisAlive()){n = getYesNoAnswer();}
         else{
-            cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<endl;
+            std::cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
             n = false;
         }
     }

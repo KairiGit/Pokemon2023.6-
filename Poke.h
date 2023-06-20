@@ -1,14 +1,14 @@
 #pragma once
 #include ".\Move.h"
-using namespace std;
+
 class Pokemon{
     private:
     protected:
-        string PokeName;
+        std::string PokeName;
         Type fPokeType;
         Type sPokeType;
         //int H,A,B,C,D,S;
-        //string Ability;
+        //std::string Ability;
         int Nowhp;
         //int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
@@ -27,7 +27,7 @@ class Pokemon{
             return dmg;
         }
     public:
-        Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
+        Pokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
             PokeName = name;
             fPokeType = f;
             sPokeType = s;
@@ -42,10 +42,10 @@ class Pokemon{
             isAlive = true;
         }
         Pokemon(){}
-        string getPokeName(){return PokeName;}
+        std::string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
-        //string getAbility();
+        //std::string getAbility();
         int getNowhp(){return Nowhp;}
         int getHP(){return HP;}
         int getAtk(){return Atk;}
@@ -59,7 +59,7 @@ class Pokemon{
         bool getisAlive(){return isAlive;}
 
 
-        //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        //void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
         void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);

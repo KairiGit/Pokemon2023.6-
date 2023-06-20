@@ -1,6 +1,5 @@
 
 #include ".\Trainer.h"
-using namespace std;
 
 void Master(){
 
@@ -36,16 +35,15 @@ void Master(){
     Trainer Hamada("Tan-Pan Kozo HaMaDa",f,c,g);
     bool n =true;
     while(n){
-        //敵の攻撃
-        cout <<"Enemy's "<<enemy[0].getPokeName()<<" used "<<enemy[0].getMove(1).getMoveName()<<'!'<<endl;
-        my[0].showNowhp();
-        my[0].Moved(enemy[0],enemy[0].getMove(1));
-        cout << "->";
-        my[0].showNowhp();
-        if(my[0].getisAlive()){
-            n = getYesNoAnswer();
-        }else{
-            cout << my[0].getPokeName() <<" fainted!"<<endl;
+        std::cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getMyPokemon(1)->getPokeName()<<" used "<<Hamada.getMyPokemon(1)->getMove(1).getMoveName()<<std::endl;
+        Me.getMyPokemon(1)->showNowhp();
+        
+        Me.getMyPokemon(1)->Moved( *Hamada.getMyPokemon(1) , Hamada.getMyPokemon(1)->getMove(1) );
+        std::cout << "->";
+        Me.getMyPokemon(1)->showNowhp();
+        if(Me.getMyPokemon(1)->getisAlive()){n = getYesNoAnswer();}
+        else{
+            std::cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
             n = false;
         }
     }
