@@ -1,4 +1,4 @@
-#include ".\Trainer.h"
+#include ".\stdafx.h"
 
 Trainer::Trainer(std::string name,Pokemon a,Pokemon b,Pokemon c){
     TrainerName = name;

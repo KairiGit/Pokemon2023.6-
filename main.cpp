@@ -1,4 +1,4 @@
-#include ".\Master.h"
+#include ".\stdafx.h"
 
 int main(void){
     Master();

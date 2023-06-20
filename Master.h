@@ -1,4 +1,3 @@
-
 #include ".\Trainer.h"
 
 void Master(){
