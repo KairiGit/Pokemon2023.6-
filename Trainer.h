@@ -6,6 +6,9 @@ class Trainer{
     private:
         string TraiName;
         Pokemon myPoke[3];
+//ヘルパー
+        int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得する関数
+        Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行う関数
     public:
         Trainer(string name,Pokemon a,Pokemon b,Pokemon c);
         string getTraiName();
@@ -44,4 +47,26 @@ void Trainer::setTrainer(Pokemon* all,int AllPokenumber){
             myPoke[i] = check( all[select(all,AllPokenumber)] , &still);
         }
     }
+}
+//ヘルパー
+int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
+    int selection;
+    cout << "Choose your Pokemon" << endl;
+    for (int i = 0; i < numPokemons; i++) {
+        cout << i + 1 << ". " << pokemons[i].getPokeName() << endl;
+    }
+    cin >> selection;
+    return selection - 1;
+}
+Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
+    Pokemon tmp;
+    cout << "Show the status of " << pokemon.getPokeName() << endl;
+    pokemon.showAllST();
+    cout << "OK?" << endl;
+    if (getYesNoAnswer()) {
+        cout << "You choose " << pokemon.getPokeName() << endl;
+        tmp = pokemon;
+        *isConfirmed = false;
+    }
+    return tmp;
 }
