@@ -29,14 +29,7 @@ void exType(Type t){
         case 18:cout <<"\x1b[38;2;255;180;195"<<"feari"<< "\x1b[m";break;
     }
 }
-int dmg(int atk,int def,int pow){
-    int dmg;
-    int tmp = 50*2/5 +2;
-    tmp = tmp*pow*atk/def;
-    tmp = tmp/50 +2;
-    dmg =tmp;
-    return dmg;
-}
+
 class Move{
     private:
         string MoveName;
@@ -75,7 +68,6 @@ class Move{
 
 class Pokemon{
     private:
-    protected:
         string PokeName;
         Type fPokeType;
         Type sPokeType;
@@ -88,12 +80,17 @@ class Pokemon{
         bool isAlive;
 
         Move m[4];
-        /*Move move1;
-        Move move2;
-        Move move3;
-        Move move4;*/
+        
         void die(){
             isAlive = false;
+        }
+        int dmg(int atk,int def,int pow){
+            int dmg;
+            int tmp = 50*2/5 +2;
+            tmp = tmp*pow*atk/def;
+            tmp = tmp/50 +2;
+            dmg =tmp;
+            return dmg;
         }
     public:
         Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
@@ -179,11 +176,6 @@ class Pokemon{
             for(int i=0;i<4;i++){
                 cout <<i+1<<':'<< m[i].getMoveName() <<endl;
             }
-            /*cout <<1<<':'<< m[0].getMoveName() <<endl;
-            cout <<2<<':'<< m[1].getMoveName() <<endl;
-            cout <<3<<':'<< m[2].getMoveName() <<endl;
-            cout <<4<<':'<< m[3].getMoveName() <<endl;
-            */
             
             cout <<endl;
         }
@@ -195,72 +187,61 @@ class Pokemon{
     }
 }
 
-bool YN(){
-    int YN;
-    cout <<1<<'.'<<"Yes"<<endl;
-    cout <<2<<'.'<<"No"<<endl;
-    cin >> YN;
-    if(YN==1){return true;}
-    else{return false;}
-}
-int select(Pokemon* x,int AllPokenumber){
-    int select;
-    cout <<"Choose your Pokemon"<<endl;
-    for(int i=0;i<AllPokenumber;i++){
-        cout <<i+1<< x[i].getPokeName() <<endl;
-    }
-    cin >> select;
-    return select-1;
-}
-Pokemon check(Pokemon x,bool* still){
-    Pokemon tmp;
-    cout <<"Show the status of "<<x.getPokeName()<<endl;
-    x.showAllST();
-    cout <<"OK?"<<endl;
-    if(YN()){
-        cout <<"You choose "<<x.getPokeName()<<endl;
-        tmp = x;
-        *still = false;
-    }
-    return tmp;
-}
- class Trainer{
-    private:
-        string TraiName;
-        Pokemon myPoke[3];
-    public:
-        Trainer(string name,Pokemon a,Pokemon b,Pokemon c);
-        Trainer(){}
-        string getTraiName();
-        Pokemon getmyPoke(int num);
-        void showmyPoke();
 
-        void setTrainer(Pokemon* all,int AllPokenumber);
+// Yes/Noの質問に対する回答を取得する関数
+bool getYesNoAnswer() {
+    int answer;
+    cout << "1. Yes" << endl;
+    cout << "2. No" << endl;
+    cin >> answer;
+    if (answer == 1) {return true;}
+    else {return false;}
+}
+
+
+class Trainer {
+private:
+    string trainerName;
+    Pokemon myPokemon[3];
+    
+    //ヘルパー
+    int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得する関数
+    Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行う関数
+public:
+    Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3);
+    Trainer() {}
+    string getTrainerName();
+    Pokemon getMyPokemon(int index);
+    void showMyPokemon();
+    void setTrainer(Pokemon* allPokemons, int numPokemons);
 };
 
-Trainer::Trainer(string name,Pokemon a,Pokemon b,Pokemon c){
-    TraiName = name;
-    myPoke[0] = a;
-    myPoke[1] = b;
-    myPoke[2] = c;
+Trainer::Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
+    trainerName = name;
+    myPokemon[0] = pokemon1;
+    myPokemon[1] = pokemon2;
+    myPokemon[2] = pokemon3;
 }
-string Trainer::getTraiName(){
-    return TraiName;
+
+string Trainer::getTrainerName() {
+    return trainerName;
 }
-Pokemon Trainer::getmyPoke(int num){
-    return myPoke[num-1];
+
+Pokemon Trainer::getMyPokemon(int index) {
+    return myPokemon[index - 1];
 }
-void Trainer::showmyPoke(){
-    for(int i=0;i<3;i++){
-        cout <<i<<myPoke[i].getPokeName()<<endl;
+
+void Trainer::showMyPokemon() {
+    for (int i = 0; i < 3; i++) {
+        cout << i << myPokemon[i].getPokeName() << endl;
     }
 }
 
-void Trainer::setTrainer(Pokemon* all,int AllPokenumber){
-    cout << "What your name?"<<endl;
+void Trainer::setTrainer(Pokemon* allPokemons, int numPokemons) {
+    cout << "What is your name?" << endl;
     string name;
     cin >> name;
-    cout << "Your name is "<<name<<'!'<<endl;
+    cout << "Your name is " << name <<'!'<<endl;
     for(int i=0;i<3;i++){
         bool still=true;
         while(still){
@@ -268,27 +249,29 @@ void Trainer::setTrainer(Pokemon* all,int AllPokenumber){
         }
     }
 }
-//ポケモン
-/*
-    class Eevee : public Pokemon{};
-    class Charizard : public Pokemon{};
-    class Greninja : public Pokemon{};
-    class Pikachu : public Pokemon{};
-    class Amoonguss : public Pokemon{};
-    class Glaceon : public Pokemon{};
-    class Lucario : public Pokemon{};
-    class Toxapex : public Pokemon{};
-    class Hippowdon : public Pokemon{};
-    class Togekiss : public Pokemon{};
-    class Slowking : public Pokemon{};
-    class Volcarona : public Pokemon{};
-    class Rhyperior : public Pokemon{};
-    class Gengar : public Pokemon{};
-    class Kommo_o : public Pokemon{};
-    class Hydreigon : public Pokemon{};
-    class Metagross : public Pokemon{};
-    class Sylveon : public Pokemon{};
-*/
+//ヘルパー
+int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
+    int selection;
+    cout << "Choose your Pokemon" << endl;
+    for (int i = 0; i < numPokemons; i++) {
+        cout << i + 1 << ". " << pokemons[i].getPokeName() << endl;
+    }
+    cin >> selection;
+    return selection - 1;
+}
+Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
+    Pokemon tmp;
+    cout << "Show the status of " << pokemon.getPokeName() << endl;
+    pokemon.showAllST();
+    cout << "OK?" << endl;
+    if (getYesNoAnswer()) {
+        cout << "You choose " << pokemon.getPokeName() << endl;
+        tmp = pokemon;
+        *isConfirmed = false;
+    }
+    return tmp;
+}
+
 //「はい」か「いいえ」を選ぶ関数
 
 
