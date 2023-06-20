@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include ".\select.h"
+#include ".\Poke.h"
 using namespace std;
 class Trainer{
     private:
