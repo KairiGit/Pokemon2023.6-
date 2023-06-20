@@ -94,6 +94,7 @@ class Pokemon{
         }
     public:
         Pokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
+            isAlive = true;
             PokeName = name;
             fPokeType = f;
             sPokeType = s;
@@ -105,7 +106,6 @@ class Pokemon{
             Sp_Def = sp_def;
             Speed = speed;
             m[0] = move;
-            isAlive = true;
         }
         Pokemon(){}
         //void setPokemon(string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
@@ -127,9 +127,11 @@ class Pokemon{
         bool getisAlive(){return isAlive;}
         
         void Attacked(Pokemon atk,Move w){
+            cout <<dmg(atk.getAtk(),Def,w.getPow());
             Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
         }
         void spAttacked(Pokemon atk,Move w){
+            cout <<dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
             Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
         }
         void Moved(Pokemon atk,Move w){
@@ -202,7 +204,7 @@ bool getYesNoAnswer() {
 class Trainer {
 private:
     string trainerName;
-    Pokemon myPokemon[3];
+    Pokemon myPoke[3];
     
     //ヘルパー
     int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得する関数
@@ -211,44 +213,10 @@ public:
     Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3);
     Trainer() {}
     string getTrainerName();
-    Pokemon getMyPokemon(int index);
+    Pokemon* getMyPokemon(int index);
     void showMyPokemon();
     void setTrainer(Pokemon* allPokemons, int numPokemons);
 };
-
-Trainer::Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
-    trainerName = name;
-    myPokemon[0] = pokemon1;
-    myPokemon[1] = pokemon2;
-    myPokemon[2] = pokemon3;
-}
-
-string Trainer::getTrainerName() {
-    return trainerName;
-}
-
-Pokemon Trainer::getMyPokemon(int index) {
-    return myPokemon[index - 1];
-}
-
-void Trainer::showMyPokemon() {
-    for (int i = 0; i < 3; i++) {
-        cout << i << myPokemon[i].getPokeName() << endl;
-    }
-}
-
-void Trainer::setTrainer(Pokemon* allPokemons, int numPokemons) {
-    cout << "What is your name?" << endl;
-    string name;
-    cin >> name;
-    cout << "Your name is " << name <<'!'<<endl;
-    for(int i=0;i<3;i++){
-        bool still=true;
-        while(still){
-            myPoke[i] = check( all[select(all,AllPokenumber)] , &still);
-        }
-    }
-}
 //ヘルパー
 int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
     int selection;
@@ -272,7 +240,41 @@ Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
     return tmp;
 }
 
-//「はい」か「いいえ」を選ぶ関数
+Trainer::Trainer(string name, Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
+    trainerName = name;
+    myPoke[0] = pokemon1;
+    myPoke[1] = pokemon2;
+    myPoke[2] = pokemon3;
+}
+
+string Trainer::getTrainerName() {
+    return trainerName;
+}
+
+Pokemon* Trainer::getMyPokemon(int index) {
+    return &myPoke[index - 1];
+}
+
+void Trainer::showMyPokemon() {
+    for (int i = 0; i < 3; i++) {
+        cout << i << myPoke[i].getPokeName() << endl;
+    }
+}
+
+
+
+void Trainer::setTrainer(Pokemon* allPokemons, int numPokemons) {
+    cout << "What is your name?" << endl;
+    string name;
+    cin >> name;
+    cout << "Your name is " << name <<'!'<<endl;
+    for(int i=0;i<3;i++){
+        bool still=true;
+        while(still){
+            myPoke[i] = checkPokemon( allPokemons[selectPokemon(allPokemons,numPokemons)] , &still);
+        }
+    }
+}
 
 
 //主な動作をする関数
@@ -293,7 +295,7 @@ void Master(){
     Pokemon f("Lucario",KAK,HAG,70,110,70,115,70,90,Aura_Sphere);
     Pokemon g("Malurumine",DEN,NOT,135,70,90,100,100,170,ThunderShock);
 
-    int AllPokenumber=7;
+    int numPokemons=7;
     Pokemon all[7];
     all[0] = a;
     all[1] = b;
@@ -304,7 +306,7 @@ void Master(){
     all[6] = g;
 
     Trainer Me;
-    Me.setTrainer(all,AllPokenumber);
+    Me.setTrainer(all,numPokemons);
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",f,c,g);
    
@@ -312,16 +314,15 @@ void Master(){
     //EnePoke uno("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
     bool n =true;
     while(n){
-        cout <<Hamada.getTraiName()<<"`s"<<Hamada.getmyPoke(1).getPokeName()<<" used "<<Hamada.getmyPoke(1).getMove(1).getMoveName()<<endl;
-        Me.getmyPoke(1).showNowhp();
-        //実行時エラー　ダメージを受けてない
-        Me.getmyPoke(1).Moved( Hamada.getmyPoke(1) , Hamada.getmyPoke(1).getMove(1) );
-
+        cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getMyPokemon(1)->getPokeName()<<" used "<<Hamada.getMyPokemon(1)->getMove(1).getMoveName()<<endl;
+        Me.getMyPokemon(1)->showNowhp();
+        
+        Me.getMyPokemon(1)->Moved( *Hamada.getMyPokemon(1) , Hamada.getMyPokemon(1)->getMove(1) );
         cout << "->";
-        Me.getmyPoke(1).showNowhp();
-        if(Me.getmyPoke(1).getisAlive()){n = YN();}
+        Me.getMyPokemon(1)->showNowhp();
+        if(Me.getMyPokemon(1)->getisAlive()){n = getYesNoAnswer();}
         else{
-            cout << Me.getmyPoke(1).getPokeName() <<" fainted!"<<endl;
+            cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<endl;
             n = false;
         }
     }
