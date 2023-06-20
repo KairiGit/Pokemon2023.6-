@@ -41,7 +41,7 @@ void Master(){
         Me.getMyPokemon(1)->Moved( *Hamada.getMyPokemon(1) , Hamada.getMyPokemon(1)->getMove(1) );
         std::cout << "->";
         Me.getMyPokemon(1)->showNowhp();
-        if(Me.getMyPokemon(1)->getisAlive()){n = getYesNoAnswer();}
+        if(Me.getMyPokemon(1)->getisAlive()){n = isYESorNO();}
         else{
             std::cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
             n = false;

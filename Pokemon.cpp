@@ -200,7 +200,7 @@ class Pokemon{
 
 
 // Yes/Noの質問に対する回答を取得する関数
-bool getYesNoAnswer() {
+bool isYESorNO() {
     int answer;
     std::cout << "1. Yes" << std::endl;
     std::cout << "2. No" << std::endl;
@@ -239,7 +239,7 @@ public:
         std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
         pokemon.showAllST();
         std::cout << "OK?" << std::endl;
-        if (getYesNoAnswer()) {
+        if (isYESorNO()) {
             std::cout << "You choose " << pokemon.getPokeName() << std::endl;
             tmp = pokemon;
             *isConfirmed = false;
@@ -325,7 +325,7 @@ void Master(){
         Me.getMyPokemon(1)->Moved( *Hamada.getMyPokemon(1) , Hamada.getMyPokemon(1)->getMove(1) );
         std::cout << "->";
         Me.getMyPokemon(1)->showNowhp();
-        if(Me.getMyPokemon(1)->getisAlive()){n = getYesNoAnswer();}
+        if(Me.getMyPokemon(1)->getisAlive()){n = isYESorNO();}
         else{
             std::cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
             n = false;

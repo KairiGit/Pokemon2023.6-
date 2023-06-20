@@ -3,7 +3,7 @@
 #include ".\enum.h"
 #include ".\exType.h"
 
-#include ".\getYesNoAnswer.h"
+#include ".\isYESorNO.h"
 
 #include ".\Move.h"
 #include ".\Poke.h"

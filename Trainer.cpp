@@ -45,7 +45,7 @@ Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
     std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
     pokemon.showAllST();
     std::cout << "OK?" << std::endl;
-    if (getYesNoAnswer()) {
+    if (isYESorNO()) {
         std::cout << "You choose " << pokemon.getPokeName() << std::endl;
         tmp = pokemon;
         *isConfirmed = false;

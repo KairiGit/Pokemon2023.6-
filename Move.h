@@ -1,6 +1,6 @@
 #pragma once
 #include ".\exType.h"
-#include ".\getYesNoAnswer.h"
+#include ".\isYESorNO.h"
 class Move{
     private:
         std::string MoveName;
