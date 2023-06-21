@@ -126,7 +126,8 @@ class Pokemon{
         bool getisAlive(){return isAlive;}
 
 
-        //void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
+        void setPokemon(Pokemon* x);
         void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);
@@ -139,6 +140,34 @@ class Pokemon{
         void showMove();
         void showAllST();
 };
+    void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
+        PokeName = name;
+        fPokeType = f;
+        sPokeType = s;
+        Nowhp = hp;
+        HP = hp;
+        Atk = atk;
+        Def = def;
+        Sp_Atk = sp_atk;
+        Sp_Def = sp_def;
+        Speed = speed;
+        m[0] = move;
+        isAlive = true;
+    }
+    void Pokemon :: setPokemon(Pokemon* x){
+        PokeName = x->getPokeName();
+        fPokeType = x->getfPokeType();
+        sPokeType = x->getsPokeType();
+        Nowhp = x->getHP();
+        HP = x->getHP();
+        Atk = x->getAtk();
+        Def = x->getDef();
+        Sp_Atk = x->getSp_Atk();
+        Sp_Def = x->getSp_Def();
+        Speed = x->getSpeed();
+        m[0] = x->getMove(1);
+        isAlive = true;    
+    }
     void Pokemon :: setPokeMove(Move* x){
         for(int i=0;i<4;i++){
             m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
@@ -211,10 +240,10 @@ bool isYESorNO() {
 
 
 class Trainer {
-private:
+private://メンバ変数
     std::string trainerName;
     Pokemon myPoke[3];
-    
+private://ヘルパー
     int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得するヘルパー関数
     Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行うヘルパー関数
 public:
@@ -282,7 +311,55 @@ public:
 }
 
 
-//主な動作をする関数
+
+void setAllMove(Move allMove[][4]){
+    allMove[0][0].setMove("Tackle",NOM,Physical,40);
+
+    allMove[1][0].setMove("Ember",HON,Spesial,40);
+
+    allMove[2][0].setMove("Water Gun",MIZ,Spesial,40);
+    
+    allMove[3][0].setMove("Thunderbolt",DEN,Spesial,90);
+    
+    allMove[4][0].setMove("Leafage",KUS,Physical,40);
+    
+    allMove[5][0].setMove("Aura_Sphere",KAK,Spesial,80);
+    
+    allMove[6][0].setMove("ThunderShock",DEN,Spesial,40);
+
+}
+
+
+class BattleField{
+    private:
+        Trainer* A;
+        Trainer* B;
+    public:
+        BattleField(Trainer* A,Trainer* B);
+        void showPokemon(bool which);
+        
+};
+    BattleField::BattleField(Trainer* a,Trainer* b){
+        for(int i=0;i<3;i++){
+            this->A->getMyPokemon(i)->setPokemon(a->getMyPokemon(i));
+            this->B->getMyPokemon(i)->setPokemon(b->getMyPokemon(i));
+        }
+    }
+    void BattleField :: showPokemon(bool which){
+        if(which){
+            for(int i=0;i<3;i++){
+                std::cout << i+1 << A->getMyPokemon(i) << std::endl;
+            }
+        }
+        else{
+            for(int i=0;i<3;i++){
+                std::cout << i+1 << B->getMyPokemon(i) << std::endl;
+            }
+        }
+    }
+
+
+//一人プレイ
 void Master(){
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);
