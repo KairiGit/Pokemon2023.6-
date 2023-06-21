@@ -127,6 +127,7 @@ class Pokemon{
 
 
         void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
+        void setPokemon(Pokemon* x);
         void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);
@@ -152,6 +153,20 @@ class Pokemon{
         Speed = speed;
         m[0] = move;
         isAlive = true;
+    }
+    void Pokemon :: setPokemon(Pokemon* x){
+        PokeName = x->getPokeName();
+        fPokeType = x->getfPokeType();
+        sPokeType = x->getsPokeType();
+        Nowhp = x->getHP();
+        HP = x->getHP();
+        Atk = x->getAtk();
+        Def = x->getDef();
+        Sp_Atk = x->getSp_Atk();
+        Sp_Def = x->getSp_Def();
+        Speed = x->getSpeed();
+        m[0] = x->getMove(1);
+        isAlive = true;    
     }
     void Pokemon :: setPokeMove(Move* x){
         for(int i=0;i<4;i++){
@@ -225,10 +240,10 @@ bool isYESorNO() {
 
 
 class Trainer {
-private:
+private://メンバ変数
     std::string trainerName;
     Pokemon myPoke[3];
-    
+private://ヘルパー
     int selectPokemon(Pokemon* pokemons, int numPokemons);// ポケモンの選択肢を表示し、ユーザーの選択を取得するヘルパー関数
     Pokemon checkPokemon(Pokemon pokemon, bool* isConfirmed);// ポケモンのステータスを表示し、確認後の処理を行うヘルパー関数
 public:
@@ -313,7 +328,38 @@ void setAllMove(Move allMove[][4]){
     allMove[6][0].setMove("ThunderShock",DEN,Spesial,40);
 
 }
-//主な動作をする関数
+
+
+class BattleField{
+    private:
+        Trainer* A;
+        Trainer* B;
+    public:
+        BattleField(Trainer* A,Trainer* B);
+        void showPokemon(bool which);
+        
+};
+    BattleField::BattleField(Trainer* a,Trainer* b){
+        for(int i=0;i<3;i++){
+            this->A->getMyPokemon(i)->setPokemon(a->getMyPokemon(i));
+            this->B->getMyPokemon(i)->setPokemon(b->getMyPokemon(i));
+        }
+    }
+    void BattleField :: showPokemon(bool which){
+        if(which){
+            for(int i=0;i<3;i++){
+                std::cout << i+1 << A->getMyPokemon(i) << std::endl;
+            }
+        }
+        else{
+            for(int i=0;i<3;i++){
+                std::cout << i+1 << B->getMyPokemon(i) << std::endl;
+            }
+        }
+    }
+
+
+//一人プレイ
 void Master(){
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);

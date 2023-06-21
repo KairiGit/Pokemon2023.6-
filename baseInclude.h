@@ -8,4 +8,5 @@
 #include ".\Move.h"
 #include ".\Poke.h"
 #include ".\Trainer.h"
+#include ".\BattleField.hpp"
 

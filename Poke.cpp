@@ -13,6 +13,20 @@ void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def
     m[0] = move;
     isAlive = true;
 }
+void Pokemon :: setPokemon(Pokemon* x){
+    PokeName = x->getPokeName();
+    fPokeType = x->getfPokeType();
+    sPokeType = x->getsPokeType();
+    Nowhp = x->getHP();
+    HP = x->getHP();
+    Atk = x->getAtk();
+    Def = x->getDef();
+    Sp_Atk = x->getSp_Atk();
+    Sp_Def = x->getSp_Def();
+    Speed = x->getSpeed();
+    m[0] = x->getMove(1);
+    isAlive = true;    
+}
 
 void Pokemon :: setPokeMove(Move* x){
     for(int i=0;i<4;i++){
