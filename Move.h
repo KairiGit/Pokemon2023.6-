@@ -24,9 +24,3 @@ class Move{
         int getPow(){return Pow;}
         int getAcc(){return Acc;}
 };
-Move::Move(const std::string n,Type t,Cat c,int p){
-    MoveName = n;
-    MoveType = t;
-    cat = c;
-    Pow = p;
-}
