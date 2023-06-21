@@ -1,4 +1,19 @@
-#include ".\stdafx.h"
+#include ".\baseInclude.h"
+void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
+    PokeName = name;
+    fPokeType = f;
+    sPokeType = s;
+    Nowhp = hp;
+    HP = hp;
+    Atk = atk;
+    Def = def;
+    Sp_Atk = sp_atk;
+    Sp_Def = sp_def;
+    Speed = speed;
+    m[0] = move;
+    isAlive = true;
+}
+
 void Pokemon :: setPokeMove(Move* x){
     for(int i=0;i<4;i++){
         m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());

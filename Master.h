@@ -1,8 +1,7 @@
-#include ".\Trainer.h"
+#include ".\setAllPokemon.hpp"
 
 void Master(){
-
-    
+    /*
     Move Tackle("Tackle",NOM,Physical,40);
     Move Ember("Ember",HON,Spesial,40);
     Move Water_Gun("Water Gun",MIZ,Spesial,40);
@@ -18,20 +17,20 @@ void Master(){
     Pokemon e("Morobareru",KUS,DOK,189,105,90,105,100,50,Leafage);
     Pokemon f("Lucario",KAK,HAG,70,110,70,115,70,90,Aura_Sphere);
     Pokemon g("Malurumine",DEN,NOT,135,70,90,100,100,170,ThunderShock);
+    */
 
+    int numMoves=7;
+    Move allMove[7][4];
+    setAllMove(allMove);
     int numPokemons=7;
-    Pokemon all[7];
-    all[0] = a;
-    all[1] = b;
-    all[2] = c;
-    all[3] = d;
-    all[4] = e;
-    all[5] = f;
-    all[6] = g;
-    Trainer Me;
-    Me.setTrainer(all,numPokemons);
+    Pokemon allPokemon[7];
+    setAllPokemon(allPokemon,allMove);
 
-    Trainer Hamada("Tan-Pan Kozo HaMaDa",f,c,g);
+    Trainer Me;
+    Me.setTrainer(allPokemon,numPokemons);
+
+    Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
+
     bool n =true;
     while(n){
         std::cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getMyPokemon(1)->getPokeName()<<" used "<<Hamada.getMyPokemon(1)->getMove(1).getMoveName()<<std::endl;

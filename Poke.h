@@ -42,6 +42,7 @@ class Pokemon{
             isAlive = true;
         }
         Pokemon(){}
+        
         std::string getPokeName(){return PokeName;}
         Type getfPokeType(){return fPokeType;}
         Type getsPokeType(){return sPokeType;}
@@ -59,7 +60,7 @@ class Pokemon{
         bool getisAlive(){return isAlive;}
 
 
-        //void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed);
+        void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
         void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);

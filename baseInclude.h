@@ -9,4 +9,3 @@
 #include ".\Poke.h"
 #include ".\Trainer.h"
 
-#include ".\Master.h"
