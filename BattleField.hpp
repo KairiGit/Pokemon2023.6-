@@ -7,4 +7,5 @@ class BattleField{
         BattleField(Trainer* A,Trainer* B);
         void showPokemon(bool which);
         
+        void Battle();
 };
