@@ -3,9 +3,12 @@ class BattleField{
     private:
         Trainer* A;
         Trainer* B;
-    public:
-        BattleField(Trainer* A,Trainer* B);
-        void showPokemon(bool which);
+    private:
+        void checkPokemon(bool which);
+        void BattleStart();
+        void selectAction();
         
         void Battle();
+    public:
+        BattleField(Trainer* A,Trainer* B);      
 };
