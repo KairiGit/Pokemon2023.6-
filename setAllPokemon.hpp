@@ -1,5 +1,5 @@
 #pragma once
-#include ".\setAllMove.hpp"
+#include ".\Poke.h"
 
 void setAllPokemon(Pokemon* allPokemon,Move allMove[][4]){
     allPokemon[0].setPokemon("Eievui",NOM,NOT,130,75,70,65,85,75,allMove[0][0]);

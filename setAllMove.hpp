@@ -1,5 +1,5 @@
 #pragma once
-#include ".\Trainer.h"
+#include ".\Move.h"
 
 void setAllMove(Move allMove[][4]){
     allMove[0][0].setMove("Tackle",NOM,Physical,40);

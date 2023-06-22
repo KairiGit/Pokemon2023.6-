@@ -1,4 +1,4 @@
-#include ".\setAllPokemon.hpp"
+#include ".\baseInclude.h"
 
 void Master(){
     /*
