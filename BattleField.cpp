@@ -32,6 +32,7 @@ void BattleField :: Battle(){
     BattleStart();
     while(true){
         selectAction();
+        break;
     }
     
 }
