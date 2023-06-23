@@ -234,9 +234,13 @@ class Pokemon{
         exType(sPokeType);
         std::cout <<std::endl;
         std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
+        
         std::cout<<'v';
+        // バッファをクリアする
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         int flag;
         flag = getchar();
+
         std::cout <<"Move is"<<std::endl;
         for(int i=0;i<4;i++){
             std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;
@@ -293,10 +297,13 @@ class Trainer{
         std::string name;
         std::cin >> name;
         std::cout << "Your name is "<<name<<'!'<<std::endl;
+
         std::cout<<'v';
+        // バッファをクリアする
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         int flag;
         flag = getchar();
-        flag = getchar();
+
         for(int i=0;i<3;i++){
             bool still=true;
             while(still){
@@ -317,10 +324,13 @@ class Trainer{
     Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
         Pokemon tmp;
         std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
+
         std::cout<<'v';
+        // バッファをクリアする
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         int flag;
         flag = getchar();
-        flag = getchar();
+        
         pokemon.showAllST();
         std::cout << "OK?" << std::endl;
         if (isYESorNO()) {
