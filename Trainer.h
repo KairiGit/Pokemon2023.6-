@@ -11,8 +11,12 @@ class Trainer{
         Trainer(std::string name,Pokemon a,Pokemon b,Pokemon c);
         Trainer(){}
         std::string getTrainerName();
-        Pokemon* getMyPokemon(int num);
-        void showmyPoke();
+        Pokemon getPokemon(int num);
+        Pokemon* getpPokemon(int num);
+        Pokemon* getpPokemon();
+        Move getPokeMove(int p,int m);
 
-        void setTrainer(Pokemon* all,int numPokemons);
+        void showmyPoke();
+        void setTrainer(std::string name,Pokemon* poke3);
+        void setSlectTrainer(Pokemon* all,int numPokemons);
 };

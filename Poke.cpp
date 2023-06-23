@@ -79,6 +79,10 @@ void Pokemon :: showAllST(){
     exType(sPokeType);
     std::cout <<std::endl;
     std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
+    
+    std::cout<<'v';//enterキーの要求
+    flag = getchar();
+
     std::cout <<"Move is"<<std::endl;
     for(int i=0;i<4;i++){
         std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;

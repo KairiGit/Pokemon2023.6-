@@ -3,6 +3,7 @@ class BattleField{
     private:
         Trainer* A;
         Trainer* B;
+        
     private:
         void checkPokemon(bool which);
         void BattleStart();

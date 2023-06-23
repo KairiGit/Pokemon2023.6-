@@ -27,21 +27,21 @@ void Master(){
     setAllPokemon(allPokemon,allMove);
 
     Trainer Me;
-    Me.setTrainer(allPokemon,numPokemons);
+    Me.setSlectTrainer(allPokemon,numPokemons);
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
 
     bool n =true;
     while(n){
-        std::cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getMyPokemon(1)->getPokeName()<<" used "<<Hamada.getMyPokemon(1)->getMove(1).getMoveName()<<std::endl;
-        Me.getMyPokemon(1)->showNowhp();
+        std::cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getpPokemon(1)->getPokeName()<<" used "<<Hamada.getpPokemon(1)->getMove(1).getMoveName()<<std::endl;
+        Me.getpPokemon(1)->showNowhp();
         
-        Me.getMyPokemon(1)->Moved( *Hamada.getMyPokemon(1) , Hamada.getMyPokemon(1)->getMove(1) );
+        Me.getpPokemon(1)->Moved( *Hamada.getpPokemon(1) , Hamada.getpPokemon(1)->getMove(1) );
         std::cout << "->";
-        Me.getMyPokemon(1)->showNowhp();
-        if(Me.getMyPokemon(1)->getisAlive()){n = isYESorNO();}
+        Me.getpPokemon(1)->showNowhp();
+        if(Me.getpPokemon(1)->getisAlive()){n = isYESorNO();}
         else{
-            std::cout << Me.getMyPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
+            std::cout << Me.getpPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
             n = false;
         }
     }
