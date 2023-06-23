@@ -86,7 +86,6 @@ void setAllMove(Move allMove[][4]){
 }
 class Pokemon{
     private:
-    protected:
         std::string PokeName;
         Type fPokeType;
         Type sPokeType;
@@ -142,7 +141,6 @@ class Pokemon{
         
         bool getisAlive(){return isAlive;}
 
-
         void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
         void setPokemon(Pokemon* x);
         void setPokeMove(Move* x);
@@ -157,92 +155,94 @@ class Pokemon{
         void showMove();
         void showAllST();
 };
-void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
-    PokeName = name;
-    fPokeType = f;
-    sPokeType = s;
-    Nowhp = hp;
-    HP = hp;
-    Atk = atk;
-    Def = def;
-    Sp_Atk = sp_atk;
-    Sp_Def = sp_def;
-    Speed = speed;
-    m[0] = move;
-    isAlive = true;
-}
-void Pokemon :: setPokemon(Pokemon* x){
-    PokeName = x->getPokeName();
-    fPokeType = x->getfPokeType();
-    sPokeType = x->getsPokeType();
-    Nowhp = x->getHP();
-    HP = x->getHP();
-    Atk = x->getAtk();
-    Def = x->getDef();
-    Sp_Atk = x->getSp_Atk();
-    Sp_Def = x->getSp_Def();
-    Speed = x->getSpeed();
-    m[0] = x->getMove(1);
-    isAlive = true;    
-}
+    void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
+        PokeName = name;
+        fPokeType = f;
+        sPokeType = s;
+        Nowhp = hp;
+        HP = hp;
+        Atk = atk;
+        Def = def;
+        Sp_Atk = sp_atk;
+        Sp_Def = sp_def;
+        Speed = speed;
+        m[0] = move;
+        isAlive = true;
+    }
+    void Pokemon :: setPokemon(Pokemon* x){
+        PokeName = x->getPokeName();
+        fPokeType = x->getfPokeType();
+        sPokeType = x->getsPokeType();
+        Nowhp = x->getHP();
+        HP = x->getHP();
+        Atk = x->getAtk();
+        Def = x->getDef();
+        Sp_Atk = x->getSp_Atk();
+        Sp_Def = x->getSp_Def();
+        Speed = x->getSpeed();
+        m[0] = x->getMove(1);
+        isAlive = true;    
+    }
 
-void Pokemon :: setPokeMove(Move* x){
-    for(int i=0;i<4;i++){
-        m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+    void Pokemon :: setPokeMove(Move* x){
+        for(int i=0;i<4;i++){
+            m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+        }
     }
-}
+    void Pokemon :: Attacked(Pokemon atk,Move w){
+        Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
+    }
+    void Pokemon :: spAttacked(Pokemon atk,Move w){
+        Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
+    }
+    void Pokemon :: Moved(Pokemon atk,Move w){
+        switch(w.getCat()){
+            case 0: Attacked(atk,w);break;
+            case 1: spAttacked(atk,w);break;
+            case 2: break;
+        }
+        if(Nowhp<=0){
+            Nowhp = 0;
+            die();
+        }
+    }
+    void Pokemon :: showNowhp(){
+        if(Nowhp>HP/2){std::cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+        else if(Nowhp>HP/4){std::cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+        else{std::cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+    }
+    void Pokemon :: showPokeType(){
+        exType(fPokeType);
+        std::cout <<'/';
+        exType(sPokeType);
+        std::cout <<std::endl;
+    }
+    void Pokemon :: showStats(){
+        std::cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
+    }
+    void Pokemon :: showMove(){
+        for(int i=0;i<4;i++){
+            std::cout <<i+1<< m[i].getMoveName() <<std::endl;
+        }
+    }
+    void Pokemon :: showAllST(){
+        std::cout <<std::endl;
+        std::cout <<"Type is ";
+        exType(fPokeType);
+        std::cout <<'/';
+        exType(sPokeType);
+        std::cout <<std::endl;
+        std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
+        std::cout<<'v';
+        int flag;
+        flag = getchar();
+        std::cout <<"Move is"<<std::endl;
+        for(int i=0;i<4;i++){
+            std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;
+        }
+        std::cout <<std::endl;
+    }
 
-void Pokemon :: Attacked(Pokemon atk,Move w){
-    Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
-}
-void Pokemon :: spAttacked(Pokemon atk,Move w){
-    Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
-}
-void Pokemon :: Moved(Pokemon atk,Move w){
-    switch(w.getCat()){
-        case 0: Attacked(atk,w);break;
-        case 1: spAttacked(atk,w);break;
-        case 2: break;
-    }
-    if(Nowhp<=0){
-        Nowhp = 0;
-        die();
-    }
-}
-void Pokemon :: showNowhp(){
-    if(Nowhp>HP/2){std::cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
-    else if(Nowhp>HP/4){std::cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
-    else{std::cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
-}
-void Pokemon :: showPokeType(){
-    exType(fPokeType);
-    std::cout <<'/';
-    exType(sPokeType);
-    std::cout <<std::endl;
-}
-void Pokemon :: showStats(){
-    std::cout <<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
-}
-
-void Pokemon :: showMove(){
-    for(int i=0;i<4;i++){
-        std::cout <<i+1<< m[i].getMoveName() <<std::endl;
-    }
-}
-void Pokemon :: showAllST(){
-    std::cout <<std::endl;
-    std::cout <<"Type is ";
-    exType(fPokeType);
-    std::cout <<'/';
-    exType(sPokeType);
-    std::cout <<std::endl;
-    std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
-    std::cout <<"Move is"<<std::endl;
-    for(int i=0;i<4;i++){
-        std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;
-    }
-    std::cout <<std::endl;
-}
 void setAllPokemon(Pokemon* allPokemon,Move allMove[][4]){
     allPokemon[0].setPokemon("Eievui",NOM,NOT,130,75,70,65,85,75,allMove[0][0]);
     allPokemon[1].setPokemon("Lizardon",HON,HIK,153,104,98,129,105,120,allMove[1][0]);
@@ -252,6 +252,7 @@ void setAllPokemon(Pokemon* allPokemon,Move allMove[][4]){
     allPokemon[5].setPokemon("Lucario",KAK,HAG,70,110,70,115,70,90,allMove[5][0]);
     allPokemon[6].setPokemon("Malurumine",DEN,NOT,135,70,90,100,100,170,allMove[6][0]);
 }
+
 class Trainer{
     private:
         std::string TrainerName;
@@ -268,58 +269,66 @@ class Trainer{
 
         void setTrainer(Pokemon* all,int numPokemons);
 };
-Trainer::Trainer(std::string name,Pokemon a,Pokemon b,Pokemon c){
-    TrainerName = name;
-    myPoke[0] = a;
-    myPoke[1] = b;
-    myPoke[2] = c;
-}
-std::string Trainer::getTrainerName(){
-    return TrainerName;
-}
-Pokemon* Trainer::getMyPokemon(int num){
-    return &myPoke[num-1];
-}
-void Trainer::showmyPoke(){
-    for(int i=0;i<3;i++){
-        std::cout <<i<<myPoke[i].getPokeName()<<std::endl;
+    Trainer::Trainer(std::string name,Pokemon a,Pokemon b,Pokemon c){
+        TrainerName = name;
+        myPoke[0] = a;
+        myPoke[1] = b;
+        myPoke[2] = c;
     }
-}
-
-void Trainer::setTrainer(Pokemon* all,int numPokemons){
-    std::cout << "What your name?"<<std::endl;
-    std::string name;
-    std::cin >> name;
-    std::cout << "Your name is "<<name<<'!'<<std::endl;
-    for(int i=0;i<3;i++){
-        bool still=true;
-        while(still){
-            myPoke[i] = checkPokemon( all[selectPokemon(all,numPokemons)] , &still);
+    std::string Trainer::getTrainerName(){
+        return TrainerName;
+    }
+    Pokemon* Trainer::getMyPokemon(int num){
+        return &myPoke[num-1];
+    }
+    void Trainer::showmyPoke(){
+        for(int i=0;i<3;i++){
+            std::cout <<i<<myPoke[i].getPokeName()<<std::endl;
         }
     }
-}
-//ヘルパー
-int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
-    int selection;
-    std::cout << "Choose your Pokemon" << std::endl;
-    for (int i = 0; i < numPokemons; i++) {
-        std::cout << i + 1 << ". " << pokemons[i].getPokeName() << std::endl;
+
+    void Trainer::setTrainer(Pokemon* all,int numPokemons){
+        std::cout << "What your name?"<<std::endl;
+        std::string name;
+        std::cin >> name;
+        std::cout << "Your name is "<<name<<'!'<<std::endl;
+        std::cout<<'v';
+        int flag;
+        flag = getchar();
+        flag = getchar();
+        for(int i=0;i<3;i++){
+            bool still=true;
+            while(still){
+                myPoke[i] = checkPokemon( all[selectPokemon(all,numPokemons)] , &still);
+            }
+        }
     }
-    std::cin >> selection;
-    return selection - 1;
-}
-Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
-    Pokemon tmp;
-    std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
-    pokemon.showAllST();
-    std::cout << "OK?" << std::endl;
-    if (isYESorNO()) {
-        std::cout << "You choose " << pokemon.getPokeName() << std::endl;
-        tmp = pokemon;
-        *isConfirmed = false;
+    //ヘルパー
+    int Trainer::selectPokemon(Pokemon* pokemons, int numPokemons) {
+        int selection;
+        std::cout << "Choose your Pokemon" << std::endl;
+        for (int i = 0; i < numPokemons; i++) {
+            std::cout << i + 1 << ". " << pokemons[i].getPokeName() << std::endl;
+        }
+        std::cin >> selection;
+        return selection - 1;
     }
-    return tmp;
-}
+    Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
+        Pokemon tmp;
+        std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
+        std::cout<<'v';
+        int flag;
+        flag = getchar();
+        flag = getchar();
+        pokemon.showAllST();
+        std::cout << "OK?" << std::endl;
+        if (isYESorNO()) {
+            std::cout << "You choose " << pokemon.getPokeName() << std::endl;
+            tmp = pokemon;
+            *isConfirmed = false;
+        }
+        return tmp;
+    }
 class BattleField{
     private:
         Trainer* A;
@@ -361,31 +370,14 @@ void BattleField :: checkPokemon(bool which){
     }
 }
 void Master(){
-    /*
-    Move Tackle("Tackle",NOM,Physical,40);
-    Move Ember("Ember",HON,Spesial,40);
-    Move Water_Gun("Water Gun",MIZ,Spesial,40);
-    Move Thunderbolt("Thunderbolt",DEN,Spesial,90);
-    Move Leafage("Leafage",KUS,Physical,40);
-    Move Aura_Sphere("Aura_Sphere",KAK,Spesial,80);
-    Move ThunderShock("ThunderShock",DEN,Spesial,40);
-    
-    Pokemon a("Eievui",NOM,NOT,130,75,70,65,85,75,Tackle);
-    Pokemon b("Lizardon",HON,HIK,153,104,98,129,105,120,Ember);
-    Pokemon c("Gekkouga",MIZ,AKU,147,115,87,123,91,142,Water_Gun);
-    Pokemon d("Pikachu",DEN,NOT,110,75,60,70,70,110,Thunderbolt);
-    Pokemon e("Morobareru",KUS,DOK,189,105,90,105,100,50,Leafage);
-    Pokemon f("Lucario",KAK,HAG,70,110,70,115,70,90,Aura_Sphere);
-    Pokemon g("Malurumine",DEN,NOT,135,70,90,100,100,170,ThunderShock);
-    */
 
     int numMoves=7;
     Move allMove[7][4];
     setAllMove(allMove);
     int numPokemons=7;
     Pokemon allPokemon[7];
-    setAllPokemon(allPokemon,allMove);
 
+    setAllPokemon(allPokemon,allMove);
     Trainer Me;
     Me.setTrainer(allPokemon,numPokemons);
 
