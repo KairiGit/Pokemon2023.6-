@@ -4,7 +4,7 @@ class BattleField{
         Trainer* A;
         Trainer* B;
         
-    private:
+    private://コンストラクタで呼び出されるヘルパー
         void checkPokemon(bool which);
         void BattleStart();
         void selectAction();
