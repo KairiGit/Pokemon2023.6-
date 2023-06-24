@@ -18,5 +18,5 @@ class Trainer{
 
         void showmyPoke();
         void setTrainer(std::string name,Pokemon* poke3);
-        void setSlectTrainer(Pokemon* all,int numPokemons);
+        void setMe(Pokemon* all,int numPokemons);
 };

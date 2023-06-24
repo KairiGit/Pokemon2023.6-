@@ -27,7 +27,7 @@ void Master(){
     setAllPokemon(allPokemon,allMove);
 
     Trainer Me;
-    Me.setSlectTrainer(allPokemon,numPokemons);
+    Me.setMe(allPokemon,numPokemons);
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
 

@@ -80,7 +80,7 @@ void Pokemon :: showAllST(){
     std::cout <<std::endl;
     std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
     
-    std::cout<<'v';//enterキーの要求
+    std::cout<<'v'<<std::flush;//enterキーの要求
     flag = getchar();
 
     std::cout <<"Move is"<<std::endl;

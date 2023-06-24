@@ -239,7 +239,7 @@ class Pokemon{
         std::cout <<std::endl;
         std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
         
-        std::cout<<'v';//enterキーの要求
+        std::cout<<'v'<<std::flush;//enterキーの要求
         flag = getchar();
 
         std::cout <<"Move is"<<std::endl;
@@ -276,7 +276,7 @@ class Trainer{
         Move getPokeMove(int p,int m);
         void showmyPoke();
         void setTrainer(std::string name,Pokemon* poke3);
-        void setSlectTrainer(Pokemon* all,int numPokemons);
+        void setMe(Pokemon* all,int numPokemons);
 };
     Trainer::Trainer(std::string name,Pokemon a,Pokemon b,Pokemon c){
         TrainerName = name;
@@ -310,17 +310,17 @@ class Trainer{
             myPoke[i].setPokemon( &poke3[i]);
         }
     }
-    void Trainer::setSlectTrainer(Pokemon* all,int numPokemons){
+    void Trainer::setMe(Pokemon* all,int numPokemons){
         std::cout << "What your name?"<<std::endl;
         std::string name;
         std::cin >> name;
         std::cout << "Your name is "<<name<<'!'<<std::endl;
 
-        std::cout<<'v';//enterキーの要求
+        std::cout<<'v'<<std::flush;//enterキーの要求
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
         flag = getchar();
         std::cout<<"You have to choose 3 Pokemon!"<<std::endl;
-            std::cout<<'v';//enterキーの要求
+            std::cout<<'v'<<std::flush;//enterキーの要求
         for(int i=0;i<3;i++){
             bool still=true;
             while(still){
@@ -333,7 +333,7 @@ class Trainer{
         int selection;
             flag = getchar();//二週目からはバッファをクリアする
         std::cout << "Choose your Pokemon" << std::endl;
-            std::cout<<'v';//enterキーの要求
+            std::cout<<'v'<<std::flush;//enterキーの要求
             flag = getchar();
         for (int i = 0; i < numPokemons; i++) {
             std::cout << i + 1 << ". " << pokemons[i].getPokeName() << std::endl;
@@ -345,17 +345,17 @@ class Trainer{
         Pokemon tmp;
         std::cout << "Show the status of " << pokemon.getPokeName() << std::endl;
 
-        std::cout<<'v';//enterキーの要求
+        std::cout<<'v'<<std::flush;//enterキーの要求
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
         flag = getchar();
 
         pokemon.showAllST();
-            std::cout<<'v';//enterキーの要求
+            std::cout<<'v'<<std::flush;//enterキーの要求
             flag = getchar();
         std::cout << "OK?" << std::endl;
         if (isYESorNO()) {
             std::cout << "You choose " << pokemon.getPokeName() << std::endl;
-                std::cout<<'v';//enterキーの要求
+                std::cout<<'v'<<std::flush;//enterキーの要求
                 flag = getchar();
             tmp = pokemon;
             *isConfirmed = false;
@@ -367,11 +367,16 @@ class BattleField{
     private:
         Trainer* A;
         Trainer* B;
-        
+        bool inBattle;
+        bool selected;
     private:
-        void checkPokemon(bool which);
         void BattleStart();
         void selectAction();
+        void Fight();
+        void Check();
+            void checkPokemon(bool which);
+            void checkField();
+        void Surrender();
         
         void Battle();
     public:
@@ -380,48 +385,78 @@ class BattleField{
     void BattleField::BattleStart(){
         std::cout<<B->getTrainerName();
         std::cout<<" wants to fight!"<<std::endl;
-            std::cout<<'v';//enterキーの要求
+            std::cout<<'v'<<std::flush;//enterキーの要求
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
             flag = getchar();
         std::cout<<B->getTrainerName()<<" sent out ";
         std::cout<<B->getPokemon(1).getPokeName();
         std::cout<<'!'<<std::endl;
-            std::cout<<'v';//enterキーの要求
+            std::cout<<'v'<<std::flush;//enterキーの要求
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
             flag = getchar();
         std::cout<<"Go! ";
         std::cout<<A->getPokemon(1).getPokeName();
         std::cout<<'!'<<std::endl;
-            std::cout<<'v';//enterキーの要求
+            std::cout<<'v'<<std::flush;//enterキーの要求
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
             flag = getchar();
     }
     void BattleField :: selectAction(){
-
+        selected = false;
+        while(!selected){
+            int select;
+            std::cout<<"1.Fight"<<std::endl;
+            std::cout<<"2.Check"<<std::endl;
+            std::cout<<"3.Surrender"<<std::endl;
+            std::cin>>select;
+            switch(select){
+                case 1:break;
+                case 2:break;
+                case 3:break;
+            }
+        }
     }
-    void BattleField :: checkPokemon(bool which){
-        if(which){
-            for(int i=0;i<3;i++){
-                std::cout << i+1 << A->getPokemon(i).getPokeName() << std::endl;
+    void BattleField::Fight(){
+        std::cout<<"error:nothing"<<std::endl;
+    }
+    void BattleField::Check(){
+        std::cout<<"error:nothing"<<std::endl;
+    }
+        void BattleField :: checkPokemon(bool which){
+            if(which){
+                for(int i=0;i<3;i++){
+                    std::cout << i+1 << A->getPokemon(i).getPokeName() << std::endl;
+                }
+            }
+            else{
+                for(int i=0;i<3;i++){
+                    std::cout << i+1 << B->getPokemon(i).getPokeName() << std::endl;
+                }
             }
         }
-        else{
-            for(int i=0;i<3;i++){
-                std::cout << i+1 << B->getPokemon(i).getPokeName() << std::endl;
-            }
+        void BattleField::checkField(){
+            std::cout<<"error:nothing"<<std::endl;
         }
+    void BattleField::Surrender(){
+        std::cout<<"Do you rearry surrender?"<<std::endl;
+        if(isYESorNO()){
+            std::cout<<A->getTrainerName()<<" blacked out."<<std::endl;
+            std::cout<<'v'<<std::flush;//enterキーの要求
+            flag = getchar();
+            selected = true;
+            inBattle = false;
+        }    
     }
     void BattleField :: Battle(){
         BattleStart();
-        while(true){
+        while(inBattle){
             selectAction();
-            break;
         }
-        
     }
     BattleField::BattleField(Trainer* a,Trainer* b){
         A->setTrainer(a->getTrainerName(),a->getpPokemon());
         B->setTrainer(b->getTrainerName(),b->getpPokemon());
+        inBattle = true;
         Battle();
     }
 //Master.hpp
@@ -435,7 +470,7 @@ void Master(){
 
     setAllPokemon(allPokemon,allMove);
     Trainer Me;
-    Me.setSlectTrainer(allPokemon,numPokemons);
+    Me.setMe(allPokemon,numPokemons);
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
 
@@ -457,9 +492,13 @@ void Master(){
 //main.cpp
 int main(void){
     std::cout<<"When `v` is displayed, press the enter key."<<std::endl;
-    std::cout<<'v';//enterキーの要求
+    std::cout<<'v'<<std::flush;//enterキーの要求
+    flag = getchar();
     std::cout<<"Prease answer with a number when the choices are displayed."<<std::endl;
     std::cout<<"1.Yes, I understand."<<std::endl;
+    flag = getchar();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
+    std::cout<<'v'<<std::flush;//enterキーの要求
     flag = getchar();
     Master();
     return 0;
