@@ -1,39 +1,38 @@
 #include ".\baseInclude.h"
 
 void BattleField::BattleStart(){
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
     std::cout<<B->getTrainerName();
-    std::cout<<" wants to fight!"<<std::endl;
+    std::cout<<" would like to battele!"<<std::endl;
         std::cout<<'v'<<std::flush;//enterキーの要求
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
         flag = getchar();
     std::cout<<B->getTrainerName()<<" sent out ";
     std::cout<<B->getPokemon(1).getPokeName();
     std::cout<<'!'<<std::endl;
         std::cout<<'v'<<std::flush;//enterキーの要求
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
         flag = getchar();
     std::cout<<"Go! ";
     std::cout<<A->getPokemon(1).getPokeName();
     std::cout<<'!'<<std::endl;
         std::cout<<'v'<<std::flush;//enterキーの要求
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
-        flag = getchar();  
+        flag = getchar();
 }
 void BattleField :: selectAction(){
-       selected = false;
-        while(!selected){
-            int select;
-            std::cout<<"1.Fight"<<std::endl;
-            std::cout<<"2.Check"<<std::endl;
-            std::cout<<"3.Surrender"<<std::endl;
-            std::cin>>select;
-            switch(select){
-                case 1:break;
-                case 2:break;
-                case 3:break;
-            }
+    selected = false;
+    while(!selected){
+        int select;
+        std::cout<<A->getTrainerName()<<std::endl;
+        std::cout<<"1.Fight"<<std::endl;
+        std::cout<<"2.Check"<<std::endl;
+        std::cout<<"3.Surrender"<<std::endl;
+        std::cin>>select;
+        switch(select){
+            case 1:Fight();break;
+            case 2:Check();break;
+            case 3:Surrender();break;
         }
     }
+}
     void BattleField::Fight(){
         std::cout<<"error:nothing"<<std::endl;
     }
@@ -73,7 +72,10 @@ void BattleField :: Battle(){
     
 }
 BattleField::BattleField(Trainer* a,Trainer* b){
-    A->setTrainer(a->getTrainerName(),a->getpPokemon());
-    B->setTrainer(b->getTrainerName(),b->getpPokemon());
+    A = a;
+    B = b;
+    //A->setTrainer(a->getTrainerName(),a->getpPokemon());
+    //B->setTrainer(b->getTrainerName(),b->getpPokemon());
+    inBattle = true;
     Battle();
 }

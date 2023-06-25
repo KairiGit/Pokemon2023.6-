@@ -13,10 +13,10 @@ class Pokemon{
         //int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
         //Ailment Ail;
-        bool isAlive;
+        bool canBattle;
         Move m[4];
         
-        void die(){isAlive = false;}
+        void die(){canBattle = false;}
         
         int dmg(int atk,int def,int pow){
             int dmg;
@@ -39,7 +39,7 @@ class Pokemon{
             Sp_Def = sp_def;
             Speed = speed;
             m[0] = move;
-            isAlive = true;
+            canBattle = true;
         }
         Pokemon(){}
         
@@ -57,7 +57,7 @@ class Pokemon{
         //int getAil();
         Move getMove(int num){return m[num-1];}
         
-        bool getisAlive(){return isAlive;}
+        bool isCanBattle(){return canBattle;}
 
 
         void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
@@ -67,7 +67,8 @@ class Pokemon{
         void Attacked(Pokemon atk,Move w);
         void spAttacked(Pokemon atk,Move w);
         void Moved(Pokemon atk,Move w);
-
+        
+        void showCanBattle();
         void showNowhp();
         void showPokeType();
         void showStats();

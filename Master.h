@@ -31,18 +31,5 @@ void Master(){
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
 
-    bool n =true;
-    while(n){
-        std::cout <<Hamada.getTrainerName()<<"`s"<<Hamada.getpPokemon(1)->getPokeName()<<" used "<<Hamada.getpPokemon(1)->getMove(1).getMoveName()<<std::endl;
-        Me.getpPokemon(1)->showNowhp();
-        
-        Me.getpPokemon(1)->Moved( *Hamada.getpPokemon(1) , Hamada.getpPokemon(1)->getMove(1) );
-        std::cout << "->";
-        Me.getpPokemon(1)->showNowhp();
-        if(Me.getpPokemon(1)->getisAlive()){n = isYESorNO();}
-        else{
-            std::cout << Me.getpPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
-            n = false;
-        }
-    }
+    BattleField vsHamada(&Me,&Hamada);
 }

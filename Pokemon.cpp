@@ -101,10 +101,10 @@ class Pokemon{
         //int h,a,b,c,d,s;
         int HP,Atk,Def,Sp_Atk,Sp_Def,Speed;
         //Ailment Ail;
-        bool isAlive;
+        bool canBattle;
         Move m[4];
         
-        void die(){isAlive = false;}
+        void die(){canBattle = false;}
         
         int dmg(int atk,int def,int pow){
             int dmg;
@@ -127,7 +127,7 @@ class Pokemon{
             Sp_Def = sp_def;
             Speed = speed;
             m[0] = move;
-            isAlive = true;
+            canBattle = true;
         }
         Pokemon(){}
         
@@ -145,7 +145,7 @@ class Pokemon{
         //int getAil();
         Move getMove(int num){return m[num-1];}
         
-        bool getisAlive(){return isAlive;}
+        bool isCanBattle(){return canBattle;}
 
         void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
         void setPokemon(Pokemon* x);
@@ -155,6 +155,7 @@ class Pokemon{
         void spAttacked(Pokemon atk,Move w);
         void Moved(Pokemon atk,Move w);
 
+        void showCanBattle();
         void showNowhp();
         void showPokeType();
         void showStats();
@@ -173,7 +174,7 @@ class Pokemon{
         Sp_Def = sp_def;
         Speed = speed;
         m[0] = move;
-        isAlive = true;
+        canBattle = true;
     }
     void Pokemon :: setPokemon(Pokemon* x){
         PokeName = x->getPokeName();
@@ -187,7 +188,7 @@ class Pokemon{
         Sp_Def = x->getSp_Def();
         Speed = x->getSpeed();
         m[0] = x->getMove(1);
-        isAlive = true;    
+        canBattle = true;    
     }
     void Pokemon :: setPokeMove(Move* x){
         for(int i=0;i<4;i++){
@@ -209,6 +210,14 @@ class Pokemon{
         if(Nowhp<=0){
             Nowhp = 0;
             die();
+        }
+    }
+    void Pokemon :: showCanBattle(){
+        if(isCanBattle()){
+            std::cout<<"Can Battle"<<std::endl;
+        }
+        else{
+            std::cout<<"Fainting"<<std::endl;
         }
     }
     void Pokemon :: showNowhp(){
@@ -383,36 +392,35 @@ class BattleField{
         BattleField(Trainer* A,Trainer* B);      
 };
     void BattleField::BattleStart(){
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
         std::cout<<B->getTrainerName();
-        std::cout<<" wants to fight!"<<std::endl;
+        std::cout<<" would like to battele!"<<std::endl;
             std::cout<<'v'<<std::flush;//enterキーの要求
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
             flag = getchar();
         std::cout<<B->getTrainerName()<<" sent out ";
         std::cout<<B->getPokemon(1).getPokeName();
         std::cout<<'!'<<std::endl;
             std::cout<<'v'<<std::flush;//enterキーの要求
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
             flag = getchar();
         std::cout<<"Go! ";
         std::cout<<A->getPokemon(1).getPokeName();
         std::cout<<'!'<<std::endl;
             std::cout<<'v'<<std::flush;//enterキーの要求
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
             flag = getchar();
     }
     void BattleField :: selectAction(){
         selected = false;
         while(!selected){
             int select;
+            std::cout<<A->getTrainerName()<<std::endl;
             std::cout<<"1.Fight"<<std::endl;
             std::cout<<"2.Check"<<std::endl;
             std::cout<<"3.Surrender"<<std::endl;
             std::cin>>select;
             switch(select){
-                case 1:break;
-                case 2:break;
-                case 3:break;
+                case 1:Fight();break;
+                case 2:Check();break;
+                case 3:Surrender();break;
             }
         }
     }
@@ -451,11 +459,14 @@ class BattleField{
         BattleStart();
         while(inBattle){
             selectAction();
+
         }
     }
     BattleField::BattleField(Trainer* a,Trainer* b){
-        A->setTrainer(a->getTrainerName(),a->getpPokemon());
-        B->setTrainer(b->getTrainerName(),b->getpPokemon());
+        A = a;
+        B = b;
+        //A->setTrainer(a->getTrainerName(),a->getpPokemon());
+        //B->setTrainer(b->getTrainerName(),b->getpPokemon());
         inBattle = true;
         Battle();
     }
@@ -474,6 +485,8 @@ void Master(){
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
 
+    BattleField vsHamada(&Me,&Hamada);
+/*  
     bool n =true;
     while(n){
         std::cout <<Hamada.getTrainerName()<<"`s "<<Hamada.getpPokemon(1)->getPokeName()<<" used "<<Hamada.getpPokemon(1)->getMove(1).getMoveName()<<std::endl;
@@ -482,15 +495,18 @@ void Master(){
         Me.getpPokemon(1)->Moved( *Hamada.getpPokemon(1) , Hamada.getpPokemon(1)->getMove(1) );
         std::cout << "->";
         Me.getpPokemon(1)->showNowhp();
-        if(Me.getpPokemon(1)->getisAlive()){n = isYESorNO();}
+        if(Me.getpPokemon(1)->isCanBattle()){n = isYESorNO();}
         else{
             std::cout << Me.getpPokemon(1)->getPokeName() <<" fainted!"<<std::endl;
             n = false;
         }
     }
+*/
+
 }
 //main.cpp
 int main(void){
+    std::cout<<"Game Stert"<<std::endl;
     std::cout<<"When `v` is displayed, press the enter key."<<std::endl;
     std::cout<<'v'<<std::flush;//enterキーの要求
     flag = getchar();

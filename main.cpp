@@ -1,6 +1,7 @@
 #include ".\Master.h"
 
 int main(void){
+    std::cout<<"Game Stert"<<std::endl;
     std::cout<<"When `v` is displayed, press the enter key."<<std::endl;
     std::cout<<'v'<<std::flush;//enterキーの要求
     flag = getchar();

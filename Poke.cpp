@@ -11,7 +11,7 @@ void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def
     Sp_Def = sp_def;
     Speed = speed;
     m[0] = move;
-    isAlive = true;
+    canBattle = true;
 }
 void Pokemon :: setPokemon(Pokemon* x){
     PokeName = x->getPokeName();
@@ -25,7 +25,7 @@ void Pokemon :: setPokemon(Pokemon* x){
     Sp_Def = x->getSp_Def();
     Speed = x->getSpeed();
     m[0] = x->getMove(1);
-    isAlive = true;    
+    canBattle = true;    
 }
 
 void Pokemon :: setPokeMove(Move* x){
@@ -49,6 +49,15 @@ void Pokemon :: Moved(Pokemon atk,Move w){
     if(Nowhp<=0){
         Nowhp = 0;
         die();
+    }
+}
+
+void Pokemon :: showCanBattle(){
+    if(isCanBattle()){
+        std::cout<<"Can Battle"<<std::endl;
+    }
+    else{
+        std::cout<<"Fainting"<<std::endl;
     }
 }
 void Pokemon :: showNowhp(){
