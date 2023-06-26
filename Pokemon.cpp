@@ -9,28 +9,29 @@ enum Type{NOT,NOM,HON,MIZ,DEN,KUS,KOO,KAK,DOK,JIM,HIK,ESU,MUS,IWA,GOS,DRA,AKU,HA
 enum Ailment{NOA,PAR,FRZ,PSN,BPSN,BRN};//状態異常
 enum Cat{Physical,Spesial,Status};//技の分類
 int flag;
-//"\x1b[38;2;赤;緑;青m"<<"文字"<<"\x1b[m"
-void exType(Type t){
+//exType.hpp
+//タイプに色を付けて出力する関数
+void exType(Type t){//"\x1b[38;2;赤;緑;青m"<<"文字"<<"\x1b[m"
     switch(t){
-        case 0:     std::cout <<"ONRY";break;
-        case 1:     std::cout <<"\x1b[38;2;255;215;0m"  <<"nomaru"  << "\x1b[m";break;
-        case 2:     std::cout <<"\x1b[38;2;255;69;0m"   <<"hono"    << "\x1b[m";break;
-        case 3:     std::cout <<"\x1b[38;2;0;191;255m"  <<"mizu"    << "\x1b[m";break;
-        case 4:     std::cout <<"\x1b[38;2;255;165;0m"  <<"denki"   << "\x1b[m";break;
-        case 5:     std::cout <<"\x1b[38;2;127;255;0m"  <<"kusa"    << "\x1b[m";break;
-        case 6:     std::cout <<"\x1b[38;2;224;255;255m"<<"kori"    << "\x1b[m";break;
-        case 7:     std::cout <<"\x1b[38;2;165;42;42m"  <<"kakuto"  << "\x1b[m";break;
-        case 8:     std::cout <<"\x1b[38;2;106;76;156m" <<"doku"    << "\x1b[m";break;
-        case 9:     std::cout <<"\x1b[38;2;184;134;11m" <<"jimen"   << "\x1b[m";break;
-        case 10:    std::cout <<"\x1b[38;2;230;230;250m"<<"hikou"   << "\x1b[m";break;
-        case 11:    std::cout <<"\x1b[38;2;255;20;147m" <<"esupa"   << "\x1b[m";break;
-        case 12:    std::cout <<"\x1b[38;2;145;141;64m" <<"musi"    << "\x1b[m";break;
-        case 13:    std::cout <<"\x1b[38;2;240;230;140m"<<"iwa"     << "\x1b[m";break;
-        case 14:    std::cout <<"\x1b[38;2;72;61;139m"  <<"gosuto"  << "\x1b[m";break;
-        case 15:    std::cout <<"\x1b[38;2;0;0;128m"    <<"doragon" << "\x1b[m";break;
-        case 16:    std::cout <<"\x1b[38;2;70;70;70m"   <<"aku"     << "\x1b[m";break;
-        case 17:    std::cout <<"\x1b[38;2;192;192;192m"<<"hagane"  << "\x1b[m";break;
-        case 18:    std::cout <<"\x1b[38;2;255;192;203m"<<"feari"   << "\x1b[m";break;
+        case 0:     std::cout <<"ONRY"                                        <<std::flush;break;                                         
+        case 1:     std::cout <<"\x1b[38;2;255;215;0m"  <<"nomaru"  << "\x1b[m"<<std::flush;break;
+        case 2:     std::cout <<"\x1b[38;2;255;69;0m"   <<"hono"    << "\x1b[m"<<std::flush;break;
+        case 3:     std::cout <<"\x1b[38;2;0;191;255m"  <<"mizu"    << "\x1b[m"<<std::flush;break;
+        case 4:     std::cout <<"\x1b[38;2;255;165;0m"  <<"denki"   << "\x1b[m"<<std::flush;break;
+        case 5:     std::cout <<"\x1b[38;2;127;255;0m"  <<"kusa"    << "\x1b[m"<<std::flush;break;
+        case 6:     std::cout <<"\x1b[38;2;224;255;255m"<<"kori"    << "\x1b[m"<<std::flush;break;
+        case 7:     std::cout <<"\x1b[38;2;165;42;42m"  <<"kakuto"  << "\x1b[m"<<std::flush;break;
+        case 8:     std::cout <<"\x1b[38;2;106;76;156m" <<"doku"    << "\x1b[m"<<std::flush;break;
+        case 9:     std::cout <<"\x1b[38;2;184;134;11m" <<"jimen"   << "\x1b[m"<<std::flush;break;
+        case 10:    std::cout <<"\x1b[38;2;230;230;250m"<<"hikou"   << "\x1b[m"<<std::flush;break;
+        case 11:    std::cout <<"\x1b[38;2;255;20;147m" <<"esupa"   << "\x1b[m"<<std::flush;break;
+        case 12:    std::cout <<"\x1b[38;2;145;141;64m" <<"musi"    << "\x1b[m"<<std::flush;break;
+        case 13:    std::cout <<"\x1b[38;2;240;230;140m"<<"iwa"     << "\x1b[m"<<std::flush;break;
+        case 14:    std::cout <<"\x1b[38;2;72;61;139m"  <<"gosuto"  << "\x1b[m"<<std::flush;break;
+        case 15:    std::cout <<"\x1b[38;2;0;0;128m"    <<"doragon" << "\x1b[m"<<std::flush;break;
+        case 16:    std::cout <<"\x1b[38;2;70;70;70m"   <<"aku"     << "\x1b[m"<<std::flush;break;
+        case 17:    std::cout <<"\x1b[38;2;192;192;192m"<<"hagane"  << "\x1b[m"<<std::flush;break;
+        case 18:    std::cout <<"\x1b[38;2;255;192;203m"<<"feari"   << "\x1b[m"<<std::flush;break;
     }
 }
 //isYESorNO.hpp
@@ -39,6 +40,7 @@ bool isYESorNO(){
     std::cout <<1<<'.'<<"YES"<<std::endl;
     std::cout <<2<<'.'<<"NO"<<std::endl;
     std::cin >> answer;
+    std::cout<<std::endl;
     if(answer==1){return true;}
     else{return false;}
 }
@@ -52,41 +54,57 @@ class Move{
         int Acc;
     protected:
     public:
-        Move(const std::string n,Type t,Cat c,int p);
+        Move(const std::string n,Type t,Cat c,int p,int a);
         Move(){}
-        void setMove(const std::string n,Type t,Cat c,int p){
+        void setMove(const std::string n,Type t,Cat c,int p,int a){
             MoveName = n;
             MoveType = t;
             cat = c;
             Pow = p;
+            Acc = a;
+        }
+        void setMove(Move x){
+            MoveName = x.getMoveName();
+            MoveType = x.getMoveType();
+            cat = x.getCat();
+            Pow = x.getPow();     
+            Acc = x.getAcc();       
         }
         std::string getMoveName(){return MoveName;}
         Type getMoveType(){return MoveType;}
         Cat getCat(){return cat;}
         int getPow(){return Pow;}
         int getAcc(){return Acc;}
+        void showMoveInfo(){
+            std::cout<<getMoveName()<<std::endl;
+            std::cout<<"Type: "<<std::flush; exType(getMoveType());std::cout<<std::endl;
+            std::cout<<"Category: "<<getCat()<<std::endl;
+            std::cout<<"Power: "<<getPow()<<std::endl;
+            std::cout<<"Actually: "<<getAcc()<<std::endl;
+        }
 };
-Move::Move(std::string n,Type t,Cat c,int p){
+Move::Move(std::string n,Type t,Cat c,int p,int a){
     MoveName = n;
     MoveType = t;
     cat = c;
     Pow = p;
+    Acc = a;
 }
 //setAllMove.hpp
 void setAllMove(Move allMove[][4]){
-    allMove[0][0].setMove("Tackle",NOM,Physical,40);
+    allMove[0][0].setMove("Tackle",NOM,Physical,40,100);
 
-    allMove[1][0].setMove("Ember",HON,Spesial,40);
+    allMove[1][0].setMove("Ember",HON,Spesial,40,100);
 
-    allMove[2][0].setMove("Water Gun",MIZ,Spesial,40);
+    allMove[2][0].setMove("Water Gun",MIZ,Spesial,40,100);
     
-    allMove[3][0].setMove("Thunderbolt",DEN,Spesial,90);
+    allMove[3][0].setMove("Thunderbolt",DEN,Spesial,90,100);
     
-    allMove[4][0].setMove("Leafage",KUS,Physical,40);
+    allMove[4][0].setMove("Leafage",KUS,Physical,40,100);
     
-    allMove[5][0].setMove("Aura_Sphere",KAK,Spesial,80);
+    allMove[5][0].setMove("Aura_Sphere",KAK,Spesial,80,100);
     
-    allMove[6][0].setMove("ThunderShock",DEN,Spesial,40);
+    allMove[6][0].setMove("ThunderShock",DEN,Spesial,40,100);
 
 }
 //Poke.hpp
@@ -192,7 +210,7 @@ class Pokemon{
     }
     void Pokemon :: setPokeMove(Move* x){
         for(int i=0;i<4;i++){
-            m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+            m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow(),x[1].getAcc());
         }
     }
     void Pokemon :: Attacked(Pokemon atk,Move w){
@@ -323,6 +341,7 @@ class Trainer{
         std::cout << "What your name?"<<std::endl;
         std::string name;
         std::cin >> name;
+        std::cout<<std::endl;
         std::cout << "Your name is "<<name<<'!'<<std::endl;
 
         std::cout<<'v'<<std::flush;//enterキーの要求
@@ -348,6 +367,7 @@ class Trainer{
             std::cout << i + 1 << ". " << pokemons[i].getPokeName() << std::endl;
         }
         std::cin >> selection;
+        std::cout<<std::endl;
         return selection - 1;
     }
     Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {
@@ -378,17 +398,22 @@ class BattleField{
         Trainer B;
         Pokemon nowBattleA;
         Pokemon nowBattleB;
+        int Anum;
+        int Bnum;
+        Move tmpMoveA;
+        Move tmpMoveB;
         
         bool inBattle;
         bool selected;
     private://コンストラクタで呼び出されるヘルパー
+        void checkPokemon(bool which);
         void BattleStart();
         void selectAction();
-        void Fight();
+        void BattleMove();
+        void PokeChenge();
         void Check();
-        void checkPokemon(bool which);
         void checkField();
-        void Surrender();
+        void Run();
         void Battle();
     public:
         BattleField(Trainer A,Trainer B);      
@@ -411,44 +436,78 @@ class BattleField{
             flag = getchar();
     }
     void BattleField :: selectAction(){
+        std::cout<<""<<std::endl;
         selected = false;
         while(!selected){
             int select;
             std::cout<<A.getTrainerName()<<std::endl;
-            std::cout<<"1.Fight"<<std::endl;
-            std::cout<<"2.Check"<<std::endl;
-            std::cout<<"3.Surrender"<<std::endl;
+            std::cout<<"1.Battle"<<std::endl;
+            std::cout<<"2.Pokemon"<<std::endl;
+            std::cout<<"3.Check Status"<<std::endl;
+            std::cout<<"4.Run"<<std::endl;
             std::cin>>select;
+            std::cout<<std::endl;
             switch(select){
-                case 1:Fight();break;
-                case 2:Check();break;
-                case 3:Surrender();break;
+                case 1:BattleMove();break;
+                case 2:PokeChenge();break;
+                case 3:Check();break;
+                case 4:Run();break;
             }
         }
     }
-        void BattleField::Fight(){
+    void BattleField::BattleMove(){
+        nowBattleA.showMove();
+        std::cout<<std::endl<<"5.Move Info"<<std::endl;
+        int select;
+        std::cin>>select;
+        std::cout<<std::endl;
+        if(select<=4&&select>=1){
+            tmpMoveA.setMove(nowBattleA.getMove(select));
+            selected = true;
+        }
+        else if(select==5){
+            bool still = true;
+            while(still){
+                std::cout<<"Which Move Info do you wanna see?"<<std::endl;
+                nowBattleA.showMove();
+                std::cin>>select;
+                std::cout<<std::endl;
+                if(select<=4&&select>=1){
+                    nowBattleA.getMove(select).showMoveInfo();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
+                    std::cout<<'v'<<std::flush;//enterキーの要求
+                    flag = getchar();
+                }
+                else{
+                    still = false;
+                }
+            }
+
+        }
+    }
+        void BattleField::PokeChenge(){
             std::cout<<"error:nothing"<<std::endl;
         }
         void BattleField::Check(){
             std::cout<<"error:nothing"<<std::endl;
-    }
-    void BattleField :: checkPokemon(bool which){
-        if(which){
-            for(int i=0;i<3;i++){
-                std::cout << i+1 << A.getPokemon(i).getPokeName() << std::endl;
-            }
         }
-        else{
-            for(int i=0;i<3;i++){
-                std::cout << i+1 << B.getPokemon(i).getPokeName() << std::endl;
+            void BattleField :: checkPokemon(bool which){
+                if(which){
+                    for(int i=0;i<3;i++){
+                        std::cout << i+1 << A.getPokemon(i).getPokeName() << std::endl;
+                    }
+                }
+                else{
+                    for(int i=0;i<3;i++){
+                        std::cout << i+1 << B.getPokemon(i).getPokeName() << std::endl;
+                    }
+                }
             }
-        }
-    }
-    void BattleField::checkField(){
-        std::cout<<"error:nothing"<<std::endl;
-    }
-    void BattleField::Surrender(){
-        std::cout<<"Do you rearry surrender?"<<std::endl;
+            void BattleField::checkField(){
+                std::cout<<"error:nothing"<<std::endl;
+            }
+    void BattleField::Run(){
+        std::cout<<"Do you rearry Run?"<<std::endl;
         if(isYESorNO()){
             std::cout<<A.getTrainerName()<<" blacked out."<<std::endl;
             std::cout<<'v'<<std::flush;//enterキーの要求
@@ -470,6 +529,8 @@ class BattleField{
         
         nowBattleA = a.getPokemon(1);
         nowBattleB = b.getPokemon(1);
+        Anum = 1;
+        Bnum = 1;
         inBattle = true;
         Battle();
     }

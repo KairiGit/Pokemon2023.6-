@@ -30,7 +30,7 @@ void Pokemon :: setPokemon(Pokemon x){
 
 void Pokemon :: setPokeMove(Move* x){
     for(int i=0;i<4;i++){
-        m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow());
+        m[i].setMove(x[i].getMoveName(),x[i].getMoveType(),x[i].getCat(),x[i].getPow(),x[1].getAcc());
     }
 }
 

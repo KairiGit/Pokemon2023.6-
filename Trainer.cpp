@@ -37,6 +37,7 @@ void Trainer::setMe(Pokemon* all,int numPokemons){
     std::cout << "What your name?"<<std::endl;
     std::string name;
     std::cin >> name;
+    std::cout<<std::endl;
     std::cout << "Your name is "<<name<<'!'<<std::endl;
 
     std::cout<<'v'<<std::flush;//enterキーの要求
@@ -62,6 +63,7 @@ void Trainer::setMe(Pokemon* all,int numPokemons){
             std::cout << i + 1 << ". " << pokemons[i].getPokeName() << std::endl;
         }
         std::cin >> selection;
+        std::cout<<std::endl;
         return selection - 1;
     }
     Pokemon Trainer::checkPokemon(Pokemon pokemon, bool* isConfirmed) {

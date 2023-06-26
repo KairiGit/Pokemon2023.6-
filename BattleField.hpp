@@ -1,3 +1,4 @@
+#pragma once
 #include ".\Trainer.h"
 class BattleField{
     private:
@@ -5,6 +6,10 @@ class BattleField{
         Trainer B;
         Pokemon nowBattleA;
         Pokemon nowBattleB;
+        int Anum;
+        int Bnum;
+        Move tmpMoveA;
+        Move tmpMoveB;
         
         bool inBattle;
         bool selected;
@@ -12,11 +17,11 @@ class BattleField{
         void checkPokemon(bool which);
         void BattleStart();
         void selectAction();
-        void Fight();
+        void BattleMove();
+        void PokeChenge();
         void Check();
-        void checkPokemon(bool which);
         void checkField();
-        void Surrender();
+        void Run();
         void Battle();
     public:
         BattleField(Trainer A,Trainer B);      

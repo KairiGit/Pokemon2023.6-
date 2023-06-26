@@ -31,5 +31,5 @@ void Master(){
 
     Trainer Hamada("Tan-Pan Kozo HaMaDa",allPokemon[5],allPokemon[2],allPokemon[6]);
 
-    BattleField vsHamada(&Me,&Hamada);
+    BattleField vsHamada(Me,Hamada);
 }
