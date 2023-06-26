@@ -1,8 +1,8 @@
 #include ".\Trainer.h"
 class BattleField{
     private:
-        Trainer* A;
-        Trainer* B;
+        Trainer A;
+        Trainer B;
         Pokemon nowBattleA;
         Pokemon nowBattleB;
         
@@ -19,5 +19,5 @@ class BattleField{
         void Surrender();
         void Battle();
     public:
-        BattleField(Trainer* A,Trainer* B);      
+        BattleField(Trainer A,Trainer B);      
 };

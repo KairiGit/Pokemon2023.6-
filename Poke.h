@@ -61,7 +61,7 @@ class Pokemon{
 
 
         void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
-        void setPokemon(Pokemon* x);
+        void setPokemon(Pokemon x);
         void setPokeMove(Move* x);
 
         void Attacked(Pokemon atk,Move w);

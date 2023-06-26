@@ -30,7 +30,7 @@ void Trainer::showmyPoke(){
 void Trainer::setTrainer(std::string name,Pokemon* poke3){
     TrainerName = name;
     for(int i=0;i<3;i++){
-        myPoke[i].setPokemon( &poke3[i]);
+        myPoke[i].setPokemon(poke3[i]);
     }
 }
 void Trainer::setMe(Pokemon* all,int numPokemons){
