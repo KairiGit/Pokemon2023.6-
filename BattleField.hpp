@@ -3,6 +3,9 @@ class BattleField{
     private:
         Trainer* A;
         Trainer* B;
+        Pokemon nowBattleA;
+        Pokemon nowBattleB;
+        
         bool inBattle;
         bool selected;
     private://コンストラクタで呼び出されるヘルパー
