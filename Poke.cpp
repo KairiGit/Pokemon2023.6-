@@ -34,13 +34,14 @@ void Pokemon :: setPokeMove(Move* x){
     }
 }
 
-void Pokemon :: Attacked(Pokemon atk,Move w){
-    Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
-}
-void Pokemon :: spAttacked(Pokemon atk,Move w){
-    Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
-}
+    void Pokemon :: Attacked(Pokemon atk,Move w){
+        Nowhp = Nowhp - dmg(atk.getAtk(),Def,w.getPow());
+    }
+    void Pokemon :: spAttacked(Pokemon atk,Move w){
+        Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
+    }
 void Pokemon :: Moved(Pokemon atk,Move w){
+    
     switch(w.getCat()){
         case 0: Attacked(atk,w);break;
         case 1: spAttacked(atk,w);break;
@@ -61,9 +62,9 @@ void Pokemon :: showCanBattle(){
     }
 }
 void Pokemon :: showNowhp(){
-    if(Nowhp>HP/2){std::cout <<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
-    else if(Nowhp>HP/4){std::cout <<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
-    else{std::cout <<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<std::endl;}
+    if(Nowhp>HP/2){std::cout <<"HP: "<<"\x1b[38;2;0;255;0m"<<Nowhp<<"\x1b[m"<<"/"<<HP<<std::endl;}
+    else if(Nowhp>HP/4){std::cout <<"HP: "<<"\x1b[38;2;255;255;0m"<<Nowhp<<"\x1b[m"<<"/"<<HP<<std::endl;}
+    else{std::cout <<"HP: "<<"\x1b[38;2;255;0;0m"<<Nowhp<<"\x1b[m"<<"/"<<HP<<std::endl;}
 }
 void Pokemon :: showPokeType(){
     exType(fPokeType);
@@ -88,9 +89,6 @@ void Pokemon :: showAllST(){
     exType(sPokeType);
     std::cout <<std::endl;
     std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
-    
-    std::cout<<'v'<<std::flush;//enterキーの要求
-    flag = getchar();
 
     std::cout <<"Move is"<<std::endl;
     for(int i=0;i<4;i++){

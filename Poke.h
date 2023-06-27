@@ -15,7 +15,8 @@ class Pokemon{
         //Ailment Ail;
         bool canBattle;
         Move m[4];
-        
+        void Attacked(Pokemon atk,Move w);
+        void spAttacked(Pokemon atk,Move w);
         void die(){canBattle = false;}
         
         int dmg(int atk,int def,int pow){
@@ -59,13 +60,10 @@ class Pokemon{
         
         bool isCanBattle(){return canBattle;}
 
-
         void setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move);
         void setPokemon(Pokemon x);
         void setPokeMove(Move* x);
 
-        void Attacked(Pokemon atk,Move w);
-        void spAttacked(Pokemon atk,Move w);
         void Moved(Pokemon atk,Move w);
         
         void showCanBattle();
