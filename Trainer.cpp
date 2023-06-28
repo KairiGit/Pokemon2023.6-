@@ -79,7 +79,7 @@ void Trainer::setMe(Pokemon* all,int numPokemons){
             flag = getchar();
         std::cout << "OK?" << std::endl;
         if (isYESorNO()) {
-            std::cout << "You choose " << pokemon.getPokeName() << std::endl;
+            std::cout << "You choose " << pokemon.getPokeName() <<"!"<< std::endl;
                 std::cout<<'v'<<std::flush;//enterキーの要求
                 flag = getchar();
             tmp = pokemon;

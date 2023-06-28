@@ -147,8 +147,8 @@ BattleField::BattleField(Trainer a,Trainer b){
     A.setTrainer(a.getTrainerName(),a.getpPokemon());
     B.setTrainer(b.getTrainerName(),b.getpPokemon());
     
-    nowBattleA = a.getPokemon(1);
-    nowBattleB = b.getPokemon(1);
+    nowBattleA = a.getpPokemon(1);
+    nowBattleB = b.getpPokemon(1);
     Anum = 1;
     Bnum = 1;
     inBattle = true;

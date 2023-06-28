@@ -4,8 +4,8 @@ class BattleField{
     private:
         Trainer A;
         Trainer B;
-        Pokemon nowBattleA;
-        Pokemon nowBattleB;
+        Pokemon* nowBattleA;
+        Pokemon* nowBattleB;
         int Anum;
         int Bnum;
         Move tmpMoveA;

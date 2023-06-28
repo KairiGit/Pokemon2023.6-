@@ -64,7 +64,7 @@ class Pokemon{
         void setPokemon(Pokemon x);
         void setPokeMove(Move* x);
 
-        void Moved(Pokemon atk,Move w);
+        void Moved(Pokemon* atk,Move w);
         
         void showCanBattle();
         void showNowhp();

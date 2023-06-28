@@ -171,7 +171,7 @@ class Pokemon{
         void setPokemon(Pokemon x);
         void setPokeMove(Move* x);
 
-        void Moved(Pokemon atk,Move w);
+        void Moved(Pokemon* atk,Move w);
         
         void showCanBattle();
         void showNowhp();
@@ -219,10 +219,10 @@ class Pokemon{
     void Pokemon :: spAttacked(Pokemon atk,Move w){
         Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
     }
-    void Pokemon :: Moved(Pokemon atk,Move w){
+    void Pokemon :: Moved(Pokemon* atk,Move w){
         switch(w.getCat()){
-            case 0: Attacked(atk,w);break;
-            case 1: spAttacked(atk,w);break;
+            case 0: Attacked(*atk,w);break;
+            case 1: spAttacked(*atk,w);break;
             case 2: break;
         }
         if(Nowhp<=0){
@@ -265,9 +265,6 @@ class Pokemon{
         exType(sPokeType);
         std::cout <<std::endl;
         std::cout <<"Status is "<<'H'<<getHP()<<' '<<'A'<<getAtk()<<' '<<'B'<<getDef()<<' '<<'C'<<getSp_Atk()<<' '<<'D'<<getSp_Def()<<' '<<'S'<<getSpeed()<<std::endl;
-        
-        std::cout<<'v'<<std::flush;//enterキーの要求
-        flag = getchar();
 
         std::cout <<"Move is"<<std::endl;
         for(int i=0;i<4;i++){
@@ -383,7 +380,7 @@ class Trainer{
             flag = getchar();
         std::cout << "OK?" << std::endl;
         if (isYESorNO()) {
-            std::cout << "You choose " << pokemon.getPokeName() << std::endl;
+            std::cout << "You choose " << pokemon.getPokeName() <<"!"<< std::endl;
                 std::cout<<'v'<<std::flush;//enterキーの要求
                 flag = getchar();
             tmp = pokemon;
@@ -563,7 +560,7 @@ class BattleField{
                     std::cout<<"The "<<nowBattleB->getPokeName()<<std::endl;
                     nowBattleB->showNowhp();
                     std::cout<<"->"<<std::flush;
-                    nowBattleB->Moved(*nowBattleA,tmpMoveA);
+                    nowBattleB->Moved(nowBattleA,tmpMoveA);
                     nowBattleB->showNowhp();
                 }
                 if(nowBattleB->isCanBattle()){
@@ -574,7 +571,7 @@ class BattleField{
                         std::cout<<nowBattleA->getPokeName()<<std::endl;
                         nowBattleA->showNowhp();
                         std::cout<<"->"<<std::flush;                        
-                        nowBattleA->Moved(*nowBattleB,tmpMoveB);
+                        nowBattleA->Moved(nowBattleB,tmpMoveB);
                         nowBattleA->showNowhp();
                         std::cout<<'v'<<std::flush;//enterキーの要求
                         flag = getchar();
@@ -593,7 +590,7 @@ class BattleField{
                     std::cout<<nowBattleA->getPokeName()<<std::endl;
                     nowBattleA->showNowhp();
                     std::cout<<"->"<<std::flush;                        
-                    nowBattleA->Moved(*nowBattleB,tmpMoveB);
+                    nowBattleA->Moved(nowBattleB,tmpMoveB);
                     nowBattleA->showNowhp();
                     std::cout<<'v'<<std::flush;//enterキーの要求
                     flag = getchar();
@@ -606,7 +603,7 @@ class BattleField{
                         std::cout<<"The "<<nowBattleB->getPokeName()<<std::endl;
                         nowBattleB->showNowhp();
                         std::cout<<"->"<<std::flush;
-                        nowBattleB->Moved(*nowBattleA,tmpMoveA);
+                        nowBattleB->Moved(nowBattleA,tmpMoveA);
                         nowBattleB->showNowhp();
                     }
                 }else{
@@ -620,8 +617,8 @@ class BattleField{
         A.setTrainer(a.getTrainerName(),a.getpPokemon());
         B.setTrainer(b.getTrainerName(),b.getpPokemon());
         
-        nowBattleA = &(a.getPokemon(1));
-        nowBattleB = &(b.getPokemon(1));
+        nowBattleA = a.getpPokemon(1);
+        nowBattleB = b.getpPokemon(1);
         Anum = 1;
         Bnum = 1;
         inBattle = true;
