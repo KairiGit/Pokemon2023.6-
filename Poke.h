@@ -17,8 +17,8 @@ class Pokemon{
         Move m[4];
         void Attacked(Pokemon atk,Move w);
         void spAttacked(Pokemon atk,Move w);
-        void die(){canBattle = false;}
         
+        void die(){canBattle = false;}
         int dmg(int atk,int def,int pow){
             int dmg;
             int tmp = 50*2/5 +2;
@@ -28,6 +28,7 @@ class Pokemon{
             return dmg;
         }
     public:
+    
         Pokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
             PokeName = name;
             fPokeType = f;
@@ -64,7 +65,7 @@ class Pokemon{
         void setPokemon(Pokemon x);
         void setPokeMove(Move* x);
 
-        void Moved(Pokemon* atk,Move w);
+        void Moved(Pokemon atk,Move w);
         
         void showCanBattle();
         void showNowhp();
@@ -72,4 +73,6 @@ class Pokemon{
         void showStats();
         void showMove();
         void showAllST();
+
+        void dieMessage();
 };

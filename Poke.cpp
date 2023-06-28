@@ -40,11 +40,11 @@ void Pokemon :: setPokeMove(Move* x){
     void Pokemon :: spAttacked(Pokemon atk,Move w){
         Nowhp = Nowhp - dmg(atk.getSp_Atk(),Sp_Def,w.getPow());
     }
-void Pokemon :: Moved(Pokemon* atk,Move w){
+void Pokemon :: Moved(Pokemon atk,Move w){
     
     switch(w.getCat()){
-        case 0: Attacked(*atk,w);break;
-        case 1: spAttacked(*atk,w);break;
+        case 0: Attacked(atk,w);break;
+        case 1: spAttacked(atk,w);break;
         case 2: break;
     }
     if(Nowhp<=0){
@@ -95,4 +95,7 @@ void Pokemon :: showAllST(){
         std::cout <<i+1<<':'<< m[i].getMoveName() <<std::endl;
     }
     std::cout <<std::endl;
+}
+void Pokemon :: dieMessage(){
+    std::cout<<PokeName<<" is fainted!"<<std::endl;
 }

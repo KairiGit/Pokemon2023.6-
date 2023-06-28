@@ -110,7 +110,7 @@ void BattleField :: Battle(){
             std::cout<<"The "<<nowBattleB->getPokeName()<<std::endl;
             nowBattleB->showNowhp();
             std::cout<<"->"<<std::flush;
-            nowBattleB->Moved(nowBattleA,tmpMoveA);
+            nowBattleB->Moved(*nowBattleA,tmpMoveA);
             nowBattleB->showNowhp();
 
             std::cout<<"The "<<nowBattleB->getPokeName()<<" used "<<tmpMoveB.getMoveName()<<std::endl;
@@ -119,7 +119,7 @@ void BattleField :: Battle(){
             std::cout<<nowBattleA->getPokeName()<<std::endl;
             nowBattleA->showNowhp();
             std::cout<<"->"<<std::flush;                        
-            nowBattleA->Moved(nowBattleB,tmpMoveB);
+            nowBattleA->Moved(*nowBattleB,tmpMoveB);
             nowBattleA->showNowhp();
         }else{
             std::cout<<"The "<<nowBattleB->getPokeName()<<" used "<<tmpMoveB.getMoveName()<<std::endl;
@@ -128,7 +128,7 @@ void BattleField :: Battle(){
             std::cout<<nowBattleA->getPokeName()<<std::endl;
             nowBattleA->showNowhp();
             std::cout<<"->"<<std::flush;                        
-            nowBattleA->Moved(nowBattleB,tmpMoveB);
+            nowBattleA->Moved(*nowBattleB,tmpMoveB);
             nowBattleA->showNowhp();
 
             std::cout<<nowBattleA->getPokeName()<<" used "<<tmpMoveA.getMoveName()<<std::endl;
@@ -137,7 +137,7 @@ void BattleField :: Battle(){
             std::cout<<"The "<<nowBattleB->getPokeName()<<std::endl;
             nowBattleB->showNowhp();
             std::cout<<"->"<<std::flush;
-            nowBattleB->Moved(nowBattleA,tmpMoveA);
+            nowBattleB->Moved(*nowBattleA,tmpMoveA);
             nowBattleB->showNowhp();
         }
     }
