@@ -4,18 +4,18 @@ void BattleField::BattleStart(){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
     std::cout<<B.getTrainerName();
     std::cout<<" would like to battele!"<<std::endl;
-        std::cout<<'v'<<std::flush;//enterキーの要求
-        flag = getchar();
+        enter();//enterキーの要求
+        
     std::cout<<B.getTrainerName()<<" sent out ";
     std::cout<<B.getPokemon(1).getPokeName();
     std::cout<<'!'<<std::endl;
-        std::cout<<'v'<<std::flush;//enterキーの要求
-        flag = getchar();
+        enter();//enterキーの要求
+        
     std::cout<<"Go! ";
     std::cout<<A.getPokemon(1).getPokeName();
     std::cout<<'!'<<std::endl;
-        std::cout<<'v'<<std::flush;//enterキーの要求
-        flag = getchar();
+        enter();//enterキーの要求
+        
 }
 void BattleField :: selectAction(){
     std::cout<<""<<std::endl;
@@ -57,8 +57,8 @@ void BattleField :: selectAction(){
                 if(select<=4&&select>=1){
                     nowBattleA->getMove(select).showMoveInfo();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
-                    std::cout<<'v'<<std::flush;//enterキーの要求
-                    flag = getchar();
+                    enter();//enterキーの要求
+                    
                 }
                 else{
                     still = false;
@@ -92,8 +92,8 @@ void BattleField::Run(){
     std::cout<<"Do you rearry Run?"<<std::endl;
     if(isYESorNO()){
         std::cout<<A.getTrainerName()<<" blacked out."<<std::endl;
-        std::cout<<'v'<<std::flush;//enterキーの要求
-        flag = getchar();
+        enter();//enterキーの要求
+        
         selected = true;
         inBattle = false;
     }
@@ -105,8 +105,8 @@ void BattleField :: Battle(){
         if(nowBattleA->getSpeed() > nowBattleB->getSpeed()){
 
             std::cout<<nowBattleA->getPokeName()<<" used "<<tmpMoveA.getMoveName()<<std::endl;
-            std::cout<<'v'<<std::flush;//enterキーの要求
-            flag = getchar();
+            enter();//enterキーの要求
+            
             std::cout<<"The "<<nowBattleB->getPokeName()<<std::endl;
             nowBattleB->showNowhp();
             std::cout<<"->"<<std::flush;
@@ -114,8 +114,8 @@ void BattleField :: Battle(){
             nowBattleB->showNowhp();
 
             std::cout<<"The "<<nowBattleB->getPokeName()<<" used "<<tmpMoveB.getMoveName()<<std::endl;
-            std::cout<<'v'<<std::flush;//enterキーの要求
-            flag = getchar();
+            enter();//enterキーの要求
+            
             std::cout<<nowBattleA->getPokeName()<<std::endl;
             nowBattleA->showNowhp();
             std::cout<<"->"<<std::flush;                        
@@ -123,8 +123,8 @@ void BattleField :: Battle(){
             nowBattleA->showNowhp();
         }else{
             std::cout<<"The "<<nowBattleB->getPokeName()<<" used "<<tmpMoveB.getMoveName()<<std::endl;
-            std::cout<<'v'<<std::flush;//enterキーの要求
-            flag = getchar();
+            enter();//enterキーの要求
+            
             std::cout<<nowBattleA->getPokeName()<<std::endl;
             nowBattleA->showNowhp();
             std::cout<<"->"<<std::flush;                        
@@ -132,8 +132,8 @@ void BattleField :: Battle(){
             nowBattleA->showNowhp();
 
             std::cout<<nowBattleA->getPokeName()<<" used "<<tmpMoveA.getMoveName()<<std::endl;
-            std::cout<<'v'<<std::flush;//enterキーの要求
-            flag = getchar();
+            enter();//enterキーの要求
+            
             std::cout<<"The "<<nowBattleB->getPokeName()<<std::endl;
             nowBattleB->showNowhp();
             std::cout<<"->"<<std::flush;
