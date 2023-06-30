@@ -5,10 +5,10 @@
 
 #include ".\isYESorNO.h"
 
-#include ".\Move.h"
+#include ".\Move.cpp"
 #include ".\setAllMove.hpp"
-#include ".\Poke.h"
+#include ".\Poke.cpp"
 #include ".\setAllPokemon.hpp"
-#include ".\Trainer.h"
-#include ".\BattleField.hpp"
+#include ".\Trainer.cpp"
+#include ".\BattleField.cpp"
 

@@ -1,4 +1,4 @@
-#include ".\baseInclude.h"
+#include ".\BattleField.hpp"
 
 void BattleField::BattleStart(){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
