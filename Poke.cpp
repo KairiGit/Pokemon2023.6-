@@ -1,4 +1,4 @@
-#include ".\baseInclude.h"
+#include ".\Poke.h"
 void Pokemon :: setPokemon(std::string name,Type f,Type s,int hp,int atk,int def,int sp_atk,int sp_def,int speed,Move move){
     PokeName = name;
     fPokeType = f;

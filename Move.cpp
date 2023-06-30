@@ -1,4 +1,4 @@
-#include ".\baseInclude.h"
+#include ".\Move.h"
 
 Move::Move(std::string n,Type t,Cat c,int p,int a){
     MoveName = n;
