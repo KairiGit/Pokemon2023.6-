@@ -13,6 +13,8 @@ class BattleField{
         
         bool inBattle;
         bool selected;
+        bool AwillMove;
+        bool BwillMove;
     private://コンストラクタで呼び出されるヘルパー
         void checkPokemon(bool which);
         void BattleStart();
@@ -22,6 +24,9 @@ class BattleField{
         void Check();
         void checkField();
         void Run();
+        void AChenge();
+        void AMove();
+        void BMove();
         void Battle();
     public:
         BattleField(Trainer A,Trainer B);      
