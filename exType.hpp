@@ -1,5 +1,5 @@
 #pragma once
-#include ".\enum.h"
+#include ".\enum.hpp"
 //タイプに色を付けて出力する関数
 void exType(Type t){//"\x1b[38;2;赤;緑;青m"<<"文字"<<"\x1b[m"
     switch(t){

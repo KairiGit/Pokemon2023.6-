@@ -1,4 +1,4 @@
-#include ".\Master.h"
+#include ".\Master.hpp"
 
 int main(void){
     std::cout<<"Game Stert"<<std::endl;
@@ -7,8 +7,7 @@ int main(void){
     
     std::cout<<"Prease answer with a number when the choices are displayed."<<std::endl;
     std::cout<<"1.Yes, I understand."<<std::endl;
-    
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
+    std::cin>>flag;
     enter();//enterキーの要求
     
     Master();

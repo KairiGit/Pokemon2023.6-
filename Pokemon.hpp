@@ -1,5 +1,5 @@
 #pragma once
-#include ".\Move.h"
+#include ".\Move.hpp"
 
 class Pokemon{
     private:

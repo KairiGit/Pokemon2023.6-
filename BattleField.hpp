@@ -1,5 +1,5 @@
 #pragma once
-#include ".\Trainer.h"
+#include ".\Trainer.hpp"
 class BattleField{
     private:
         Trainer A;

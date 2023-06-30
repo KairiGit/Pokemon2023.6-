@@ -1,13 +1,13 @@
 #pragma once
 
-#include ".\enum.h"
-#include ".\exType.h"
+#include ".\enum.hpp"
+#include ".\exType.hpp"
 
-#include ".\isYESorNO.h"
+#include ".\isYESorNO.hpp"
 
 #include ".\Move.cpp"
 #include ".\setAllMove.hpp"
-#include ".\Poke.cpp"
+#include ".\Pokemon.cpp"
 #include ".\setAllPokemon.hpp"
 #include ".\Trainer.cpp"
 #include ".\BattleField.cpp"

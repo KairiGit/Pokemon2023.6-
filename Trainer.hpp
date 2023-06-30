@@ -1,5 +1,5 @@
 #pragma once
-#include ".\Poke.h"
+#include ".\Pokemon.hpp"
 class Trainer{
     private:
         std::string TrainerName;
