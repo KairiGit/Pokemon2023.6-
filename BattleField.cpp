@@ -175,6 +175,7 @@ void BattleField :: Battle(){
             }else{
                 AChenge();
             }
+
             if(nowBattleB->isCanBattle()){
                 if(BwillMove){
                     BMove();
@@ -183,14 +184,17 @@ void BattleField :: Battle(){
                 nowBattleB->dieMessage();
             }
             enter();//enterキーの要求
+
             if( ! nowBattleA->isCanBattle()){
                 nowBattleA->dieMessage();
                 enter();
             }
+
         }else{
             if(BwillMove){
                 BMove();
             }
+
             if(nowBattleA->isCanBattle()){
                 if(AwillMove){
                     AMove();
