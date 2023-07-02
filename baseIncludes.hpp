@@ -2,7 +2,7 @@
 
 #include ".\enum.hpp"
 #include ".\exType.hpp"
-
+#include ".\utility.hpp"
 #include ".\isYESorNO.hpp"
 
 #include ".\Move.cpp"

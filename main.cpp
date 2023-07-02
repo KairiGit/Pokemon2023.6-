@@ -7,7 +7,8 @@ int main(void){
     
     std::cout<<"Prease answer with a number when the choices are displayed."<<std::endl;
     std::cout<<"1.Yes, I understand."<<std::endl;
-    std::cin>>flag;
+    int select;
+    std::cin>> select;
     enter();//enterキーの要求
     
     Master();

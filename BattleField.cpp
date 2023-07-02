@@ -1,5 +1,6 @@
+#pragma once
 #include ".\BattleField.hpp"
-
+#include ".\utility.hpp"
 void BattleField::BattleStart(){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');// バッファをクリアする
     std::cout<<B.getTrainerName();
